@@ -16,7 +16,7 @@ const SearchComponent = () => {
           color="black"
         />
         <TextInput
-          placeholder="What will you eat today?"
+          placeholder="Search for apartment"
           style={styles.searchInput}
           placeholderTextColor={colors.white}
           placeholderStyle={{ color: "red" }}
