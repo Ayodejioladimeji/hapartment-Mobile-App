@@ -1,13 +1,19 @@
-import { Button, View } from "react-native";
+import { Button, View, SafeAreaView } from "react-native";
+// import {  } from "react-native-safe-area-context";
+import colors from "../assets/colors/colors";
+import StatusBar from "../common/MyStatusBar";
+import HomepageHeader from "../components/HomepageHeader";
+import SearchComponent from "../components/SearchComponent";
+
+//
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button
-        title="Go to Profile"
-        onPress={() => navigation.navigate("Profile")}
-      />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
+      <HomepageHeader />
+      <SearchComponent />
+    </SafeAreaView>
   );
 };
 
