@@ -1,30 +1,16 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import Card from "../common/Card";
 import colors from "../assets/colors/colors";
 import data from "../constants/data";
+import fontsize from "../assets/fontsize/fontsize";
 
 //
 
 const AroundYou = () => {
   return (
-    <View
-      style={{
-        paddingHorizontal: 15,
-        paddingTop: 10,
-        backgroundColor: colors.white,
-      }}
-    >
-      <Text
-        style={{
-          fontSize: 17,
-          fontWeight: "500",
-          marginBottom: 5,
-          color: colors.primary,
-        }}
-      >
-        Around You
-      </Text>
+    <View style={styles.aroundWrapper}>
+      <Text style={styles.aroundText}>Around You</Text>
 
       <FlatList
         data={data}
@@ -37,3 +23,18 @@ const AroundYou = () => {
 };
 
 export default AroundYou;
+
+const styles = StyleSheet.create({
+  aroundWrapper: {
+    paddingHorizontal: 15,
+    paddingTop: 10,
+    backgroundColor: colors.white,
+  },
+  aroundText: {
+    fontSize: fontsize.seven,
+    fontWeight: "500",
+    marginBottom: 5,
+    color: colors.primary,
+    fontFamily: "Lobster-Regular",
+  },
+});

@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet, Platform } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
+import fontsize from "../assets/fontsize/fontsize";
 
 //
 
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: Platform.OS === "ios" ? 20 : 50,
+    paddingTop: 20,
     paddingHorizontal: 10,
     backgroundColor: colors.primary,
     paddingVertical: 10,
@@ -59,9 +60,10 @@ const styles = StyleSheet.create({
   },
 
   headerName: {
-    fontSize: 16,
+    fontSize: fontsize.four,
     color: colors.white,
     fontWeight: "600",
+    fontFamily: "AlfaSlabOne-Regular",
   },
 
   headerRight: {
@@ -70,5 +72,7 @@ const styles = StyleSheet.create({
 
   headerLocation: {
     color: colors.white,
+    fontFamily: "Lobster-Regular",
+    fontSize: fontsize.four,
   },
 });

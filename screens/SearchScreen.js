@@ -56,7 +56,8 @@ const styles = StyleSheet.create({
   searchText: {
     marginLeft: 15,
     fontWeight: "700",
-    fontSize: fontsize.five,
+    fontSize: fontsize.six,
     color: colors.white,
+    fontFamily: "Lobster-Regular",
   },
 });

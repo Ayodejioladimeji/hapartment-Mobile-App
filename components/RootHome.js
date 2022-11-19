@@ -57,7 +57,7 @@ const RootHome = () => {
         component={HomeScreen}
         // options={{ tabBarBadge: 3 }}
       />
-      <Tab.Screen name="Search" component={SearchScreen} />
+      <Tab.Screen name="Search" component={HomeScreen} />
       <Tab.Screen name="Messages" component={Order} />
       <Tab.Screen name="Account" component={Account} />
       <Tab.Screen name="Settings" component={Account} />

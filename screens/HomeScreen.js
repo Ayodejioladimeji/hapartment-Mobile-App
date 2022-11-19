@@ -1,3 +1,4 @@
+import React, { useCallback } from "react";
 import {
   Button,
   View,
@@ -5,7 +6,11 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
-// import {  } from "react-native-safe-area-context";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+
+SplashScreen.preventAutoHideAsync();
+
 import colors from "../assets/colors/colors";
 import MyStatusBar from "../common/MyStatusBar";
 import AroundYou from "../components/AroundYou";
@@ -17,8 +22,25 @@ import SearchComponent from "../components/SearchComponent";
 //
 
 const HomeScreen = () => {
+  // initialize font family
+  const [fontsLoaded] = useFonts({
+    "Lobster-Regular": require("../assets/fonts/Lobster-Regular.ttf"),
+    "AlfaSlabOne-Regular": require("../assets/fonts/AlfaSlabOne-Regular.ttf"),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  //
   return (
-    <View style={styles.homeScreenWrapper}>
+    <View style={styles.homeScreenWrapper} onLayout={onLayoutRootView}>
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <HomepageHeader />
 
