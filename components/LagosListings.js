@@ -13,6 +13,7 @@ const LagosListings = () => {
         paddingHorizontal: 15,
         paddingTop: 10,
         backgroundColor: colors.white,
+        marginBottom: 200,
       }}
     >
       <Text

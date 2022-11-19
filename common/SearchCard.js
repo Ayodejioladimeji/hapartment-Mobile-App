@@ -17,7 +17,7 @@ import colors from "../assets/colors/colors";
 
 //
 
-const Card = ({ item }) => {
+const SearchCard = ({ item }) => {
   return (
     <View style={styles.cardWrapper}>
       <Image source={item.image} style={styles.cardImage} />
@@ -35,7 +35,9 @@ const Card = ({ item }) => {
             color={colors.textLight}
             style={{ marginLeft: -3 }}
           />
-          <Text style={styles.locationText}>{item.location}</Text>
+          <Text style={styles.locationText}>
+            {item.location.substring(0, 27) + "..."}
+          </Text>
         </View>
 
         <View style={styles.cardFooter}>
@@ -47,10 +49,6 @@ const Card = ({ item }) => {
             <FontAwesome5 name="bath" size={12} color={colors.textLight} />
             <Text style={styles.footerBoxText}>{item.bath} Bath</Text>
           </View>
-          <View style={styles.cardFooterBox}>
-            <FontAwesome5 name="bath" size={12} color={colors.textLight} />
-            <Text style={styles.footerBoxText}>{item.sqrt} Sqrt</Text>
-          </View>
         </View>
 
         <View style={styles.cardTimeWrapper}>
@@ -61,7 +59,7 @@ const Card = ({ item }) => {
   );
 };
 
-export default Card;
+export default SearchCard;
 
 const styles = StyleSheet.create({
   cardWrapper: {
@@ -70,12 +68,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1,
     elevation: 1,
-    width: Platform.OS === "ios" ? 230 : 210,
+    width: Platform.OS === "ios" ? 205 : 210,
     height: 280,
     backgroundColor: colors.white,
-    marginRight: 20,
     marginBottom: 20,
-    marginLeft: 3,
   },
   cardImage: {
     height: 140,
@@ -137,7 +133,7 @@ const styles = StyleSheet.create({
     paddingTop: 7,
   },
   cardTime: {
-    color: colors.black,
+    color: colors.textLight,
     fontSize: Platform.OS === "ios" ? 12 : 11,
   },
 });

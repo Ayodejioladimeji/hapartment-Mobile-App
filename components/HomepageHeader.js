@@ -37,9 +37,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: Platform.OS === "ios" ? 20 : 50,
+    paddingTop: Platform.OS === "ios" ? 20 : 50,
     paddingHorizontal: 10,
     backgroundColor: colors.primary,
+    paddingVertical: 10,
   },
 
   headerLeft: {

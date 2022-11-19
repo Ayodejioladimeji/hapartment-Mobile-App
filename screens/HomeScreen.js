@@ -1,7 +1,13 @@
-import { Button, View, SafeAreaView, ScrollView } from "react-native";
+import {
+  Button,
+  View,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+} from "react-native";
 // import {  } from "react-native-safe-area-context";
 import colors from "../assets/colors/colors";
-import StatusBar from "../common/MyStatusBar";
+import MyStatusBar from "../common/MyStatusBar";
 import AroundYou from "../components/AroundYou";
 import HomepageHeader from "../components/HomepageHeader";
 import LagosListings from "../components/LagosListings";
@@ -10,24 +16,30 @@ import SearchComponent from "../components/SearchComponent";
 
 //
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.primary }}>
-      <StatusBar backgroundColor={colors.primary} barStyle="light-content" />
+    <View style={styles.homeScreenWrapper}>
+      <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
+      <HomepageHeader />
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
       >
-        <HomepageHeader />
         <SearchComponent />
         <AroundYou />
         <NewListings />
         <LagosListings />
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  homeScreenWrapper: {
+    backgroundColor: colors.white,
+  },
+});

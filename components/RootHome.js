@@ -2,11 +2,11 @@ import { View, Text } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
-import Menu from "../screens/HomeScreen";
 import Order from "../screens/HomeScreen";
 import Account from "../screens/HomeScreen";
 import colors from "../assets/colors/colors";
 import { MaterialIcons } from "@expo/vector-icons";
+import SearchScreen from "../screens/SearchScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -57,7 +57,7 @@ const RootHome = () => {
         component={HomeScreen}
         // options={{ tabBarBadge: 3 }}
       />
-      <Tab.Screen name="Search" component={Menu} />
+      <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Messages" component={Order} />
       <Tab.Screen name="Account" component={Account} />
       <Tab.Screen name="Settings" component={Account} />

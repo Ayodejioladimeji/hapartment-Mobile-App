@@ -1,11 +1,11 @@
 import { View, Text, TextInput, StyleSheet, Platform } from "react-native";
 import React from "react";
 import colors from "../assets/colors/colors";
-import { Feather, FontAwesome5 } from "@expo/vector-icons";
+import { Feather, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 
 //
 
-const SearchComponent = () => {
+const Search = () => {
   return (
     <View style={styles.searchWrapper}>
       <View style={styles.inputWrapper}>
@@ -16,43 +16,38 @@ const SearchComponent = () => {
           color="black"
         />
         <TextInput
-          placeholder="Search for apartment"
+          placeholder="Search by location or preference"
           style={styles.searchInput}
           placeholderTextColor={colors.textLight}
-          placeholderStyle={{ color: "red" }}
+          placeholderStyle={{ color: colors.textDark }}
         />
-      </View>
-
-      <View style={styles.searchFilter}>
-        <FontAwesome5 name="sliders-h" size={22} color={colors.textLight} />
       </View>
     </View>
   );
 };
 
-export default SearchComponent;
+export default Search;
 
 // styles
 const styles = StyleSheet.create({
   // search wrappaer section ===========
   searchWrapper: {
     height: 80,
-    paddingHorizontal: 15,
+    paddingHorizontal: 5,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     flexDirection: "row",
     backgroundColor: colors.white,
+    width: "100%",
   },
   inputWrapper: {
     flexDirection: "row",
-    width: Platform.OS === "ios" ? 320 : 250,
+    width: "100%",
     borderWidth: 1,
     borderColor: colors.textLighter,
     alignItems: "center",
     paddingLeft: 10,
     color: colors.textDark,
-    borderBottomLeftRadius: 5,
-    borderTopLeftRadius: 5,
     height: Platform.OS === "ios" ? 50 : 45,
   },
   searchIcon: {
@@ -62,15 +57,5 @@ const styles = StyleSheet.create({
   searchInput: {
     fontSize: Platform.OS === "ios" ? 17 : 15,
     color: colors.textDark,
-  },
-  searchFilter: {
-    width: 70,
-    height: Platform.OS === "ios" ? 50 : 45,
-    borderBottomRightRadius: 5,
-    borderTopRightRadius: 5,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 1,
-    borderColor: colors.textLighter,
   },
 });
