@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Platform } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 
@@ -10,7 +10,7 @@ const HomepageHeader = () => {
     <View style={styles.headerWrapper}>
       <View style={styles.headerLeft}>
         <Image
-          source={require("../assets/images/profile.png")}
+          source={require("../assets/images/profile.jpeg")}
           style={styles.headerImage}
         />
         <View style={styles.headerBox}>
@@ -20,7 +20,11 @@ const HomepageHeader = () => {
       </View>
 
       <View style={styles.headerRight}>
-        <MaterialCommunityIcons name="bell-outline" size={27} color="black" />
+        <MaterialCommunityIcons
+          name="bell-outline"
+          size={22}
+          color={colors.white}
+        />
       </View>
     </View>
   );
@@ -33,9 +37,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    // backgroundColor: colors.primary,
-    marginTop: 20,
-    marginHorizontal: 15,
+    marginTop: Platform.OS === "ios" ? 20 : 50,
+    paddingHorizontal: 10,
+    backgroundColor: colors.primary,
   },
 
   headerLeft: {
@@ -45,20 +49,25 @@ const styles = StyleSheet.create({
   },
   headerImage: {
     borderRadius: 50,
-    height: 60,
-    width: 60,
+    height: 50,
+    width: 50,
     marginRight: 10,
     borderWidth: 2,
-    borderColor: colors.primary,
+    borderColor: colors.white,
+    resizeMode: "contain",
   },
 
   headerName: {
-    fontSize: 18,
-    color: colors.textDark,
+    fontSize: 16,
+    color: colors.white,
     fontWeight: "600",
   },
 
   headerRight: {
-    backgrouColor: colors.white,
+    backgroudColor: colors.white,
+  },
+
+  headerLocation: {
+    color: colors.white,
   },
 });

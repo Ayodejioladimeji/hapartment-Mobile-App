@@ -4,16 +4,16 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import HomeScreen from "./screens/HomeScreen";
 import NotificationsScreen from "./screens/NotificationScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import Onboarding from "./screens/Onboarding";
+import RootHome from "./components/RootHome";
 
 const Stack = createStackNavigator();
 
 function App() {
-  const [showOnboard, setShowOnboard] = useState(true);
+  const [showOnboard, setShowOnboard] = useState(false);
 
   const handleOnboardFinish = () => {
     setShowOnboard(false);
@@ -32,7 +32,7 @@ function App() {
               headerShown: false,
             }}
           >
-            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="RootHome" component={RootHome} />
 
             <Stack.Screen
               name="Notifications"

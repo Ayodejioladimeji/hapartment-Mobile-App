@@ -1,25 +1,31 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Platform,
+} from "react-native";
 import React from "react";
-import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Feather,
+  FontAwesome5,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 
 //
 
-const Card = () => {
+const Card = ({ item }) => {
   return (
     <View style={styles.cardWrapper}>
-      <Image
-        source={require("../assets/images/profile.png")}
-        style={styles.cardImage}
-      />
+      <Image source={item.image} style={styles.cardImage} />
 
       <View style={styles.cardBox}>
         <View style={styles.cardName}>
-          <Text>2 Bedroom Flat</Text>
-          <View style={styles.cardRating}>
-            <Feather name="star" size={17} color="gold" />
-            <Text style={styles.ratingText}>4.8</Text>
-          </View>
+          <Text style={styles.nameText}>{item.name}</Text>
+          <Text style={styles.amountText}>₦{item.amount}</Text>
         </View>
 
         <View style={styles.cardLocation}>
@@ -29,31 +35,26 @@ const Card = () => {
             color={colors.textLight}
             style={{ marginLeft: -3 }}
           />
-          <Text style={styles.locationText}>Emene Enugu, Nigeria</Text>
-        </View>
-
-        <View style={styles.cardAmount}>
-          <Text style={styles.cardPrice}>#350,000 </Text>
-          <Text style={styles.cardYear}>/ Annum</Text>
+          <Text style={styles.locationText}>{item.location}</Text>
         </View>
 
         <View style={styles.cardFooter}>
           <View style={styles.cardFooterBox}>
-            <Text style={styles.footerBoxText}>2</Text>
-            <Ionicons name="bed-outline" size={20} color="black" />
+            <Ionicons name="bed-outline" size={15} color={colors.textLight} />
+            <Text style={styles.footerBoxText}>{item.bed} Bed</Text>
           </View>
           <View style={styles.cardFooterBox}>
-            <Text style={styles.footerBoxText}>2</Text>
-            <Ionicons name="bed-outline" size={20} color="black" />
+            <FontAwesome5 name="bath" size={12} color={colors.textLight} />
+            <Text style={styles.footerBoxText}>{item.bath} Bath</Text>
           </View>
           <View style={styles.cardFooterBox}>
-            <Text style={styles.footerBoxText}>2</Text>
-            <Ionicons name="bed-outline" size={20} color="black" />
+            <FontAwesome5 name="bath" size={12} color={colors.textLight} />
+            <Text style={styles.footerBoxText}>{item.sqrt} Sqrt</Text>
           </View>
-          <View style={styles.cardFooterBox}>
-            <Text style={styles.footerBoxText}>2</Text>
-            <Ionicons name="bed-outline" size={20} color="black" />
-          </View>
+        </View>
+
+        <View style={styles.cardTimeWrapper}>
+          <Text style={styles.cardTime}>Updated {item.time}</Text>
         </View>
       </View>
     </View>
@@ -65,16 +66,18 @@ export default Card;
 const styles = StyleSheet.create({
   cardWrapper: {
     shadowColor: "#000",
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.1,
+    shadowOffset: { width: 0.5, height: 1 },
+    shadowOpacity: 0.2,
     shadowRadius: 1,
-    elevation: 5,
-    borderWidth: 1,
-    width: 260,
-    height: 300,
+    elevation: 1,
+    width: Platform.OS === "ios" ? 230 : 210,
+    height: 280,
+    backgroundColor: colors.white,
+    marginRight: 20,
+    marginBottom: 20,
   },
   cardImage: {
-    height: 150,
+    height: 140,
     width: "100%",
   },
 
@@ -86,16 +89,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginBottom: 10,
+    fontWeight: "700",
+    color: colors.black,
   },
 
-  cardRating: {
-    flexDirection: "row",
-    alignItems: "center",
+  nameText: {
+    fontWeight: "600",
+    fontSize: Platform.OS === "ios" ? 14 : 12,
   },
-  ratingText: {
-    marginTop: 2,
-    marginLeft: 4,
+
+  amountText: {
+    fontWeight: "700",
+    fontSize: Platform.OS === "ios" ? 14 : 12,
   },
+
   cardLocation: {
     flexDirection: "row",
     alignItems: "center",
@@ -103,32 +110,33 @@ const styles = StyleSheet.create({
   },
   locationText: {
     marginLeft: 2,
-    color: colors.textLight,
-  },
-  cardAmount: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 10,
-  },
-  cardPrice: {
-    fontSize: 15,
-    color: colors.textDark,
-    fontWeight: "600",
-  },
-  cardYear: {
-    color: colors.textLight,
+    color: colors.black,
+    fontSize: Platform.OS === "ios" ? 12 : 11,
   },
   cardFooter: {
     flexDirection: "row",
     alignItems: "center",
-    // justifyContent: "space-evenly",
+    borderTopColor: colors.black,
+    marginTop: 3,
   },
   cardFooterBox: {
     flexDirection: "row",
     alignItems: "center",
-    marginRight: 20,
+    marginRight: 13,
   },
   footerBoxText: {
-    marginRight: 4,
+    color: colors.black,
+    fontSize: Platform.OS === "ios" ? 12 : 11,
+    marginLeft: 3,
+  },
+  cardTimeWrapper: {
+    marginTop: 15,
+    borderTopWidth: 1,
+    borderColor: colors.textLighter,
+    paddingTop: 7,
+  },
+  cardTime: {
+    color: colors.black,
+    fontSize: Platform.OS === "ios" ? 12 : 11,
   },
 });

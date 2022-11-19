@@ -6,7 +6,7 @@ import data from "../constants/data";
 
 //
 
-const AroundYou = () => {
+const LagosListings = () => {
   return (
     <View
       style={{
@@ -23,7 +23,7 @@ const AroundYou = () => {
           color: colors.primary,
         }}
       >
-        Around You
+        Lagos Listings
       </Text>
 
       <FlatList
@@ -36,4 +36,4 @@ const AroundYou = () => {
   );
 };
 
-export default AroundYou;
+export default LagosListings;
