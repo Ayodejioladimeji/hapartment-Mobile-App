@@ -7,6 +7,8 @@ import Account from "../screens/HomeScreen";
 import colors from "../assets/colors/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import SearchScreen from "../screens/SearchScreen";
+import SettingsScreen from "../screens/SettingsScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -57,10 +59,10 @@ const RootHome = () => {
         component={HomeScreen}
         // options={{ tabBarBadge: 3 }}
       />
-      <Tab.Screen name="Search" component={HomeScreen} />
+      <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Messages" component={Order} />
-      <Tab.Screen name="Account" component={Account} />
-      <Tab.Screen name="Settings" component={Account} />
+      <Tab.Screen name="Account" component={ProfileScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );
 };

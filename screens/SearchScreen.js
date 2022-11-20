@@ -5,22 +5,26 @@ import Search from "../components/Search";
 import data from "../constants/data";
 import SearchCard from "../common/SearchCard";
 import colors from "../assets/colors/colors";
-import fontsize from "../assets/fontsize/fontsize";
+// import fontsize from "../assets/fontsize/fontsize";
 import MyStatusBar from "../common/MyStatusBar";
+import GoBack from "../common/GoBack";
 
 //
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <View style={styles.searchScreen}>
-        <MaterialIcons name="arrow-back" size={27} color={colors.white} />
-        <Text style={styles.searchText}>Search for apartments</Text>
+        <GoBack navigation={navigation} title="Search for apartments" />
       </View>
       <Search />
 
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.searchScroll}>
           {data.map((item) => {
             const {} = item;
@@ -46,17 +50,13 @@ const styles = StyleSheet.create({
   },
   searchScroll: {
     backgroundColor: colors.white,
-    paddingHorizontal: 5,
-    flexDirection: "row",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    flexWrap: "wrap",
+    paddingHorizontal: 15,
     marginBottom: 80,
   },
   searchText: {
     marginLeft: 15,
     fontWeight: "700",
-    fontSize: fontsize.six,
+    fontSize: 17,
     color: colors.white,
     fontFamily: "Lobster-Regular",
   },

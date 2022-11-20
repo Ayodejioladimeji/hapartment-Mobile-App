@@ -3,14 +3,14 @@ import React from "react";
 import Card from "../common/Card";
 import colors from "../assets/colors/colors";
 import data from "../constants/data";
-import fontsize from "../assets/fontsize/fontsize";
+// import fontsize from "../assets/fontsize/fontsize";
 
 //
 
 const LagosListings = () => {
   return (
     <View style={styles.lagosWrapper}>
-      <Text style={styles.lagosText}>Lagos Listings</Text>
+      <Text style={styles.lagosText}>Lagos apartments</Text>
 
       <FlatList
         data={data}
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     marginBottom: 200,
   },
   lagosText: {
-    fontSize: fontsize.seven,
+    fontSize: 16,
     fontWeight: "500",
     marginBottom: 5,
     color: colors.primary,

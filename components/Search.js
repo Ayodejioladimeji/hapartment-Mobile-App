@@ -1,7 +1,7 @@
 import { View, Text, TextInput, StyleSheet, Platform } from "react-native";
 import React from "react";
 import colors from "../assets/colors/colors";
-import { Feather, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
 //
 
@@ -19,7 +19,7 @@ const Search = () => {
           placeholder="Search by location or preference"
           style={styles.searchInput}
           placeholderTextColor={colors.textLight}
-          placeholderStyle={{ color: colors.textDark }}
+          placeholderStyle={{ color: colors.textDark, fontSize: 12 }}
         />
       </View>
     </View>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   // search wrappaer section ===========
   searchWrapper: {
     height: 80,
-    paddingHorizontal: 5,
+    paddingHorizontal: 15,
     alignItems: "center",
     justifyContent: "flex-start",
     flexDirection: "row",
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     color: colors.textDark,
   },
   searchInput: {
-    fontSize: Platform.OS === "ios" ? 17 : 15,
+    fontSize: 14,
     color: colors.textDark,
   },
 });

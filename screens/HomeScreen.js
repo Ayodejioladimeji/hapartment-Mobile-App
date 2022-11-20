@@ -26,6 +26,9 @@ const HomeScreen = () => {
   const [fontsLoaded] = useFonts({
     "Lobster-Regular": require("../assets/fonts/Lobster-Regular.ttf"),
     "AlfaSlabOne-Regular": require("../assets/fonts/AlfaSlabOne-Regular.ttf"),
+    "NunitoSans-Regular": require("../assets/fonts/NunitoSans-Regular.ttf"),
+    "NunitoSans-Black": require("../assets/fonts/NunitoSans-Black.ttf"),
+    "NunitoSans-Bold": require("../assets/fonts/NunitoSans-Bold.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -40,6 +43,7 @@ const HomeScreen = () => {
 
   //
   return (
+    // <View style={styles.homeScreenWrapper}>
     <View style={styles.homeScreenWrapper} onLayout={onLayoutRootView}>
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <HomepageHeader />

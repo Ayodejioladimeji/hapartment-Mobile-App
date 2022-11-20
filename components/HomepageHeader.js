@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, StyleSheet, Platform } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
-import fontsize from "../assets/fontsize/fontsize";
+// import fontsize from "../assets/fontsize/fontsize";
 
 //
 
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
 
   headerName: {
-    fontSize: fontsize.four,
+    // fontSize: fontsize.four,
     color: colors.white,
     fontWeight: "600",
     fontFamily: "AlfaSlabOne-Regular",
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
   headerLocation: {
     color: colors.white,
     fontFamily: "Lobster-Regular",
-    fontSize: fontsize.four,
+    // fontSize: fontsize.four,
   },
 });

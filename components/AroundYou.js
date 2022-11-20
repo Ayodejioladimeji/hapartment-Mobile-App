@@ -3,14 +3,14 @@ import React from "react";
 import Card from "../common/Card";
 import colors from "../assets/colors/colors";
 import data from "../constants/data";
-import fontsize from "../assets/fontsize/fontsize";
+// import fontsize from "../assets/fontsize/fontsize";
 
 //
 
 const AroundYou = () => {
   return (
     <View style={styles.aroundWrapper}>
-      <Text style={styles.aroundText}>Around You</Text>
+      <Text style={styles.aroundText}>Apartments around You</Text>
 
       <FlatList
         data={data}
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   aroundText: {
-    fontSize: fontsize.seven,
+    fontSize: 16,
     fontWeight: "500",
     marginBottom: 5,
     color: colors.primary,

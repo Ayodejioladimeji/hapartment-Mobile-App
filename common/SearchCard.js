@@ -19,7 +19,7 @@ import colors from "../assets/colors/colors";
 
 const SearchCard = ({ item }) => {
   return (
-    <View style={styles.cardWrapper}>
+    <View style={styles.cardsWrapper}>
       <Image source={item.image} style={styles.cardImage} />
 
       <View style={styles.cardBox}>
@@ -49,6 +49,10 @@ const SearchCard = ({ item }) => {
             <FontAwesome5 name="bath" size={12} color={colors.textLight} />
             <Text style={styles.footerBoxText}>{item.bath} Bath</Text>
           </View>
+          <View style={styles.cardFooterBox}>
+            <FontAwesome5 name="bath" size={12} color={colors.textLight} />
+            <Text style={styles.footerBoxText}>{item.sqrt} Sqrt</Text>
+          </View>
         </View>
 
         <View style={styles.cardTimeWrapper}>
@@ -62,24 +66,26 @@ const SearchCard = ({ item }) => {
 export default SearchCard;
 
 const styles = StyleSheet.create({
-  cardWrapper: {
+  cardsWrapper: {
     shadowColor: "#000",
-    shadowOffset: { width: 0.5, height: 1 },
-    shadowOpacity: 0.2,
+    shadowOffset: { width: 0.5, height: 2 },
     shadowRadius: 1,
     elevation: 1,
-    width: Platform.OS === "ios" ? 205 : 210,
-    height: 280,
-    backgroundColor: colors.white,
+    width: "100%",
     marginBottom: 20,
+    flexDirection: "row",
+    borderWidth: 0.2,
+    borderColor: colors.textLighter,
   },
   cardImage: {
     height: 140,
-    width: "100%",
+    width: "40%",
   },
 
   cardBox: {
     padding: 10,
+    paddingHorizontal: 13,
+    width: "60%",
   },
   cardName: {
     flexDirection: "row",
@@ -92,12 +98,13 @@ const styles = StyleSheet.create({
 
   nameText: {
     fontWeight: "600",
-    fontSize: Platform.OS === "ios" ? 14 : 12,
+    fontSize: Platform.OS === "ios" ? 13 : 12,
+    fontFamily: "NunitoSans-Bold",
   },
 
   amountText: {
     fontWeight: "700",
-    fontSize: Platform.OS === "ios" ? 14 : 12,
+    fontSize: Platform.OS === "ios" ? 13 : 12,
   },
 
   cardLocation: {
@@ -108,7 +115,8 @@ const styles = StyleSheet.create({
   locationText: {
     marginLeft: 2,
     color: colors.black,
-    fontSize: Platform.OS === "ios" ? 12 : 11,
+    fontSize: 11,
+    fontFamily: "NunitoSans-Regular",
   },
   cardFooter: {
     flexDirection: "row",
@@ -123,17 +131,19 @@ const styles = StyleSheet.create({
   },
   footerBoxText: {
     color: colors.black,
-    fontSize: Platform.OS === "ios" ? 12 : 11,
+    fontSize: 11,
     marginLeft: 3,
+    fontFamily: "NunitoSans-Regular",
   },
   cardTimeWrapper: {
     marginTop: 15,
-    borderTopWidth: 1,
+    borderTopWidth: 0.3,
     borderColor: colors.textLighter,
     paddingTop: 7,
   },
   cardTime: {
     color: colors.textLight,
-    fontSize: Platform.OS === "ios" ? 12 : 11,
+    fontSize: 11,
+    fontFamily: "NunitoSans-Regular",
   },
 });

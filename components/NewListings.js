@@ -3,14 +3,14 @@ import React from "react";
 import Card from "../common/Card";
 import colors from "../assets/colors/colors";
 import data from "../constants/data";
-import fontsize from "../assets/fontsize/fontsize";
+// import fontsize from "../assets/fontsize/fontsize";
 
 //
 
 const NewListings = () => {
   return (
     <View style={styles.newWrapper}>
-      <Text style={styles.newText}>New Listings</Text>
+      <Text style={styles.newText}>New apartments</Text>
 
       <FlatList
         data={data}
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   newText: {
-    fontSize: fontsize.seven,
+    fontSize: 16,
     fontWeight: "500",
     marginBottom: 5,
     color: colors.primary,

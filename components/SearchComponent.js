@@ -1,4 +1,4 @@
-import { View, Text, TextInput, StyleSheet, Platform } from "react-native";
+import { View, TextInput, StyleSheet, Platform } from "react-native";
 import React from "react";
 import colors from "../assets/colors/colors";
 import { Feather, FontAwesome5 } from "@expo/vector-icons";
@@ -19,7 +19,6 @@ const SearchComponent = () => {
           placeholder="Search for apartment"
           style={styles.searchInput}
           placeholderTextColor={colors.textLight}
-          placeholderStyle={{ color: "red" }}
         />
       </View>
 
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
   },
   inputWrapper: {
     flexDirection: "row",
-    width: Platform.OS === "ios" ? 320 : 250,
+    width: Platform.OS === "ios" ? 280 : 250,
     borderWidth: 1,
     borderColor: colors.textLighter,
     alignItems: "center",
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
     color: colors.textDark,
   },
   searchInput: {
-    fontSize: Platform.OS === "ios" ? 17 : 15,
+    fontSize: Platform.OS === "ios" ? 15 : 14,
     color: colors.textDark,
   },
   searchFilter: {
