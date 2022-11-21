@@ -11,6 +11,7 @@ import {
 import AppIntroSlider from "react-native-app-intro-slider";
 // import LinearGradient from "react-native-linear-gradient";
 import colors from "../assets/colors/colors";
+import MyStatusBar from "../common/MyStatusBar";
 import onboardData from "../constants/onboardData";
 
 const Onboarding = (props) => {
@@ -67,7 +68,7 @@ const Onboarding = (props) => {
   //
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar translucent backgroundColor={colors.primary} />
+      <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <Image
         source={require("../assets/brandlogo.png")}
         style={styles.brandImage}

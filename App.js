@@ -7,6 +7,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 // import SettingsScreen from "./screens/SettingsScreen";
 import Onboarding from "./screens/Onboarding";
 import RootHome from "./components/RootHome";
+import EditProfileScreen from "./screens/EditProfileScreen";
+import DetailsScreen from "./screens/DetailsScreen";
 
 const Stack = createStackNavigator();
 
@@ -32,9 +34,12 @@ function App() {
           >
             <Stack.Screen name="RootHome" component={RootHome} />
 
-            {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
+            <Stack.Screen
+              name="EditProfileScreen"
+              component={EditProfileScreen}
+            />
 
-            {/* <Stack.Screen name="Settings" component={SettingsScreen} /> */}
+            <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       )}

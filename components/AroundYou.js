@@ -3,20 +3,22 @@ import React from "react";
 import Card from "../common/Card";
 import colors from "../assets/colors/colors";
 import data from "../constants/data";
-// import fontsize from "../assets/fontsize/fontsize";
 
 //
 
-const AroundYou = () => {
+const AroundYou = ({ navigation }) => {
   return (
     <View style={styles.aroundWrapper}>
       <Text style={styles.aroundText}>Apartments around You</Text>
 
       <FlatList
         data={data}
-        renderItem={Card}
+        renderItem={({ item }) => {
+          return <Card item={item} navigation={navigation} />;
+        }}
         keyExtractor={(item) => item.id}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );

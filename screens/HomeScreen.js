@@ -21,7 +21,7 @@ import SearchComponent from "../components/SearchComponent";
 
 //
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   // initialize font family
   const [fontsLoaded] = useFonts({
     "Lobster-Regular": require("../assets/fonts/Lobster-Regular.ttf"),
@@ -54,7 +54,7 @@ const HomeScreen = () => {
         showsVerticalScrollIndicator={false}
       >
         <SearchComponent />
-        <AroundYou />
+        <AroundYou navigation={navigation} />
         <NewListings />
         <LagosListings />
       </ScrollView>

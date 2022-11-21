@@ -4,7 +4,14 @@ import {
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
-import { View, StyleSheet, Image, Text, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import colors from "../assets/colors/colors";
 import GoBack from "../common/GoBack";
 import MyStatusBar from "../common/MyStatusBar";
@@ -29,9 +36,12 @@ const ProfileScreen = ({ navigation }) => {
             />
             <Text style={styles.nameText}>Ayodeji Oladimeji</Text>
             <Text style={styles.usernameText}>@Layobright</Text>
-            <View style={styles.profileButton}>
+            <TouchableOpacity
+              style={styles.profileButton}
+              onPress={() => navigation.navigate("EditProfileScreen")}
+            >
               <Text style={styles.buttonText}>Edit Profile</Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
 
@@ -103,6 +113,27 @@ const ProfileScreen = ({ navigation }) => {
             <View style={styles.profileLeft}>
               <View style={styles.detailsBox}>
                 <Ionicons
+                  name="lock-open"
+                  size={18}
+                  color="black"
+                  style={styles.profileIcon}
+                />
+              </View>
+              <Text style={styles.detailsText}>Change Password</Text>
+            </View>
+
+            <MaterialIcons
+              name="chevron-right"
+              size={24}
+              color="black"
+              style={styles.arrow}
+            />
+          </View>
+
+          <View style={styles.profileDetails}>
+            <View style={styles.profileLeft}>
+              <View style={styles.detailsBox}>
+                <Ionicons
                   name="notifications-off-outline"
                   size={18}
                   color="black"
@@ -119,6 +150,7 @@ const ProfileScreen = ({ navigation }) => {
               style={styles.arrow}
             />
           </View>
+
           <View style={styles.profileDetails}>
             <View style={styles.profileLeft}>
               <View style={styles.detailsBox}>

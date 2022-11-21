@@ -17,6 +17,7 @@ const LagosListings = () => {
         renderItem={Card}
         keyExtractor={(item) => item.id}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );

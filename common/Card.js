@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import {
@@ -17,9 +18,14 @@ import colors from "../assets/colors/colors";
 
 //
 
-const Card = ({ item }) => {
+const Card = ({ item, navigation }) => {
+  // console.log(navigation);
+  //
   return (
-    <View style={styles.cardWrapper}>
+    <TouchableOpacity
+      style={styles.cardWrapper}
+      onPress={() => navigation.navigate("DetailsScreen")}
+    >
       <Image source={item.image} style={styles.cardImage} />
 
       <View style={styles.cardBox}>
@@ -57,7 +63,7 @@ const Card = ({ item }) => {
           <Text style={styles.cardTime}>Updated {item.time}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
