@@ -14,30 +14,27 @@ import MyStatusBar from "../common/MyStatusBar";
 const ProfileScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
-      <View style={{ height: 60 }}>
-        <GoBack navigation={navigation} title="User Profile" />
-      </View>
-
-      <View style={styles.profileWrapper}>
-        <View style={styles.profileBox}>
-          <Image
-            source={require("../assets/images/profile.jpeg")}
-            style={styles.profileImage}
-          />
-          <Text style={styles.nameText}>Ayodeji Oladimeji</Text>
-          <Text style={styles.usernameText}>@Layobright</Text>
-          <View style={styles.profileButton}>
-            <Text style={styles.buttonText}>Edit Profile</Text>
-          </View>
-        </View>
-      </View>
+      <GoBack navigation={navigation} title="User Profile" />
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
       >
+        <View style={styles.profileWrapper}>
+          <View style={styles.profileBox}>
+            <Image
+              source={require("../assets/images/profile.jpeg")}
+              style={styles.profileImage}
+            />
+            <Text style={styles.nameText}>Ayodeji Oladimeji</Text>
+            <Text style={styles.usernameText}>@Layobright</Text>
+            <View style={styles.profileButton}>
+              <Text style={styles.buttonText}>Edit Profile</Text>
+            </View>
+          </View>
+        </View>
+
         <View style={styles.profileDetailsWrapper}>
           <View style={styles.profileDetails}>
             <View style={styles.profileLeft}>

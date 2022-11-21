@@ -10,17 +10,14 @@ import GoBack from "../common/GoBack";
 const SettingsScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
-      <View style={{ height: 60 }}>
-        <GoBack navigation={navigation} title="Settings" />
-      </View>
+      <GoBack navigation={navigation} title="Settings" />
 
       <ScrollView style={styles.settingsWrapper}>
         <View style={styles.settingsBox}>
           <View style={styles.settingsLeft}>
             <MaterialIcons
               name="settings"
-              size={24}
+              size={22}
               color="black"
               style={styles.settingsIcon}
             />
@@ -39,7 +36,7 @@ const SettingsScreen = ({ navigation }) => {
           <View style={styles.settingsLeft}>
             <MaterialIcons
               name="help-outline"
-              size={24}
+              size={22}
               color="black"
               style={styles.settingsIcon}
             />
@@ -58,7 +55,7 @@ const SettingsScreen = ({ navigation }) => {
           <View style={styles.settingsLeft}>
             <AntDesign
               name="message1"
-              size={24}
+              size={22}
               color="black"
               style={styles.settingsIcon}
             />
@@ -106,7 +103,7 @@ const styles = StyleSheet.create({
   settingsText: {
     color: colors.textDark,
     fontFamily: "NunitoSans-Bold",
-    fontSize: 16,
+    fontSize: 15,
   },
   arrow: {
     color: colors.textDark,

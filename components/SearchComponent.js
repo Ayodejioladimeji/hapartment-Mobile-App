@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   // search wrappaer section ===========
   searchWrapper: {
     height: 80,
+    width: "100%",
     paddingHorizontal: 15,
     alignItems: "center",
     justifyContent: "space-between",
@@ -44,8 +45,8 @@ const styles = StyleSheet.create({
   },
   inputWrapper: {
     flexDirection: "row",
-    width: Platform.OS === "ios" ? 280 : 250,
-    borderWidth: 1,
+    width: "78%",
+    borderWidth: 0.3,
     borderColor: colors.textLighter,
     alignItems: "center",
     paddingLeft: 10,
@@ -63,13 +64,13 @@ const styles = StyleSheet.create({
     color: colors.textDark,
   },
   searchFilter: {
-    width: 70,
+    width: "20%",
     height: Platform.OS === "ios" ? 50 : 45,
     borderBottomRightRadius: 5,
     borderTopRightRadius: 5,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
+    borderWidth: 0.3,
     borderColor: colors.textLighter,
   },
 });

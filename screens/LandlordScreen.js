@@ -1,4 +1,11 @@
-import { View, Text, StyleSheet, ScrollView, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  Platform,
+} from "react-native";
 import React from "react";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
@@ -13,10 +20,7 @@ import landlordData from "../constants/landlordData";
 const LandlordScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
-      <View style={{ height: 60 }}>
-        <GoBack navigation={navigation} title="Landlords" />
-      </View>
+      <GoBack navigation={navigation} title="Landlords" />
 
       <LandlordSearch />
 
@@ -56,7 +60,7 @@ const styles = StyleSheet.create({
   landlordWrapper: {
     paddingHorizontal: 15,
     marginVertical: 5,
-    marginBottom: 100,
+    marginBottom: Platform.OS === "ios" ? 100 : 70,
   },
   landlordBox: {
     borderWidth: 0.3,
@@ -80,11 +84,12 @@ const styles = StyleSheet.create({
   landlordText: {
     color: colors.textDark,
     fontFamily: "NunitoSans-Bold",
-    fontSize: 16,
+    fontSize: 14,
   },
   addressText: {
     color: colors.textDark,
     fontFamily: "NunitoSans-Regular",
+    fontSize: 12,
   },
   arrow: {
     color: colors.textDark,

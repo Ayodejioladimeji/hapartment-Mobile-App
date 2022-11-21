@@ -97,13 +97,13 @@ const styles = StyleSheet.create({
 
   nameText: {
     fontWeight: "600",
-    fontSize: Platform.OS === "ios" ? 14 : 12,
+    fontSize: Platform.OS === "ios" ? 13 : 11,
     fontFamily: "NunitoSans-Bold",
   },
 
   amountText: {
     fontWeight: "700",
-    fontSize: Platform.OS === "ios" ? 14 : 12,
+    fontSize: Platform.OS === "ios" ? 13 : 12,
   },
 
   cardLocation: {

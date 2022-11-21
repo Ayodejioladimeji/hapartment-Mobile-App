@@ -14,10 +14,8 @@ import GoBack from "../common/GoBack";
 const SearchScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
-      <View style={styles.searchScreen}>
-        <GoBack navigation={navigation} title="Search for apartments" />
-      </View>
+      <GoBack navigation={navigation} title="Search for apartments" />
+
       <Search />
 
       <ScrollView
@@ -40,13 +38,8 @@ export default SearchScreen;
 
 const styles = StyleSheet.create({
   searchScreen: {
-    flexDirection: "row",
-    paddingHorizontal: 5,
-    backgroundColor: colors.white,
     height: 60,
-    alignItems: "center",
-    justifyContent: "flex-start",
-    backgroundColor: colors.primary,
+    backgroundColor: "orange",
   },
   searchScroll: {
     backgroundColor: colors.white,

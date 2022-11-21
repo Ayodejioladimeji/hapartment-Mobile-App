@@ -10,11 +10,11 @@ const Rating = () => {
         marginTop: 5,
       }}
     >
-      <FontAwesome name="star" size={15} color="black" />
-      <FontAwesome name="star" size={15} color="black" />
-      <FontAwesome name="star" size={15} color="black" />
-      <FontAwesome name="star-o" size={15} color="black" />
-      <FontAwesome name="star-o" size={15} color="black" />
+      <FontAwesome name="star" size={11} color="black" />
+      <FontAwesome name="star" size={11} color="black" />
+      <FontAwesome name="star" size={11} color="black" />
+      <FontAwesome name="star-o" size={11} color="black" />
+      <FontAwesome name="star-o" size={11} color="black" />
     </View>
   );
 };

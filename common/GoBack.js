@@ -8,7 +8,7 @@ import MyStatusBar from "../common/MyStatusBar";
 
 const GoBack = ({ navigation, title }) => {
   return (
-    <View style={{ flex: 1, backgroundColor: colors.white }}>
+    <View>
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <View style={styles.goBack}>
         <MaterialIcons
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
   goBack: {
     flexDirection: "row",
     paddingHorizontal: 5,
-    backgroundColor: colors.white,
     height: 60,
     alignItems: "center",
     justifyContent: "flex-start",

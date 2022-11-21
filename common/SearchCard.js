@@ -42,15 +42,15 @@ const SearchCard = ({ item }) => {
 
         <View style={styles.cardFooter}>
           <View style={styles.cardFooterBox}>
-            <Ionicons name="bed-outline" size={15} color={colors.textLight} />
+            <Ionicons name="bed-outline" size={14} color={colors.textLight} />
             <Text style={styles.footerBoxText}>{item.bed} Bed</Text>
           </View>
           <View style={styles.cardFooterBox}>
-            <FontAwesome5 name="bath" size={12} color={colors.textLight} />
+            <FontAwesome5 name="bath" size={11} color={colors.textLight} />
             <Text style={styles.footerBoxText}>{item.bath} Bath</Text>
           </View>
           <View style={styles.cardFooterBox}>
-            <FontAwesome5 name="bath" size={12} color={colors.textLight} />
+            <FontAwesome5 name="bath" size={11} color={colors.textLight} />
             <Text style={styles.footerBoxText}>{item.sqrt} Sqrt</Text>
           </View>
         </View>
@@ -74,11 +74,13 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 20,
     flexDirection: "row",
+    alignItems: "center",
     borderWidth: 0.2,
     borderColor: colors.textLighter,
+    paddingHorizontal: 5,
   },
   cardImage: {
-    height: 140,
+    height: 120,
     width: "40%",
   },
 
@@ -131,7 +133,7 @@ const styles = StyleSheet.create({
   },
   footerBoxText: {
     color: colors.black,
-    fontSize: 11,
+    fontSize: 9,
     marginLeft: 3,
     fontFamily: "NunitoSans-Regular",
   },
