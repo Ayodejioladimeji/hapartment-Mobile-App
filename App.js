@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import NotificationsScreen from "./screens/NotificationScreen";
-import ProfileScreen from "./screens/ProfileScreen";
-import SettingsScreen from "./screens/SettingsScreen";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+// import ProfileScreen from "./screens/ProfileScreen";
+// import SettingsScreen from "./screens/SettingsScreen";
 import Onboarding from "./screens/Onboarding";
 import RootHome from "./components/RootHome";
 
@@ -33,14 +32,9 @@ function App() {
           >
             <Stack.Screen name="RootHome" component={RootHome} />
 
-            <Stack.Screen
-              name="Notifications"
-              component={NotificationsScreen}
-            />
+            {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
 
-            <Stack.Screen name="Profile" component={ProfileScreen} />
-
-            <Stack.Screen name="Settings" component={SettingsScreen} />
+            {/* <Stack.Screen name="Settings" component={SettingsScreen} /> */}
           </Stack.Navigator>
         </NavigationContainer>
       )}

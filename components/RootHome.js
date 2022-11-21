@@ -2,13 +2,12 @@ import { View, Text } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
-import Order from "../screens/HomeScreen";
-import Account from "../screens/HomeScreen";
 import colors from "../assets/colors/colors";
 import { MaterialIcons } from "@expo/vector-icons";
 import SearchScreen from "../screens/SearchScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import LandlordScreen from "../screens/LandlordScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,8 +22,8 @@ const RootHome = () => {
             iconName = "home";
           } else if (route.name === "Search") {
             iconName = "search";
-          } else if (route.name === "Messages") {
-            iconName = "chat";
+          } else if (route.name === "Landlords") {
+            iconName = "supervisor-account";
           } else if (route.name === "Account") {
             iconName = "account-circle";
           } else if (route.name === "Settings") {
@@ -32,7 +31,7 @@ const RootHome = () => {
           }
 
           // You can return any component that you like here!
-          return <MaterialIcons name={iconName} size={25} color={color} />;
+          return <MaterialIcons name={iconName} size={26} color={color} />;
         },
         headerStyle: {
           height: 0,
@@ -60,7 +59,7 @@ const RootHome = () => {
         // options={{ tabBarBadge: 3 }}
       />
       <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Messages" component={Order} />
+      <Tab.Screen name="Landlords" component={LandlordScreen} />
       <Tab.Screen name="Account" component={ProfileScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>

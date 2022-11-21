@@ -5,7 +5,7 @@ import { Feather } from "@expo/vector-icons";
 
 //
 
-const Search = () => {
+const LandlordSearch = () => {
   return (
     <View style={styles.searchWrapper}>
       <View style={styles.inputWrapper}>
@@ -16,7 +16,7 @@ const Search = () => {
           color="black"
         />
         <TextInput
-          placeholder="Search by location or preference"
+          placeholder="Search for landlord or agent"
           style={styles.searchInput}
           placeholderTextColor={colors.textLight}
           placeholderStyle={{ color: colors.textDark, fontSize: 12 }}
@@ -26,7 +26,7 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default LandlordSearch;
 
 // styles
 const styles = StyleSheet.create({
