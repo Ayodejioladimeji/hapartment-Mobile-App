@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import { AntDesign, MaterialIcons } from "@expo/vector-icons";
@@ -31,23 +32,28 @@ const LandlordScreen = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
       >
         {landlordData.map((item) => (
-          <View style={styles.landlordBox} key={item.id}>
-            <View style={styles.landlordLeft}>
-              <Image source={item.image} style={styles.landlordImage} />
-              <View>
-                <Text style={styles.landlordText}>{item.name}</Text>
-                <Text style={styles.addressText}>{item.address}</Text>
-                <Rating />
+          <TouchableOpacity
+            key={item.id}
+            onPress={() => navigation.navigate("LandlordProfileScreen")}
+          >
+            <View style={styles.landlordBox}>
+              <View style={styles.landlordLeft}>
+                <Image source={item.image} style={styles.landlordImage} />
+                <View>
+                  <Text style={styles.landlordText}>{item.name}</Text>
+                  <Text style={styles.addressText}>{item.address}</Text>
+                  <Rating />
+                </View>
               </View>
-            </View>
 
-            <MaterialIcons
-              name="chevron-right"
-              size={24}
-              color="black"
-              style={styles.arrow}
-            />
-          </View>
+              <MaterialIcons
+                name="chevron-right"
+                size={24}
+                color="black"
+                style={styles.arrow}
+              />
+            </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </View>

@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React from "react";
-import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+import { AntDesign, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 import MyStatusBar from "../common/MyStatusBar";
 import GoBack from "../common/GoBack";
@@ -34,13 +34,70 @@ const SettingsScreen = ({ navigation }) => {
 
         <View style={styles.settingsBox}>
           <View style={styles.settingsLeft}>
-            <MaterialIcons
-              name="help-outline"
+            <AntDesign
+              name="questioncircle"
+              size={22}
+              color="black"
+              style={styles.settingsIcon}
+            />
+            <Text style={styles.settingsText}>FAQS</Text>
+          </View>
+
+          <MaterialIcons
+            name="chevron-right"
+            size={24}
+            color="black"
+            style={styles.arrow}
+          />
+        </View>
+
+        <View style={styles.settingsBox}>
+          <View style={styles.settingsLeft}>
+            <FontAwesome5
+              name="hands-helping"
               size={22}
               color="black"
               style={styles.settingsIcon}
             />
             <Text style={styles.settingsText}>Help Center</Text>
+          </View>
+
+          <MaterialIcons
+            name="chevron-right"
+            size={24}
+            color="black"
+            style={styles.arrow}
+          />
+        </View>
+
+        <View style={styles.settingsBox}>
+          <View style={styles.settingsLeft}>
+            <MaterialIcons
+              name="policy"
+              size={22}
+              color="black"
+              style={styles.settingsIcon}
+            />
+            <Text style={styles.settingsText}>Terms and conditions</Text>
+          </View>
+
+          <MaterialIcons
+            name="chevron-right"
+            size={24}
+            color="black"
+            style={styles.arrow}
+          />
+        </View>
+
+        <View style={styles.settingsBox}>
+          <View style={styles.settingsLeft}>
+            <MaterialIcons
+              name="privacy-tip"
+              size={22}
+              color="black"
+              style={styles.settingsIcon}
+            />
+            <Text style={styles.settingsText}>Privacy Policy</Text>
           </View>
 
           <MaterialIcons

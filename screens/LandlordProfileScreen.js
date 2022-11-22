@@ -24,7 +24,11 @@ const LandlordProfileScreen = () => {
   return (
     <View style={{ flex: 1 }}>
       <GoBack title="Agent Profile" navigation={navigation} />
-      <ScrollView>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
         <View style={styles.profileWrapper}>
           <View style={styles.profileBox}>
             <Image
@@ -48,7 +52,12 @@ const LandlordProfileScreen = () => {
 
           <View>
             {data.map((item) => (
-              <SearchCard item={item} key={item.id} />
+              <TouchableOpacity
+                key={item.id}
+                onPress={() => navigation.navigate("DetailsScreen")}
+              >
+                <SearchCard item={item} />
+              </TouchableOpacity>
             ))}
           </View>
         </View>
