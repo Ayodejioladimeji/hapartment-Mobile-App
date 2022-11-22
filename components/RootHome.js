@@ -22,7 +22,7 @@ const RootHome = () => {
             iconName = "home";
           } else if (route.name === "Search") {
             iconName = "search";
-          } else if (route.name === "Landlords") {
+          } else if (route.name === "Agents") {
             iconName = "supervisor-account";
           } else if (route.name === "Account") {
             iconName = "account-circle";
@@ -59,7 +59,7 @@ const RootHome = () => {
         // options={{ tabBarBadge: 3 }}
       />
       <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Landlords" component={LandlordScreen} />
+      <Tab.Screen name="Agents" component={LandlordScreen} />
       <Tab.Screen name="Account" component={ProfileScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>

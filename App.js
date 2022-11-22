@@ -9,6 +9,7 @@ import Onboarding from "./screens/Onboarding";
 import RootHome from "./components/RootHome";
 import EditProfileScreen from "./screens/EditProfileScreen";
 import DetailsScreen from "./screens/DetailsScreen";
+import LandlordProfileScreen from "./screens/LandlordProfileScreen";
 
 const Stack = createStackNavigator();
 
@@ -40,6 +41,10 @@ function App() {
             />
 
             <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+            <Stack.Screen
+              name="LandlordProfileScreen"
+              component={LandlordProfileScreen}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       )}

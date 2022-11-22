@@ -50,8 +50,8 @@ const SearchCard = ({ item }) => {
             <Text style={styles.footerBoxText}>{item.bath} Bath</Text>
           </View>
           <View style={styles.cardFooterBox}>
-            <FontAwesome5 name="bath" size={11} color={colors.textLight} />
-            <Text style={styles.footerBoxText}>{item.sqrt} Sqrt</Text>
+            <FontAwesome5 name="toilet" size={11} color={colors.textLight} />
+            <Text style={styles.footerBoxText}>{item.toilet} Toilet</Text>
           </View>
         </View>
 

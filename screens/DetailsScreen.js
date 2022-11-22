@@ -5,6 +5,7 @@ import {
   ImageBackground,
   ScrollView,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import GoBack from "../common/GoBack";
@@ -105,14 +106,17 @@ const DetailsScreen = ({ navigation }) => {
               style={styles.agentImage}
             />
             <View>
-              <Text style={styles.name}>Ayodeji Oladimeji</Text>
+              <Text style={styles.agentName}>Ayodeji Oladimeji</Text>
               <Text style={styles.desc}>Agent</Text>
             </View>
           </View>
 
-          <View style={styles.viewWrapper}>
+          <TouchableOpacity
+            style={styles.viewWrapper}
+            onPress={() => navigation.navigate("LandlordProfileScreen")}
+          >
             <Text style={styles.viewText}>View Agent</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>
@@ -131,7 +135,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   name: {
-    fontSize: 21,
+    fontSize: 18,
     fontFamily: "NunitoSans-Black",
     color: colors.primary,
     fontWeight: "bold",
@@ -248,7 +252,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.primary,
   },
-  name: {
+  agentName: {
     fontSize: 13,
     fontFamily: "NunitoSans-Bold",
     color: colors.secondary,

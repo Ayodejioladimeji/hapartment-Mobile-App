@@ -20,7 +20,7 @@ import landlordData from "../constants/landlordData";
 const LandlordScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <GoBack navigation={navigation} title="Landlords" />
+      <GoBack navigation={navigation} title="Apartment Agents" />
 
       <LandlordSearch />
 
