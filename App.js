@@ -10,6 +10,7 @@ import RootHome from "./components/RootHome";
 import EditProfileScreen from "./screens/EditProfileScreen";
 import DetailsScreen from "./screens/DetailsScreen";
 import LandlordProfileScreen from "./screens/LandlordProfileScreen";
+import AgentDetailsScreen from "./screens/AgentDetailsScreen";
 
 const Stack = createStackNavigator();
 
@@ -41,6 +42,10 @@ function App() {
             />
 
             <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+            <Stack.Screen
+              name="AgentDetailsScreen"
+              component={AgentDetailsScreen}
+            />
             <Stack.Screen
               name="LandlordProfileScreen"
               component={LandlordProfileScreen}

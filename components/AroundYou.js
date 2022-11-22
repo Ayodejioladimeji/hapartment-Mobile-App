@@ -3,10 +3,14 @@ import React from "react";
 import Card from "../common/Card";
 import colors from "../assets/colors/colors";
 import data from "../constants/data";
+import { useNavigation } from "@react-navigation/native";
 
 //
 
-const AroundYou = ({ navigation }) => {
+const AroundYou = () => {
+  const navigation = useNavigation();
+
+  //
   return (
     <View style={styles.aroundWrapper}>
       <Text style={styles.aroundText}>Apartments around You</Text>

@@ -20,7 +20,7 @@ import { useNavigation } from "@react-navigation/native";
 
 //
 
-const DetailsScreen = ({ route }) => {
+const AgentDetailsScreen = ({ route }) => {
   const navigation = useNavigation();
   const { name, amount, location, bath, bed, toilet, image, time } =
     route.params.item;
@@ -28,7 +28,7 @@ const DetailsScreen = ({ route }) => {
   //
   return (
     <View style={styles.detailsWrapper}>
-      <GoBack navigation={navigation} title="Apartment Details" />
+      <GoBack navigation={navigation} title="Agent Apartment Details" />
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
@@ -128,7 +128,7 @@ const DetailsScreen = ({ route }) => {
   );
 };
 
-export default DetailsScreen;
+export default AgentDetailsScreen;
 
 const styles = StyleSheet.create({
   detailsWrapper: {

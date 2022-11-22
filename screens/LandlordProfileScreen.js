@@ -52,12 +52,7 @@ const LandlordProfileScreen = () => {
 
           <View>
             {data.map((item) => (
-              <TouchableOpacity
-                key={item.id}
-                onPress={() => navigation.navigate("DetailsScreen")}
-              >
-                <SearchCard item={item} />
-              </TouchableOpacity>
+              <SearchCard item={item} key={item.id} />
             ))}
           </View>
         </View>

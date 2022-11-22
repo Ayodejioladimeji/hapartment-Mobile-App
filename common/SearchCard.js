@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import {
@@ -14,52 +15,60 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
+import { useNavigation } from "@react-navigation/native";
 
 //
 
 const SearchCard = ({ item }) => {
+  const navigation = useNavigation();
+
+  //
   return (
-    <View style={styles.cardsWrapper}>
-      <Image source={item.image} style={styles.cardImage} />
+    <TouchableOpacity
+      onPress={() => navigation.navigate("AgentDetailsScreen", { item })}
+    >
+      <View style={styles.cardsWrapper}>
+        <Image source={{ uri: item.image[0] }} style={styles.cardImage} />
 
-      <View style={styles.cardBox}>
-        <View style={styles.cardName}>
-          <Text style={styles.nameText}>{item.name}</Text>
-          <Text style={styles.amountText}>₦{item.amount}</Text>
-        </View>
-
-        <View style={styles.cardLocation}>
-          <MaterialCommunityIcons
-            name="map-marker"
-            size={18}
-            color={colors.textLight}
-            style={{ marginLeft: -3 }}
-          />
-          <Text style={styles.locationText}>
-            {item.location.substring(0, 27) + "..."}
-          </Text>
-        </View>
-
-        <View style={styles.cardFooter}>
-          <View style={styles.cardFooterBox}>
-            <Ionicons name="bed-outline" size={14} color={colors.textLight} />
-            <Text style={styles.footerBoxText}>{item.bed} Bed</Text>
+        <View style={styles.cardBox}>
+          <View style={styles.cardName}>
+            <Text style={styles.nameText}>{item.name}</Text>
+            <Text style={styles.amountText}>₦{item.amount}</Text>
           </View>
-          <View style={styles.cardFooterBox}>
-            <FontAwesome5 name="bath" size={11} color={colors.textLight} />
-            <Text style={styles.footerBoxText}>{item.bath} Bath</Text>
-          </View>
-          <View style={styles.cardFooterBox}>
-            <FontAwesome5 name="toilet" size={11} color={colors.textLight} />
-            <Text style={styles.footerBoxText}>{item.toilet} Toilet</Text>
-          </View>
-        </View>
 
-        <View style={styles.cardTimeWrapper}>
-          <Text style={styles.cardTime}>Updated {item.time}</Text>
+          <View style={styles.cardLocation}>
+            <MaterialCommunityIcons
+              name="map-marker"
+              size={18}
+              color={colors.textLight}
+              style={{ marginLeft: -3 }}
+            />
+            <Text style={styles.locationText}>
+              {item.location.substring(0, 27) + "..."}
+            </Text>
+          </View>
+
+          <View style={styles.cardFooter}>
+            <View style={styles.cardFooterBox}>
+              <Ionicons name="bed-outline" size={14} color={colors.textLight} />
+              <Text style={styles.footerBoxText}>{item.bed} Bed</Text>
+            </View>
+            <View style={styles.cardFooterBox}>
+              <FontAwesome5 name="bath" size={11} color={colors.textLight} />
+              <Text style={styles.footerBoxText}>{item.bath} Bath</Text>
+            </View>
+            <View style={styles.cardFooterBox}>
+              <FontAwesome5 name="toilet" size={11} color={colors.textLight} />
+              <Text style={styles.footerBoxText}>{item.toilet} Toilet</Text>
+            </View>
+          </View>
+
+          <View style={styles.cardTimeWrapper}>
+            <Text style={styles.cardTime}>Updated {item.time}</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
