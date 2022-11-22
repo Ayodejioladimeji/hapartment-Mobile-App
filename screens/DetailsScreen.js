@@ -6,17 +6,21 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import React from "react";
 import GoBack from "../common/GoBack";
 import Carousel from "../components/Carousel";
 import {
   FontAwesome5,
+  Fontisto,
   Ionicons,
   MaterialCommunityIcons,
+  MaterialIcons,
 } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/native";
+import VideoComponent from "../components/VideoComponent";
 
 //
 
@@ -90,6 +94,59 @@ const DetailsScreen = ({ route }) => {
         </View>
 
         <View style={styles.descriptionWrapper}>
+          <Text style={styles.description}>Facilities Available</Text>
+
+          <View style={styles.facilities}>
+            <View style={styles.facilitiesBox}>
+              <FontAwesome5
+                name="hospital"
+                // size={15}
+                style={styles.facilitiesIcon}
+              />
+              <Text style={styles.facilitiesText}>Hospital</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <FontAwesome5
+                name="school"
+                // size={15}
+                style={styles.facilitiesIcon}
+              />
+              <Text style={styles.facilitiesText}>School</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <Fontisto name="shopping-store" style={styles.facilitiesIcon} />
+              <Text style={styles.facilitiesText}>Shopping Mall</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <MaterialCommunityIcons
+                name="police-station"
+                style={styles.facilitiesIcon}
+              />
+              <Text style={styles.facilitiesText}>Police Station</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <Fontisto name="drug-pack" style={styles.facilitiesIcon} />
+              <Text style={styles.facilitiesText}>Drug Store</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <MaterialIcons
+                name="emoji-transportation"
+                style={styles.facilitiesIcon}
+              />
+              <Text style={styles.facilitiesText}>Public Transport</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <MaterialIcons
+                name="sports-soccer"
+                style={styles.facilitiesIcon}
+              />
+              <Text style={styles.facilitiesText}>Sports Center</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Facilities section */}
+        <View style={styles.descriptionWrapper}>
           <Text style={styles.description}>Area guide</Text>
           <Text style={styles.content}>
             It is a long established fact that a reader will be distracted by
@@ -100,10 +157,16 @@ const DetailsScreen = ({ route }) => {
           </Text>
         </View>
 
+        {/* Video section */}
         <View style={styles.videoWrapper}>
-          <Text>Videos section</Text>
+          <Text style={{ marginBottom: 10, fontFamily: "NunitoSans-Bold" }}>
+            Apartment Video
+          </Text>
+
+          <VideoComponent />
         </View>
 
+        {/* Agent section */}
         <View style={styles.agentWrapper}>
           <View style={styles.agentBox}>
             <Image
@@ -133,6 +196,7 @@ export default DetailsScreen;
 const styles = StyleSheet.create({
   detailsWrapper: {
     flex: 1,
+    backgroundColor: colors.white,
   },
   detailsName: {
     flexDirection: "row",
@@ -223,14 +287,39 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.textLight,
   },
-  videoWrapper: {
-    height: 200,
-    width: "95%",
-    marginVertical: 40,
-    marginHorizontal: 10,
-    backgroundColor: colors.primary,
+  facilities: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    marginTop: 20,
+    flexWrap: "wrap",
+  },
+  facilitiesBox: {
+    borderWidth: 0.3,
+    borderColor: colors.textLight,
+    padding: 15,
     alignItems: "center",
     justifyContent: "center",
+    marginBottom: 20,
+    width: 150,
+  },
+  facilitiesIcon: {
+    fontSize: Platform.OS === "ios" ? 30 : 20,
+    color: colors.primary,
+    marginBottom: 5,
+  },
+  facilitiesText: {
+    fontFamily: "NunitoSans-Bold",
+    textAlign: "center",
+    fontSize: Platform.OS === "ios" ? 15 : 12,
+  },
+  videoWrapper: {
+    marginHorizontal: 10,
+    marginTop: 20,
+    padding: 15,
+    borderWidth: 0.3,
+    borderColor: colors.textLighter,
+    borderRadius: 15,
   },
   agentWrapper: {
     height: 100,
