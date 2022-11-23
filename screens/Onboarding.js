@@ -1,20 +1,49 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   View,
   Text,
   StyleSheet,
-  StatusBar,
   Image,
   SafeAreaView,
+  Platform,
 } from "react-native";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+
+SplashScreen.preventAutoHideAsync();
 
 import AppIntroSlider from "react-native-app-intro-slider";
-// import LinearGradient from "react-native-linear-gradient";
+import { useNavigation } from "@react-navigation/native";
 import colors from "../assets/colors/colors";
 import MyStatusBar from "../common/MyStatusBar";
 import onboardData from "../constants/onboardData";
 
-const Onboarding = (props) => {
+//
+
+const Onboarding = () => {
+  const navigation = useNavigation();
+
+  // initialize font family
+  const [fontsLoaded] = useFonts({
+    "Lobster-Regular": require("../assets/fonts/Lobster-Regular.ttf"),
+    "AlfaSlabOne-Regular": require("../assets/fonts/AlfaSlabOne-Regular.ttf"),
+    "NunitoSans-Regular": require("../assets/fonts/NunitoSans-Regular.ttf"),
+    "NunitoSans-Black": require("../assets/fonts/NunitoSans-Black.ttf"),
+    "NunitoSans-Bold": require("../assets/fonts/NunitoSans-Bold.ttf"),
+  });
+
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+    //
+  }
+
+  //
   const renderItem = ({ item }) => {
     return (
       <View style={styles.slide}>
@@ -62,12 +91,15 @@ const Onboarding = (props) => {
   };
 
   const handleDone = () => {
-    props.handleDone();
+    navigation.navigate("WhoAreYou");
   };
 
   //
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: colors.white }}
+      onLayout={onLayoutRootView}
+    >
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <Image
         source={require("../assets/brandlogo.png")}
@@ -95,7 +127,7 @@ const styles = StyleSheet.create({
   brandImage: {
     height: 100,
     width: "35%",
-    marginTop: 30,
+    // marginTop: 30,
     marginHorizontal: 10,
     resizeMode: "contain",
     alignSelf: "center",
@@ -104,28 +136,29 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    paddingBottom: 50,
     backgroundColor: colors.white,
   },
   image: {
     marginTop: 0,
-    height: 350,
-    width: 350,
+    height: 300,
+    width: 300,
   },
   title: {
-    fontSize: 23,
+    fontSize: Platform.OS === "ios" ? 23 : 20,
     color: colors.primary,
     textAlign: "center",
-    // fontFamily: "OpenSans-Bold",
+    // fontFamily: "NunitoSans-Bold",
     marginHorizontal: 20,
   },
   text: {
     fontSize: 15,
     color: colors.textDark,
     textAlign: "center",
-    // fontFamily: "OpenSans-SemiBold",
+    // fontFamily: "NunitoSans-Regular",
     marginHorizontal: 50,
     lineHeight: 20,
-    marginTop: 20,
+    marginTop: 10,
   },
   dotStyle: {
     backgroundColor: colors.secondary,
@@ -143,9 +176,7 @@ const styles = StyleSheet.create({
   },
   rightText: {
     color: colors.primary,
-    // fontFamily: "OpenSans-SemiBold",
     fontSize: 14,
-    fontWeight: "bold",
   },
   leftTextWrapper: {
     width: 40,
@@ -157,9 +188,7 @@ const styles = StyleSheet.create({
   },
   leftText: {
     color: colors.primary,
-    // fontFamily: "OpenSans-SemiBold",
     fontSize: 14,
-    fontWeight: "bold",
   },
   doneButtonWrapper: {
     flex: 1,
@@ -173,7 +202,6 @@ const styles = StyleSheet.create({
 
   doneButtonText: {
     fontSize: 14,
-    // fontFamily: "OpenSans-SemiBold",
     textAlign: "center",
     color: colors.white,
     fontWeight: "bold",
