@@ -5,12 +5,14 @@ import {
   StyleSheet,
   Platform,
   TouchableWithoutFeedback,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 import {
   FontAwesome5,
   Ionicons,
   MaterialCommunityIcons,
+  MaterialIcons,
 } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 
@@ -19,13 +21,23 @@ import colors from "../assets/colors/colors";
 const Card = ({ item, navigation }) => {
   //
   return (
-    <TouchableWithoutFeedback
-      onPress={() => navigation.navigate("DetailsScreen", { item })}
-    >
+    <View>
       <View style={styles.cardWrapper}>
-        <Image source={{ uri: item.image[0] }} style={styles.cardImage} />
+        <View style={styles.imageWrapper}>
+          <Image source={{ uri: item.image[0] }} style={styles.cardImage} />
+          <View style={styles.verify}>
+            <Text style={styles.verifyText}>Verified</Text>
+          </View>
 
-        <View style={styles.cardBox}>
+          <TouchableOpacity style={styles.favoriteWrapper}>
+            <MaterialIcons name="favorite" style={styles.favorite} />
+          </TouchableOpacity>
+        </View>
+
+        <TouchableOpacity
+          style={styles.cardBox}
+          onPress={() => navigation.navigate("DetailsScreen", { item })}
+        >
           <View style={styles.cardName}>
             <Text style={styles.nameText}>{item.name}</Text>
             <Text style={styles.amountText}>₦{item.amount}</Text>
@@ -59,9 +71,9 @@ const Card = ({ item, navigation }) => {
           <View style={styles.cardTimeWrapper}>
             <Text style={styles.cardTime}>Updated {item.time}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
-    </TouchableWithoutFeedback>
+    </View>
   );
 };
 
@@ -81,6 +93,10 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginLeft: 3,
   },
+  imageWrapper: {
+    position: "relative",
+  },
+
   cardImage: {
     height: 140,
     width: "100%",
@@ -148,5 +164,35 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontSize: Platform.OS === "ios" ? 12 : 11,
     fontFamily: "NunitoSans-Regular",
+  },
+  verify: {
+    backgroundColor: colors.primary,
+    height: Platform.OS === "ios" ? 25 : 20,
+    paddingLeft: 10,
+    width: "60%",
+    position: "absolute",
+    bottom: 0,
+    justifyContent: "center",
+    borderTopRightRadius: 30,
+  },
+  verifyText: {
+    color: colors.white,
+    fontSize: 12,
+    fontWeight: "600",
+  },
+  favoriteWrapper: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    height: 30,
+    width: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.textLighter,
+    borderRadius: 50,
+  },
+  favorite: {
+    color: "red",
+    fontSize: 20,
   },
 });

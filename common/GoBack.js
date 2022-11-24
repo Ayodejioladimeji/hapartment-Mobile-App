@@ -28,7 +28,7 @@ export default GoBack;
 const styles = StyleSheet.create({
   goBack: {
     flexDirection: "row",
-    paddingHorizontal: 5,
+    paddingHorizontal: 15,
     height: 60,
     alignItems: "center",
     justifyContent: "flex-start",

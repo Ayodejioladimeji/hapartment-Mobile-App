@@ -13,6 +13,7 @@ import {
   FontAwesome5,
   Ionicons,
   MaterialCommunityIcons,
+  MaterialIcons,
 } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/native";
@@ -28,7 +29,17 @@ const SearchCard = ({ item }) => {
       onPress={() => navigation.navigate("AgentDetailsScreen", { item })}
     >
       <View style={styles.cardsWrapper}>
-        <Image source={{ uri: item.image[0] }} style={styles.cardImage} />
+        <View style={styles.imagesWrapper}>
+          <Image source={{ uri: item.image[0] }} style={styles.cardImage} />
+
+          <View style={styles.verify}>
+            <Text style={styles.verifyText}>Verified</Text>
+          </View>
+
+          <TouchableOpacity style={styles.favoriteWrapper}>
+            <MaterialIcons name="favorite" style={styles.favorite} />
+          </TouchableOpacity>
+        </View>
 
         <View style={styles.cardBox}>
           <View style={styles.cardName}>
@@ -86,11 +97,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 0.2,
     borderColor: colors.textLighter,
-    paddingHorizontal: 5,
+    padding: 5,
+  },
+  imagesWrapper: {
+    position: "relative",
+    background: "orange",
   },
   cardImage: {
     height: 120,
-    width: "40%",
+    width: 150,
+    // resizeMode: "cover",
   },
 
   cardBox: {
@@ -156,5 +172,36 @@ const styles = StyleSheet.create({
     color: colors.textLight,
     fontSize: 11,
     fontFamily: "NunitoSans-Regular",
+  },
+
+  verify: {
+    backgroundColor: colors.primary,
+    height: Platform.OS === "ios" ? 25 : 20,
+    paddingLeft: 10,
+    width: "60%",
+    position: "absolute",
+    bottom: 0,
+    justifyContent: "center",
+    borderTopRightRadius: 30,
+  },
+  verifyText: {
+    color: colors.white,
+    fontSize: 12,
+    fontWeight: "600",
+  },
+  favoriteWrapper: {
+    position: "absolute",
+    top: 10,
+    right: 10,
+    height: 25,
+    width: 25,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.textLighter,
+    borderRadius: 50,
+  },
+  favorite: {
+    color: "red",
+    fontSize: 17,
   },
 });

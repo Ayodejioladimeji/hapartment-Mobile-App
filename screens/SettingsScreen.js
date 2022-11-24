@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, Platform } from "react-native";
 import React from "react";
 import { AntDesign, FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    height: 70,
+    height: Platform.OS === "ios" ? 70 : 60,
     marginBottom: 20,
   },
   settingsLeft: {
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   settingsText: {
     color: colors.textDark,
     fontFamily: "NunitoSans-Bold",
-    fontSize: 15,
+    fontSize: Platform.OS === "ios" ? 15 : 14,
   },
   arrow: {
     color: colors.textDark,

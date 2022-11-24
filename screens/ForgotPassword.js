@@ -26,7 +26,8 @@ const ForgotPassword = () => {
         <View style={styles.registerContainer}>
           <Text style={styles.heading}>Forgot your Password ?</Text>
           <Text style={styles.subHeading}>
-            Enter your email to get a one-time code
+            Enter the email address associated with your account and we will
+            send you a one-time-code to reset your password
           </Text>
 
           <View stye={styles.formContainer}>
@@ -77,8 +78,10 @@ const styles = StyleSheet.create({
   subHeading: {
     alignSelf: "center",
     marginBottom: 30,
-    fontSize: 15,
+    fontSize: Platform.OS === "ios" ? 15 : 14,
     fontFamily: "NunitoSans-Regular",
+    textAlign: "center",
+    paddingHorizontal: 20,
   },
 
   editProfileBox: {
