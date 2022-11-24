@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
 
   formInput: {
     borderWidth: 0.4,
-    height: 60,
+    height: Platform.OS === "ios" ? 55 : 50,
     padding: 10,
     borderRadius: 5,
     borderColor: colors.textLighter,

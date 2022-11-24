@@ -13,50 +13,131 @@ import MyStatusBar from "../common/MyStatusBar";
 import colors from "../assets/colors/colors";
 import GoBack from "../common/GoBack";
 import { useNavigation } from "@react-navigation/native";
+import EmailValidator from "email-validator";
+import { Formik } from "formik";
+
+// VALIDATION REGEX
+const passwordUpper = /(?=.*[A-Z])/;
+const passwordSpecial = /(?=.*[!@#$%^&*])/;
+const passwordLower = /(?=.*[a-z])/;
+const passwordRegex = /(?=.*[0-9])/;
 
 //
 
 const Login = () => {
   const navigation = useNavigation();
+
+  //
   return (
-    <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <GoBack navigation={navigation} title="Login" />
+    <Formik
+      initialValues={{
+        email: "",
+        password: "",
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(async () => {
+          console.log(values);
+          setSubmitting(false);
+        }, 500);
+      }}
+      //   HANDLING VALIDATION MESSAGES
+      validate={(values) => {
+        let errors = {};
 
-      <ScrollView>
-        <View style={styles.registerContainer}>
-          <Text style={styles.heading}>Login to continue</Text>
+        if (!values.email) {
+          errors.email = "Email is required";
+        } else if (!EmailValidator.validate(values.email)) {
+          errors.email = "Invalid email address";
+        }
 
-          <View stye={styles.formContainer}>
-            <View style={styles.editProfileBox}>
-              <Text style={styles.inputText}>Email</Text>
-              <TextInput
-                style={styles.formInput}
-                placeholder="Provide your email"
-              />
-            </View>
-            <View style={styles.editProfileBox}>
-              <Text style={styles.inputText}>Password</Text>
-              <TextInput
-                secureTextEntry={true}
-                style={styles.formInput}
-                placeholder="**********"
-              />
-            </View>
+        //   THE PASSWORD SECTION
+        if (!values.password) {
+          errors.password = "Password is required";
+        } else if (values.password.length < 8) {
+          errors.password = "Password must be 8 characters long";
+        } else if (!passwordUpper.test(values.password)) {
+          errors.password = "Password must contain one upperCase letter";
+        } else if (!passwordLower.test(values.password)) {
+          errors.password = "Password must contain one lowerCase letter";
+        } else if (!passwordRegex.test(values.password)) {
+          errors.password = "Password must contain one number";
+        } else if (!passwordSpecial.test(values.password)) {
+          errors.password = "Password must contain one special character";
+        }
 
-            <Text
-              onPress={() => navigation.navigate("ForgotPassword")}
-              style={styles.forgotPassword}
-            >
-              Forgot password ?
-            </Text>
+        return errors;
+      }}
+    >
+      {(props) => {
+        const {
+          values,
+          touched,
+          errors,
+          isSubmitting,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+        } = props;
+        return (
+          <View style={{ flex: 1, backgroundColor: colors.white }}>
+            <GoBack navigation={navigation} title="Login" />
 
-            <TouchableOpacity style={styles.profileButton}>
-              <Text style={styles.profileButtonText}>Login</Text>
-            </TouchableOpacity>
+            <ScrollView>
+              <View style={styles.registerContainer}>
+                <Text style={styles.heading}>Login to continue</Text>
+
+                <View stye={styles.formContainer}>
+                  <View style={styles.editProfileBox}>
+                    <Text style={styles.inputText}>Email</Text>
+                    <TextInput
+                      style={styles.formInput}
+                      placeholder="Provide your email"
+                      onChangeText={handleChange("email")}
+                      onBlur={handleBlur("email")}
+                      value={values.email}
+                      name="email"
+                    />
+                    {errors.email && touched.email && (
+                      <Text style={styles.errors}>{errors.email}</Text>
+                    )}
+                  </View>
+
+                  <View style={styles.editProfileBox}>
+                    <Text style={styles.inputText}>Password</Text>
+                    <TextInput
+                      secureTextEntry={true}
+                      style={styles.formInput}
+                      placeholder="**********"
+                      onChangeText={handleChange("password")}
+                      onBlur={handleBlur("password")}
+                      value={values.password}
+                      name="password"
+                    />
+                    {errors.password && touched.password && (
+                      <Text style={styles.errors}>{errors.password}</Text>
+                    )}
+                  </View>
+
+                  <Text
+                    onPress={() => navigation.navigate("ForgotPassword")}
+                    style={styles.forgotPassword}
+                  >
+                    Forgot password ?
+                  </Text>
+
+                  <TouchableOpacity
+                    style={styles.profileButton}
+                    onPress={() => navigation.navigate("RootHome")}
+                  >
+                    <Text style={styles.profileButtonText}>Login</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </ScrollView>
           </View>
-        </View>
-      </ScrollView>
-    </View>
+        );
+      }}
+    </Formik>
   );
 };
 
@@ -114,7 +195,7 @@ const styles = StyleSheet.create({
   profileButtonText: {
     color: colors.white,
     fontWeight: "700",
-    fontSize: Platform.OS === "ios" ? 15 : 14,
+    fontSize: Platform.OS === "ios" ? 16 : 14,
   },
 
   member: {
@@ -126,5 +207,11 @@ const styles = StyleSheet.create({
   },
   login: {
     color: colors.primary,
+  },
+  errors: {
+    color: "red",
+    marginTop: 5,
+    marginBottom: 10,
+    fontSize: Platform.OS === "ios" ? 13 : 12,
   },
 });

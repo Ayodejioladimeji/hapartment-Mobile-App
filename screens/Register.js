@@ -23,8 +23,9 @@ const passwordRegex = /(?=.*[0-9])/;
 
 //
 
-const RegisterAgent = () => {
+const Register = ({ route }) => {
   const navigation = useNavigation();
+  const userType = route.params;
 
   return (
     <Formik
@@ -37,8 +38,17 @@ const RegisterAgent = () => {
         password2: "",
       }}
       onSubmit={(values, { setSubmitting }) => {
+        const { firstname, lastname, email, username, password } = values;
         setTimeout(async () => {
-          console.log(values);
+          const newData = {
+            firstname,
+            lastname,
+            email,
+            username,
+            password,
+            userType,
+          };
+          console.log(newData);
           setSubmitting(false);
         }, 500);
       }}
@@ -101,7 +111,7 @@ const RegisterAgent = () => {
 
         return (
           <View style={{ flex: 1, backgroundColor: colors.white }}>
-            <GoBack navigation={navigation} title="Register Agent" />
+            <GoBack navigation={navigation} title="Register" />
 
             <ScrollView
               contentInsetAdjustmentBehavior="automatic"
@@ -206,7 +216,8 @@ const RegisterAgent = () => {
 
                   <TouchableOpacity
                     style={styles.profileButton}
-                    onPress={handleSubmit}
+                    onPress={() => navigation.navigate("Login")}
+                    // onPress={handleSubmit}
                   >
                     <Text style={styles.profileButtonText}>Create Account</Text>
                   </TouchableOpacity>
@@ -230,7 +241,7 @@ const RegisterAgent = () => {
   );
 };
 
-export default RegisterAgent;
+export default Register;
 
 const styles = StyleSheet.create({
   registerContainer: {
@@ -269,7 +280,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 20,
     backgroundColor: colors.primary,
-    height: 60,
+    height: Platform.OS === "ios" ? 55 : 50,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,

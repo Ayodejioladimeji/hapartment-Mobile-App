@@ -6,18 +6,23 @@ import {
   TouchableOpacity,
   Platform,
 } from "react-native";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import colors from "../assets/colors/colors";
 import MyStatusBar from "../common/MyStatusBar";
 import { useNavigation } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
+import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 //
 
 const WhoAreYou = () => {
   const navigation = useNavigation();
+
+  // The states for the Agent / Tenant user type
+  const [userType, setUserType] = useState("agent");
   //
 
   // initialize font family
@@ -42,7 +47,10 @@ const WhoAreYou = () => {
   //
 
   return (
-    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+    <View
+      style={{ flex: 1, backgroundColor: colors.white }}
+      onLayout={onLayoutRootView}
+    >
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <View style={styles.logoContainer}>
         <Image
@@ -58,20 +66,46 @@ const WhoAreYou = () => {
       </View>
 
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("RegisterAgent")}
-          style={styles.containerButton}
+        <TouchableWithoutFeedback
+          style={
+            userType === "agent"
+              ? styles.containerButtonActive
+              : styles.containerButton
+          }
+          onPress={() => setUserType("agent")}
         >
-          <Text style={styles.text}>I want to publish an apartment</Text>
-          <Text style={styles.subText}>Landlord / Agent</Text>
-        </TouchableOpacity>
+          <MaterialCommunityIcons
+            name="home-city-outline"
+            style={styles.buttonIcon}
+          />
+          <View style={styles.buttonBox}>
+            <Text style={styles.text}>I want to publish an apartment</Text>
+            <Text style={styles.subText}>Landlord / Agent</Text>
+          </View>
+        </TouchableWithoutFeedback>
+
+        <TouchableWithoutFeedback
+          style={
+            userType === "tenant"
+              ? styles.containerButtonActive
+              : styles.containerButton
+          }
+          onPress={() => setUserType("tenant")}
+        >
+          <FontAwesome5 name="walking" style={styles.buttonIcon} />
+          <View style={styles.buttonBox}>
+            <Text style={styles.text}>
+              I'm looking for an apartment to rent
+            </Text>
+            <Text style={styles.subText}>Tenant</Text>
+          </View>
+        </TouchableWithoutFeedback>
 
         <TouchableOpacity
-          onPress={() => navigation.navigate("RegisterTenant")}
-          style={styles.containerButton}
+          style={styles.continue}
+          onPress={() => navigation.navigate("Register", userType)}
         >
-          <Text style={styles.text}>I'm looking for an apartment to rent</Text>
-          <Text style={styles.subText}>Tenant</Text>
+          <Text style={styles.continueText}>Continue</Text>
         </TouchableOpacity>
       </View>
 
@@ -94,7 +128,6 @@ export default WhoAreYou;
 
 const styles = StyleSheet.create({
   logoContainer: {
-    flex: 1,
     height: 100,
     marginVertical: 10,
   },
@@ -107,7 +140,6 @@ const styles = StyleSheet.create({
   },
 
   containerWrapper: {
-    flex: 1,
     marginHorizontal: 20,
   },
   mainheading: {
@@ -119,35 +151,52 @@ const styles = StyleSheet.create({
     fontFamily: "NunitoSans-Bold",
     fontSize: Platform.OS === "ios" ? 17 : 15,
     color: colors.secondary,
-    marginTop: 10,
-    textAlign: "center",
+    marginVertical: 40,
+    marginBottom: 100,
   },
 
   container: {
-    flex: 2,
     marginHorizontal: 20,
     justifyContent: "center",
   },
   containerButton: {
-    height: 60,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.white,
     marginBottom: 30,
     alignItems: "center",
-    justifyContent: "center",
+    flexDirection: "row",
     borderRadius: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderWidth: 0.4,
+    BorderColor: colors.textLighter,
+  },
+  containerButtonActive: {
+    backgroundColor: colors.white,
+    marginBottom: 30,
+    alignItems: "center",
+    flexDirection: "row",
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderWidth: 2.5,
+    borderColor: colors.primary,
+  },
+  buttonIcon: {
+    color: colors.primary,
+    fontSize: 34,
+    marginRight: 20,
   },
   text: {
-    color: colors.white,
+    color: colors.primary,
     fontSize: Platform.OS === "ios" ? 15 : 14,
     fontFamily: "NunitoSans-Bold",
   },
   subText: {
-    color: colors.white,
+    color: colors.secondary,
     fontSize: 14,
     fontFamily: "NunitoSans-Regular",
   },
   registeredWrapper: {
-    flex: 1,
     marginHorizontal: 20,
     justifyContent: "center",
   },
@@ -160,5 +209,18 @@ const styles = StyleSheet.create({
   },
   colored: {
     color: colors.primary,
+  },
+  continue: {
+    padding: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.primary,
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  continueText: {
+    fontFamily: "NunitoSans-Bold",
+    fontSize: 18,
+    color: colors.white,
   },
 });

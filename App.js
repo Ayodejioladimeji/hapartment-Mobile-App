@@ -11,10 +11,10 @@ import LandlordProfileScreen from "./screens/LandlordProfileScreen";
 import AgentDetailsScreen from "./screens/AgentDetailsScreen";
 import WhoAreYou from "./screens/WhoAreYou";
 import RegisterTenant from "./screens/RegisterTenant";
-import RegisterAgent from "./screens/RegisterAgent";
 import Login from "./screens/Login";
 import ForgotPassword from "./screens/ForgotPassword";
 import OneTimeCode from "./screens/OneTimeCode";
+import Register from "./screens/Register";
 const Stack = createStackNavigator();
 
 //
@@ -40,7 +40,7 @@ function App() {
         )} */}
         <Stack.Screen name="WhoAreYou" component={WhoAreYou} />
         <Stack.Screen name="RegisterTenant" component={RegisterTenant} />
-        <Stack.Screen name="RegisterAgent" component={RegisterAgent} />
+        <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="OneTimeCode" component={OneTimeCode} />
