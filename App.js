@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
-// import ProfileScreen from "./screens/ProfileScreen";
-// import SettingsScreen from "./screens/SettingsScreen";
 import Onboarding from "./screens/Onboarding";
 import RootHome from "./components/RootHome";
 import EditProfileScreen from "./screens/EditProfileScreen";
@@ -12,8 +10,11 @@ import DetailsScreen from "./screens/DetailsScreen";
 import LandlordProfileScreen from "./screens/LandlordProfileScreen";
 import AgentDetailsScreen from "./screens/AgentDetailsScreen";
 import WhoAreYou from "./screens/WhoAreYou";
-// import WhoAreYou from "./screens/WhoAreYou";
-
+import RegisterTenant from "./screens/RegisterTenant";
+import RegisterAgent from "./screens/RegisterAgent";
+import Login from "./screens/Login";
+import ForgotPassword from "./screens/ForgotPassword";
+import OneTimeCode from "./screens/OneTimeCode";
 const Stack = createStackNavigator();
 
 //
@@ -24,7 +25,6 @@ function App() {
   const handleOnboardFinish = () => {
     setShowOnboard(false);
   };
-
   //
 
   return (
@@ -35,8 +35,15 @@ function App() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="Onboarding" component={Onboarding} />
+        {/* {showOnboard && (
+          <Stack.Screen name="Onboarding" component={Onboarding} />
+        )} */}
         <Stack.Screen name="WhoAreYou" component={WhoAreYou} />
+        <Stack.Screen name="RegisterTenant" component={RegisterTenant} />
+        <Stack.Screen name="RegisterAgent" component={RegisterAgent} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="OneTimeCode" component={OneTimeCode} />
 
         <Stack.Screen name="RootHome" component={RootHome} />
 

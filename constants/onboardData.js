@@ -10,8 +10,8 @@ const onboardData = [
     image: require("../assets/images/communicate.png"),
   },
   {
-    title: "Find your dream home",
-    text: "Find your dream home easily with just few clicks",
+    title: "Find your perfect place",
+    text: "Search and discover hundreds of beautiful homes at your own convenience",
     image: require("../assets/images/find.png"),
   },
 ];
