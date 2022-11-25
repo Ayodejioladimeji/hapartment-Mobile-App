@@ -15,6 +15,7 @@ import Login from "./screens/Login";
 import ForgotPassword from "./screens/ForgotPassword";
 import OneTimeCode from "./screens/OneTimeCode";
 import Register from "./screens/Register";
+import FilterScreen from "./screens/FilterScreen";
 const Stack = createStackNavigator();
 
 //
@@ -38,12 +39,12 @@ function App() {
         {/* {showOnboard && (
           <Stack.Screen name="Onboarding" component={Onboarding} />
         )} */}
-        <Stack.Screen name="WhoAreYou" component={WhoAreYou} />
+        {/* <Stack.Screen name="WhoAreYou" component={WhoAreYou} />
         <Stack.Screen name="RegisterTenant" component={RegisterTenant} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="OneTimeCode" component={OneTimeCode} />
+        <Stack.Screen name="OneTimeCode" component={OneTimeCode} /> */}
 
         <Stack.Screen name="RootHome" component={RootHome} />
 
@@ -58,6 +59,7 @@ function App() {
           name="LandlordProfileScreen"
           component={LandlordProfileScreen}
         />
+        <Stack.Screen name="FilterScreen" component={FilterScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

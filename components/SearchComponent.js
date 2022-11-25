@@ -1,11 +1,21 @@
-import { View, TextInput, StyleSheet, Platform } from "react-native";
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Platform,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import colors from "../assets/colors/colors";
-import { Feather, FontAwesome5 } from "@expo/vector-icons";
+import { Feather, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 //
 
 const SearchComponent = () => {
+  const navigation = useNavigation();
+
+  //
   return (
     <View style={styles.searchWrapper}>
       <View style={styles.inputWrapper}>
@@ -22,9 +32,12 @@ const SearchComponent = () => {
         />
       </View>
 
-      <View style={styles.searchFilter}>
-        <FontAwesome5 name="sliders-h" size={22} color={colors.textLight} />
-      </View>
+      <TouchableOpacity
+        style={styles.searchFilter}
+        onPress={() => navigation.navigate("FilterScreen")}
+      >
+        <FontAwesome name="sliders" size={22} color={colors.primary} />
+      </TouchableOpacity>
     </View>
   );
 };
