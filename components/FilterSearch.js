@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
 import {
   Alert,
+  Platform,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+import SectionedMultiSelect from "react-native-sectioned-multi-select";
+import { MaterialIcons } from "@expo/vector-icons";
 import { Dropdown } from "react-native-element-dropdown";
 import axios from "axios";
 import { BASE_URL, API_KEY } from "@env";
 import colors from "../assets/colors/colors";
 import propertyData from "../constants/propertyData";
-import {
-  FontAwesome5,
-  Fontisto,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from "@expo/vector-icons";
+import { strictAddComma } from "comma-separator";
+import bathrooms from "../constants/bathrooms";
+import homefacilities from "../constants/homefacilities";
+import areafacilities from "../constants/areafacilities";
+import furnishing from "../constants/furnishing";
 
 //
 
@@ -29,11 +32,14 @@ const FilterSearch = () => {
   const [country, setCountry] = useState(null);
   const [state, setState] = useState(null);
   const [city, setCity] = useState(null);
-  const [countryName, setCountryName] = useState(null);
-  const [stateName, setStateName] = useState(null);
-  const [cityName, setCityName] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const [propertyType, setPropertyType] = useState(null);
+  const [homeSelectedItems, setHomeSelectedItems] = useState([]);
+  const [areaSelectedItems, setAreaSelectedItems] = useState([]);
+  const [furnish, setFurnish] = useState("");
+  const [bath, setBath] = useState("");
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
 
   useEffect(() => {
     var config = {
@@ -46,7 +52,7 @@ const FilterSearch = () => {
 
     axios(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         var count = Object.keys(response.data).length;
         let countryArray = [];
         for (var i = 0; i < count; i++) {
@@ -58,7 +64,7 @@ const FilterSearch = () => {
         setCountryData(countryArray);
       })
       .catch((error) => {
-        // console.log(error);
+        console.log(error);
       });
   }, []);
 
@@ -73,7 +79,7 @@ const FilterSearch = () => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         var count = Object.keys(response.data).length;
         let stateArray = [];
         for (var i = 0; i < count; i++) {
@@ -100,7 +106,7 @@ const FilterSearch = () => {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         var count = Object.keys(response.data).length;
         let cityArray = [];
         for (var i = 0; i < count; i++) {
@@ -115,6 +121,33 @@ const FilterSearch = () => {
         console.log(error);
       });
   };
+
+  const onSelectedHomeChange = (newSelectItems) => {
+    setHomeSelectedItems(newSelectItems);
+  };
+
+  const onSelectedAreaChange = (newSelectItems) => {
+    setAreaSelectedItems(newSelectItems);
+  };
+
+  const handleSubmit = () => {
+    const newData = {
+      country,
+      state,
+      city,
+      propertyType,
+      furnish,
+      bath,
+      homeSelectedItems,
+      areaSelectedItems,
+      minPrice,
+      maxPrice,
+    };
+
+    console.log(newData);
+  };
+
+  //
 
   return (
     <ScrollView
@@ -138,13 +171,39 @@ const FilterSearch = () => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder={!isFocus ? "Select country" : "..."}
+            placeholder={!isFocus ? "Select property type" : "..."}
             searchPlaceholder="Search..."
             value={propertyType}
             onFocus={() => setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
             onChange={(item) => {
               setPropertyType(item.value);
+              setIsFocus(false);
+            }}
+          />
+        </View>
+
+        <View style={styles.country}>
+          <Text style={styles.selectHeading}>Select Bathrooms</Text>
+          <Dropdown
+            style={[
+              styles.dropdown,
+              isFocus && { borderColor: colors.primary },
+            ]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={bathrooms}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder="Select bathroom"
+            value={bath}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            onChange={(item) => {
+              setBath(item.value);
               setIsFocus(false);
             }}
           />
@@ -163,7 +222,7 @@ const FilterSearch = () => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder={!isFocus ? "Select country" : "..."}
+            placeholder="Select country"
             searchPlaceholder="Search..."
             value={country}
             onFocus={() => setIsFocus(true)}
@@ -171,7 +230,6 @@ const FilterSearch = () => {
             onChange={(item) => {
               setCountry(item.value);
               handleState(item.value);
-              setCountryName(item.label);
               setIsFocus(false);
             }}
           />
@@ -190,7 +248,7 @@ const FilterSearch = () => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder={!isFocus ? "Select state" : "..."}
+            placeholder="Select state"
             searchPlaceholder="Search..."
             value={state}
             onFocus={() => setIsFocus(true)}
@@ -198,7 +256,6 @@ const FilterSearch = () => {
             onChange={(item) => {
               setState(item.value);
               handleCity(country, item.value);
-              setStateName(item.label);
               setIsFocus(false);
             }}
           />
@@ -217,114 +274,114 @@ const FilterSearch = () => {
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder={!isFocus ? "Select city" : "..."}
+            placeholder="Select city"
             searchPlaceholder="Search..."
             value={city}
             onFocus={() => setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
             onChange={(item) => {
               setCity(item.value);
-              setCityName(item.label);
               setIsFocus(false);
             }}
           />
         </View>
-        <View style={styles.city}>
-          <Text style={styles.selectHeading}>Select Price Range</Text>
+
+        <View style={styles.country}>
+          <Text style={styles.selectHeading}>Furnishing</Text>
           <Dropdown
             style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
             inputSearchStyle={styles.inputSearchStyle}
             iconStyle={styles.iconStyle}
-            data={cityData}
-            search
+            data={furnishing}
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder={!isFocus ? "Select city" : "..."}
-            searchPlaceholder="Search..."
-            value={city}
+            placeholder="Choose Furnishing"
+            value={furnish}
             onFocus={() => setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
             onChange={(item) => {
-              setCity(item.value);
-              setCityName(item.label);
+              setFurnish(item.value);
               setIsFocus(false);
             }}
           />
         </View>
 
-        <View style={styles.city}>
-          <Text style={styles.selectHeading}>
-            Choose Facilities of your choice
-          </Text>
+        <View style={styles.country}>
+          <Text style={styles.selectHeading}>Select Home Facilities</Text>
 
-          <View style={styles.descriptionWrapper}>
-            <View style={styles.facilities}>
-              <View style={styles.facilitiesBox}>
-                <FontAwesome5
-                  name="hospital"
-                  // size={15}
-                  style={styles.facilitiesIcon}
-                />
-                <Text style={styles.facilitiesText}>Hospital</Text>
-              </View>
-
-              <View style={styles.facilitiesBox}>
-                <FontAwesome5
-                  name="school"
-                  // size={15}
-                  style={styles.facilitiesIcon}
-                />
-                <Text style={styles.facilitiesText}>School</Text>
-              </View>
-
-              <View style={styles.facilitiesBox}>
-                <Fontisto name="shopping-store" style={styles.facilitiesIcon} />
-                <Text style={styles.facilitiesText}>Shopping Mall</Text>
-              </View>
-
-              <View style={styles.facilitiesBox}>
-                <MaterialCommunityIcons
-                  name="police-station"
-                  style={styles.facilitiesIcon}
-                />
-                <Text style={styles.facilitiesText}>Police Station</Text>
-              </View>
-
-              <View style={styles.facilitiesBox}>
-                <Fontisto name="drug-pack" style={styles.facilitiesIcon} />
-                <Text style={styles.facilitiesText}>Drug Store</Text>
-              </View>
-
-              <View style={styles.facilitiesBox}>
-                <MaterialIcons
-                  name="emoji-transportation"
-                  style={styles.facilitiesIcon}
-                />
-                <Text style={styles.facilitiesText}>Public Transport</Text>
-              </View>
-
-              <View style={styles.facilitiesBox}>
-                <MaterialIcons
-                  name="sports-soccer"
-                  style={styles.facilitiesIcon}
-                />
-                <Text style={styles.facilitiesText}>Sports Center</Text>
-              </View>
-            </View>
+          <View
+            style={{
+              borderWidth: 0.6,
+              borderColor: colors.textLight,
+              borderRadius: 5,
+            }}
+          >
+            <SectionedMultiSelect
+              IconRenderer={MaterialIcons}
+              items={homefacilities}
+              uniqueKey="name"
+              selectText="Select facilities"
+              showDropDowns={false}
+              readOnlyHeadings={false}
+              onSelectedItemsChange={onSelectedHomeChange}
+              selectedItems={homeSelectedItems}
+              styles={{
+                borderWidth: 1,
+                button: { backgroundColor: colors.primary },
+              }}
+            />
           </View>
         </View>
 
-        <TouchableOpacity
-          style={styles.filterButton}
-          onPress={() =>
-            Alert.alert(
-              `You have selected\nCountry: ${countryName}\nState: ${stateName}\nCity: ${cityName}`
-            )
-          }
-        >
+        <View style={styles.country}>
+          <Text style={styles.selectHeading}>Select Area Facilities</Text>
+
+          <View
+            style={{
+              borderWidth: 0.6,
+              borderColor: colors.textLight,
+              borderRadius: 5,
+            }}
+          >
+            <SectionedMultiSelect
+              IconRenderer={MaterialIcons}
+              items={areafacilities}
+              uniqueKey="name"
+              selectText="Select facilities"
+              showDropDowns={false}
+              readOnlyHeadings={false}
+              onSelectedItemsChange={onSelectedAreaChange}
+              selectedItems={areaSelectedItems}
+              styles={{
+                button: { backgroundColor: colors.primary },
+              }}
+            />
+          </View>
+        </View>
+
+        <View style={styles.inputBox}>
+          <Text style={styles.selectHeading}>Price </Text>
+          <View style={styles.inputDiv}>
+            <TextInput
+              placeholder="Min #12,000"
+              style={styles.textInputs}
+              onChangeText={setMinPrice}
+              value={minPrice}
+            />
+
+            <TextInput
+              placeholder="Max #50,000,000"
+              style={styles.textInputs}
+              onChangeText={setMaxPrice}
+              value={maxPrice}
+            />
+          </View>
+        </View>
+
+        <TouchableOpacity style={styles.filterButton} onPress={handleSubmit}>
           <Text
             style={{
               color: colors.white,
@@ -332,7 +389,7 @@ const FilterSearch = () => {
               fontWeight: "700",
             }}
           >
-            Submit
+            Search
           </Text>
         </TouchableOpacity>
       </View>
@@ -351,29 +408,29 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   filterHeading: {
-    fontSize: 19,
+    fontSize: Platform.OS === "ios" ? 18 : 16,
     textAlign: "center",
     marginBottom: 30,
     fontFamily: "NunitoSans-Bold",
     color: colors.secondary,
     paddingHorizontal: 20,
-    marginTop: 20,
   },
+
   selectHeading: {
     marginBottom: 7,
     fontFamily: "NunitoSans-Regular",
-    fontSize: 18,
+    fontSize: Platform.OS === "ios" ? 18 : 14,
     marginTop: 20,
     color: colors.primary,
     fontWeight: "700",
   },
+
   dropdown: {
     height: 55,
     borderColor: "gray",
     borderWidth: 0.5,
     borderRadius: 5,
     paddingHorizontal: 8,
-    marginBottom: 10,
   },
   icon: {
     marginRight: 5,
@@ -388,7 +445,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   placeholderStyle: {
-    fontSize: 16,
+    fontSize: Platform.OS === "ios" ? 16 : 14,
   },
   selectedTextStyle: {
     fontSize: 16,
@@ -415,31 +472,28 @@ const styles = StyleSheet.create({
     borderColor: colors.textLighter,
     borderRadius: 15,
   },
-  facilities: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    marginTop: 20,
-    flexWrap: "wrap",
-  },
-  facilitiesBox: {
-    borderWidth: 0.3,
-    borderColor: colors.textLight,
+
+  active: {
+    borderWidth: 2,
+    borderColor: colors.primary,
     padding: 15,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
-    width: 100,
+    width: 110,
     height: 100,
   },
-  facilitiesIcon: {
-    fontSize: Platform.OS === "ios" ? 20 : 20,
-    color: colors.primary,
-    marginBottom: 5,
+  textInputs: {
+    borderWidth: 1,
+    borderColor: colors.primary,
+    height: 55,
+    borderRadius: 5,
+    marginBottom: 10,
+    width: "45%",
+    paddingHorizontal: 15,
   },
-  facilitiesText: {
-    fontFamily: "NunitoSans-Bold",
-    textAlign: "center",
-    fontSize: Platform.OS === "ios" ? 15 : 12,
+  inputDiv: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

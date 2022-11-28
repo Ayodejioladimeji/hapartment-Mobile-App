@@ -167,9 +167,9 @@ const styles = StyleSheet.create({
   },
   verify: {
     backgroundColor: colors.primary,
-    height: Platform.OS === "ios" ? 25 : 20,
+    height: Platform.OS === "ios" ? 20 : 20,
     paddingLeft: 10,
-    width: "60%",
+    width: "40%",
     position: "absolute",
     bottom: 0,
     justifyContent: "center",
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   },
   verifyText: {
     color: colors.white,
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: "600",
   },
   favoriteWrapper: {

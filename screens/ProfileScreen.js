@@ -46,7 +46,7 @@ const ProfileScreen = ({ navigation }) => {
         </View>
 
         <View style={styles.profileDetailsWrapper}>
-          <View style={styles.profileDetails}>
+          <TouchableOpacity style={styles.profileDetails}>
             <View style={styles.profileLeft}>
               <View style={styles.detailsBox}>
                 <MaterialIcons
@@ -65,9 +65,12 @@ const ProfileScreen = ({ navigation }) => {
               color="black"
               style={styles.arrow}
             />
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.profileDetails}>
+          <TouchableOpacity
+            style={styles.profileDetails}
+            onPress={() => navigation.navigate("MyPropertiesScreen")}
+          >
             <View style={styles.profileLeft}>
               <View style={styles.detailsBox}>
                 <MaterialIcons
@@ -86,9 +89,12 @@ const ProfileScreen = ({ navigation }) => {
               color="black"
               style={styles.arrow}
             />
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.profileDetails}>
+          <TouchableOpacity
+            style={styles.profileDetails}
+            onPress={() => navigation.navigate("SavedPropertiesScreen")}
+          >
             <View style={styles.profileLeft}>
               <View style={styles.detailsBox}>
                 <MaterialCommunityIcons
@@ -107,9 +113,12 @@ const ProfileScreen = ({ navigation }) => {
               color="black"
               style={styles.arrow}
             />
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.profileDetails}>
+          <TouchableOpacity
+            style={styles.profileDetails}
+            onPress={() => navigation.navigate("ChangePasswordScreen")}
+          >
             <View style={styles.profileLeft}>
               <View style={styles.detailsBox}>
                 <Ionicons
@@ -128,9 +137,12 @@ const ProfileScreen = ({ navigation }) => {
               color="black"
               style={styles.arrow}
             />
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.profileDetails}>
+          <TouchableOpacity
+            style={styles.profileDetails}
+            onPress={() => navigation.navigate("NotificationScreen")}
+          >
             <View style={styles.profileLeft}>
               <View style={styles.detailsBox}>
                 <Ionicons
@@ -149,9 +161,9 @@ const ProfileScreen = ({ navigation }) => {
               color="black"
               style={styles.arrow}
             />
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.profileDetails}>
+          <TouchableOpacity style={styles.profileDetails}>
             <View style={styles.profileLeft}>
               <View style={styles.detailsBox}>
                 <FontAwesome
@@ -170,7 +182,7 @@ const ProfileScreen = ({ navigation }) => {
               color="black"
               style={styles.arrow}
             />
-          </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

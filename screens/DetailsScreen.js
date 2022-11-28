@@ -43,8 +43,8 @@ const DetailsScreen = ({ route }) => {
 
         <View style={styles.detailsName}>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.name}>₦{amount}</Text>
         </View>
+        <Text style={styles.amount}>₦{amount}</Text>
 
         <View style={styles.locationWrapper}>
           <MaterialCommunityIcons
@@ -94,52 +94,56 @@ const DetailsScreen = ({ route }) => {
         </View>
 
         <View style={styles.descriptionWrapper}>
-          <Text style={styles.description}>Facilities Available</Text>
+          <Text style={styles.description}>Home Facilities Available</Text>
 
           <View style={styles.facilities}>
             <View style={styles.facilitiesBox}>
-              <FontAwesome5
-                name="hospital"
-                // size={15}
-                style={styles.facilitiesIcon}
-              />
+              <Text style={styles.facilitiesText}>24-hour Electricity</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <Text style={styles.facilitiesText}>Dinning Area</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <Text style={styles.facilitiesText}>Balcony</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <Text style={styles.facilitiesText}>Kitchen Shelf</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <Text style={styles.facilitiesText}>Wardrobe</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <Text style={styles.facilitiesText}>Tiled Floor</Text>
+            </View>
+            <View style={styles.facilitiesBox}>
+              <Text style={styles.facilitiesText}>Kitchen Cabinet</Text>
+            </View>
+          </View>
+        </View>
+
+        <View style={styles.descriptionWrapper}>
+          <Text style={styles.description}>Area Facilities Available</Text>
+
+          <View style={styles.facilities}>
+            <View style={styles.facilitiesBox}>
               <Text style={styles.facilitiesText}>Hospital</Text>
             </View>
             <View style={styles.facilitiesBox}>
-              <FontAwesome5
-                name="school"
-                // size={15}
-                style={styles.facilitiesIcon}
-              />
               <Text style={styles.facilitiesText}>School</Text>
             </View>
             <View style={styles.facilitiesBox}>
-              <Fontisto name="shopping-store" style={styles.facilitiesIcon} />
               <Text style={styles.facilitiesText}>Shopping Mall</Text>
             </View>
             <View style={styles.facilitiesBox}>
-              <MaterialCommunityIcons
-                name="police-station"
-                style={styles.facilitiesIcon}
-              />
               <Text style={styles.facilitiesText}>Police Station</Text>
             </View>
             <View style={styles.facilitiesBox}>
-              <Fontisto name="drug-pack" style={styles.facilitiesIcon} />
               <Text style={styles.facilitiesText}>Drug Store</Text>
             </View>
             <View style={styles.facilitiesBox}>
-              <MaterialIcons
-                name="emoji-transportation"
-                style={styles.facilitiesIcon}
-              />
               <Text style={styles.facilitiesText}>Public Transport</Text>
             </View>
             <View style={styles.facilitiesBox}>
-              <MaterialIcons
-                name="sports-soccer"
-                style={styles.facilitiesIcon}
-              />
               <Text style={styles.facilitiesText}>Sports Center</Text>
             </View>
           </View>
@@ -199,9 +203,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   detailsName: {
-    flexDirection: "row",
     margin: 10,
-    justifyContent: "space-between",
   },
   name: {
     fontSize: 18,
@@ -209,13 +211,21 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontWeight: "bold",
   },
+  amount: {
+    fontSize: 20,
+    fontFamily: "NunitoSans-Black",
+    color: colors.primary,
+    fontWeight: "bold",
+    marginHorizontal: 10,
+    marginBottom: 15,
+  },
   locationWrapper: {
     marginHorizontal: 10,
     flexDirection: "row",
     alignItems: "center",
   },
   locationText: {
-    fontSize: 12,
+    fontSize: 13,
     fontFamily: "NunitoSans-Regular",
     color: colors.secondary,
   },
@@ -290,7 +300,7 @@ const styles = StyleSheet.create({
   facilities: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     marginTop: 20,
     flexWrap: "wrap",
   },
@@ -301,7 +311,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
-    width: 150,
+    width: 170,
   },
   facilitiesIcon: {
     fontSize: Platform.OS === "ios" ? 30 : 20,

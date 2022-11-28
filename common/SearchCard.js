@@ -25,9 +25,7 @@ const SearchCard = ({ item }) => {
 
   //
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate("AgentDetailsScreen", { item })}
-    >
+    <View>
       <View style={styles.cardsWrapper}>
         <View style={styles.imagesWrapper}>
           <Image source={{ uri: item.image[0] }} style={styles.cardImage} />
@@ -41,11 +39,15 @@ const SearchCard = ({ item }) => {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.cardBox}>
-          <View style={styles.cardName}>
-            <Text style={styles.nameText}>{item.name}</Text>
-            <Text style={styles.amountText}>₦{item.amount}</Text>
-          </View>
+        <TouchableOpacity
+          style={styles.cardBox}
+          onPress={() => navigation.navigate("AgentDetailsScreen", { item })}
+        >
+          <Text style={styles.nameText}>
+            {item.name.substring(0, 25) + "..."}
+          </Text>
+
+          <Text style={styles.amountText}>₦{item.amount}</Text>
 
           <View style={styles.cardLocation}>
             <MaterialCommunityIcons
@@ -77,9 +79,9 @@ const SearchCard = ({ item }) => {
           <View style={styles.cardTimeWrapper}>
             <Text style={styles.cardTime}>Updated {item.time}</Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+    </View>
   );
 };
 
@@ -98,13 +100,14 @@ const styles = StyleSheet.create({
     borderWidth: 0.2,
     borderColor: colors.textLighter,
     padding: 5,
+    borderBottomColor: colors.primary,
+    overflow: "hidden",
   },
   imagesWrapper: {
     position: "relative",
-    background: "orange",
   },
   cardImage: {
-    height: 120,
+    height: 150,
     width: 150,
     // resizeMode: "cover",
   },
@@ -127,11 +130,13 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     fontSize: Platform.OS === "ios" ? 13 : 12,
     fontFamily: "NunitoSans-Bold",
+    marginBottom: 10,
   },
 
   amountText: {
     fontWeight: "700",
-    fontSize: Platform.OS === "ios" ? 13 : 12,
+    fontSize: Platform.OS === "ios" ? 14 : 13,
+    marginBottom: 10,
   },
 
   cardLocation: {
@@ -144,6 +149,7 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontSize: 11,
     fontFamily: "NunitoSans-Regular",
+    flexWrap: "wrap",
   },
   cardFooter: {
     flexDirection: "row",
@@ -176,9 +182,9 @@ const styles = StyleSheet.create({
 
   verify: {
     backgroundColor: colors.primary,
-    height: Platform.OS === "ios" ? 25 : 20,
+    height: Platform.OS === "ios" ? 20 : 20,
     paddingLeft: 10,
-    width: "60%",
+    width: "50%",
     position: "absolute",
     bottom: 0,
     justifyContent: "center",
@@ -186,7 +192,7 @@ const styles = StyleSheet.create({
   },
   verifyText: {
     color: colors.white,
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: "600",
   },
   favoriteWrapper: {

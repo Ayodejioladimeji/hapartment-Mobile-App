@@ -13,7 +13,7 @@ const AroundYou = () => {
   //
   return (
     <View style={styles.aroundWrapper}>
-      <Text style={styles.aroundText}>Apartments around You</Text>
+      <Text style={styles.aroundText}>Apartments around you</Text>
 
       <FlatList
         data={data}
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
   aroundText: {
     fontSize: 16,
     fontWeight: "500",
-    marginBottom: 5,
+    marginBottom: 15,
     color: colors.primary,
-    fontFamily: "Lobster-Regular",
+    fontFamily: "NunitoSans-Bold",
   },
 });

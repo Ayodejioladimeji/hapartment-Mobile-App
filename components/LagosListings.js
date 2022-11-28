@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingTop: 10,
     backgroundColor: colors.white,
-    marginBottom: 200,
+    marginBottom: 20,
   },
   lagosText: {
     fontSize: 16,
     fontWeight: "500",
-    marginBottom: 5,
+    marginBottom: 15,
     color: colors.primary,
-    fontFamily: "Lobster-Regular",
+    fontFamily: "NunitoSans-Bold",
   },
 });

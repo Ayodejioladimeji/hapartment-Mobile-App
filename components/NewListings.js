@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
   newText: {
     fontSize: 16,
     fontWeight: "500",
-    marginBottom: 5,
+    marginBottom: 15,
     color: colors.primary,
-    fontFamily: "Lobster-Regular",
+    fontFamily: "NunitoSans-Bold",
   },
 });

@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
+  Text,
 } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
@@ -18,6 +19,8 @@ import HomepageHeader from "../components/HomepageHeader";
 import LagosListings from "../components/LagosListings";
 import NewListings from "../components/NewListings";
 import SearchComponent from "../components/SearchComponent";
+import SearchCard from "../common/SearchCard";
+import data from "../constants/data";
 
 //
 
@@ -57,6 +60,14 @@ const HomeScreen = ({ navigation }) => {
         <AroundYou navigation={navigation} />
         <NewListings />
         <LagosListings />
+
+        <View style={styles.explore}>
+          <Text style={styles.exploreText}>Explore more</Text>
+
+          {data.map((item) => (
+            <SearchCard item={item} key={item.id} />
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
@@ -67,5 +78,15 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   homeScreenWrapper: {
     backgroundColor: colors.white,
+  },
+  explore: {
+    marginHorizontal: 15,
+    marginBottom: 200,
+  },
+  exploreText: {
+    marginBottom: 15,
+    fontSize: 16,
+    fontFamily: "NunitoSans-Bold",
+    color: colors.primary,
   },
 });

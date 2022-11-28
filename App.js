@@ -16,6 +16,10 @@ import ForgotPassword from "./screens/ForgotPassword";
 import OneTimeCode from "./screens/OneTimeCode";
 import Register from "./screens/Register";
 import FilterScreen from "./screens/FilterScreen";
+import MyPropertiesScreen from "./screens/MyPropertiesScreen";
+import SavedPropertiesScreen from "./screens/SavedPropertiesScreen";
+import ChangePasswordScreen from "./screens/ChangePasswordScreen";
+import NotificationScreen from "./screens/NotificationScreen";
 const Stack = createStackNavigator();
 
 //
@@ -39,14 +43,13 @@ function App() {
         {/* {showOnboard && (
           <Stack.Screen name="Onboarding" component={Onboarding} />
         )} */}
-        {/* <Stack.Screen name="WhoAreYou" component={WhoAreYou} />
-        <Stack.Screen name="RegisterTenant" component={RegisterTenant} />
+        <Stack.Screen name="RootHome" component={RootHome} />
+        <Stack.Screen name="WhoAreYou" component={WhoAreYou} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="OneTimeCode" component={OneTimeCode} /> */}
+        <Stack.Screen name="OneTimeCode" component={OneTimeCode} />
 
-        <Stack.Screen name="RootHome" component={RootHome} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
 
         <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
 
@@ -60,6 +63,22 @@ function App() {
           component={LandlordProfileScreen}
         />
         <Stack.Screen name="FilterScreen" component={FilterScreen} />
+        <Stack.Screen
+          name="MyPropertiesScreen"
+          component={MyPropertiesScreen}
+        />
+        <Stack.Screen
+          name="SavedPropertiesScreen"
+          component={SavedPropertiesScreen}
+        />
+        <Stack.Screen
+          name="ChangePasswordScreen"
+          component={ChangePasswordScreen}
+        />
+        <Stack.Screen
+          name="NotificationScreen"
+          component={NotificationScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
