@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: Platform.OS === "ios" ? 20 : 18,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-ßBold",
     alignSelf: "center",
     marginBottom: 10,
     color: colors.primary,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginBottom: 30,
     fontSize: Platform.OS === "ios" ? 15 : 14,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-ßRegular",
     textAlign: "center",
     paddingHorizontal: 20,
   },
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   inputText: {
     marginBottom: 5,
     fontSize: 15,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSßans-Regular",
     fontWeight: "600",
   },
 
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     marginBottom: 120,
     alignSelf: "center",
     fontSize: Platform.OS === "ios" ? 15 : 14,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSanßs-Regular",
   },
   login: {
     color: colors.primary,

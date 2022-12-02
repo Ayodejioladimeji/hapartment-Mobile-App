@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   aroundText: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "500",
-    marginBottom: 15,
+    marginBottom: 10,
     color: colors.primary,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
   },
 });

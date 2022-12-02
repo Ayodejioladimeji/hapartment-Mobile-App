@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   mainheading: {
-    // fontFamily: "AlfaSlabOne-Regular",
+    // fontFamily: "//AlfaSlabOne-Regular",
     fontSize: "25",
     color: colors.primary,
   },
   subHeading: {
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: Platform.OS === "ios" ? 17 : 15,
     color: colors.secondary,
     marginVertical: 40,
@@ -96,19 +96,19 @@ const styles = StyleSheet.create({
   text: {
     color: colors.primary,
     fontSize: Platform.OS === "ios" ? 15 : 14,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
   },
   subText: {
     color: colors.secondary,
     fontSize: 14,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
   },
   registeredWrapper: {
     marginHorizontal: 20,
     justifyContent: "center",
   },
   registeredText: {
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: Platform.OS === "ios" ? 15 : 14,
     color: colors.secondary,
     marginTop: 10,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   continueText: {
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: 18,
     color: colors.white,
   },

@@ -6,16 +6,17 @@ import {
   TouchableOpacity,
   Platform,
 } from "react-native";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import colors from "../assets/colors/colors";
 import MyStatusBar from "../common/MyStatusBar";
 import { useNavigation } from "@react-navigation/native";
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
+// import { useFonts } from "expo-font";
+// import * as SplashScreen from "expo-splash-screen";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync();
 //
 
 const WhoAreYou = () => {
@@ -26,30 +27,30 @@ const WhoAreYou = () => {
   //
 
   // initialize font family
-  const [fontsLoaded] = useFonts({
-    "Lobster-Regular": require("../assets/fonts/Lobster-Regular.ttf"),
-    "AlfaSlabOne-Regular": require("../assets/fonts/AlfaSlabOne-Regular.ttf"),
-    "NunitoSans-Regular": require("../assets/fonts/NunitoSans-Regular.ttf"),
-    "NunitoSans-Black": require("../assets/fonts/NunitoSans-Black.ttf"),
-    "NunitoSans-Bold": require("../assets/fonts/NunitoSans-Bold.ttf"),
-  });
+  // const [fontsLoaded] = useFonts({
+  //   "//Lobster-Regular": require("../assets/fonts///Lobster-Regular.ttf"),
+  //   "//AlfaSlabOne-Regular": require("../assets/fonts///AlfaSlabOne-Regular.ttf"),
+  //   "//NunitoSans-Regular": require("../assets/fonts///NunitoSans-Regular.ttf"),
+  //   "//NunitoSans-Black": require("../assets/fonts///NunitoSans-Black.ttf"),
+  //   "//NunitoSans-Bold": require("../assets/fonts///NunitoSans-Bold.ttf"),
+  // });
 
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (fontsLoaded) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [fontsLoaded]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  // if (!fontsLoaded) {
+  //   return null;
+  // }
 
   //
 
   return (
     <View
       style={{ flex: 1, backgroundColor: colors.white }}
-      onLayout={onLayoutRootView}
+      // onLayout={onLayoutRootView}
     >
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <View style={styles.logoContainer}>
@@ -143,12 +144,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   mainheading: {
-    // fontFamily: "AlfaSlabOne-Regular",
+    // fontFamily: "//AlfaSlabOne-Regular",
     fontSize: "25",
     color: colors.primary,
   },
   subHeading: {
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: Platform.OS === "ios" ? 17 : 15,
     color: colors.secondary,
     marginVertical: 40,
@@ -189,19 +190,20 @@ const styles = StyleSheet.create({
   text: {
     color: colors.primary,
     fontSize: Platform.OS === "ios" ? 15 : 14,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
   },
   subText: {
     color: colors.secondary,
     fontSize: 14,
-    fontFamily: "NunitoSans-Regular",
+    textAlign: "center",
+    // fontFamily: "//NunitoSans-Regular",
   },
   registeredWrapper: {
     marginHorizontal: 20,
     justifyContent: "center",
   },
   registeredText: {
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: Platform.OS === "ios" ? 15 : 14,
     color: colors.secondary,
     marginTop: 10,
@@ -219,7 +221,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   continueText: {
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: 18,
     color: colors.white,
   },

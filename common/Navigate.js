@@ -2,11 +2,14 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
-import MyStatusBar from "../common/MyStatusBar";
+import MyStatusBar from "./MyStatusBar";
+import { useNavigation } from "@react-navigation/native";
 
 //
 
-const GoBack = ({ navigation, title }) => {
+const Navigate = ({ navigate, title }) => {
+  const navigation = useNavigation();
+
   return (
     <View>
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
@@ -15,7 +18,7 @@ const GoBack = ({ navigation, title }) => {
           name="arrow-back"
           size={27}
           color={colors.white}
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate(navigate)}
         />
         <Text style={styles.goBackText}>{title}</Text>
       </View>
@@ -23,7 +26,7 @@ const GoBack = ({ navigation, title }) => {
   );
 };
 
-export default GoBack;
+export default Navigate;
 
 const styles = StyleSheet.create({
   goBack: {

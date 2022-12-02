@@ -5,6 +5,7 @@ import {
   Keyboard,
   StyleSheet,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import MyStatusBar from "../common/MyStatusBar";
@@ -13,35 +14,53 @@ import GoBack from "../common/GoBack";
 import { useNavigation } from "@react-navigation/native";
 import OtpInput from "../components/OtpInput";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { authenticate } from "../redux/actions/authAction";
+import { useDispatch, useSelector } from "react-redux";
 
 //
 
 const OneTimeCode = () => {
   const navigation = useNavigation();
   const [otpCode, setOtpCode] = useState("");
+  const { activationToken } = useSelector((state) => state.auth);
+  const { authloading, error } = useSelector((state) => state.alert);
+  const dispatch = useDispatch();
   const [isPinReady, setIsPinReady] = useState(false);
   const maximumCodeLength = 4;
+
+  // handlesubmit
+  const handleSubmit = () => {
+    const newData = {
+      activation_token: activationToken,
+      auth_code: otpCode,
+    };
+    dispatch(authenticate(newData, navigation));
+  };
 
   //
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <GoBack navigation={navigation} title="One Time Code" />
       <Pressable style={styles.container} onPress={Keyboard.dismiss}>
         <View style={styles.codeWrapper}>
           <FontAwesome5 name="user-lock" style={styles.codeImage} />
 
+          {error && <Text style={styles.error}>{error}</Text>}
+
           <Text style={styles.codeText}>
             Provide the one-time-code sent to your email
           </Text>
+
           <OtpInput
             code={otpCode}
             setCode={setOtpCode}
             maximumLength={maximumCodeLength}
             setIsPinReady={setIsPinReady}
           />
+
           <TouchableOpacity
+            onPress={handleSubmit}
             disabled={!isPinReady}
             style={{
               backgroundColor: isPinReady ? colors.primary : colors.textLight,
@@ -54,7 +73,11 @@ const OneTimeCode = () => {
               borderRadius: 5,
             }}
           >
-            <Text style={styles.buttonText}>Submit</Text>
+            {authloading ? (
+              <ActivityIndicator size="small" color={colors.white} />
+            ) : (
+              <Text style={styles.buttonText}>Submit</Text>
+            )}
           </TouchableOpacity>
 
           <Text style={styles.resend}>Didn't get the code ? </Text>
@@ -82,42 +105,43 @@ const styles = StyleSheet.create({
     borderColor: colors.textLighter,
     padding: 20,
     paddingVertical: 40,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    // flexDirection: "column",
+    // justifyContent: "center",
+    // alignItems: "center",
     borderRadius: 5,
   },
   codeImage: {
     fontSize: 40,
     color: colors.primary,
     marginBottom: 30,
+    alignSelf: "center",
   },
   codeText: {
     marginBottom: 30,
     fontSize: 19,
     marginHorizontal: 25,
     textAlign: "center",
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     color: colors.primary,
   },
   codeButton: {},
   buttonText: {
     color: colors.white,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: 18,
   },
   resend: {
     alignSelf: "center",
     marginTop: 20,
     fontSize: 15,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
   },
   resendCode: {
     alignSelf: "center",
     marginTop: 20,
     fontSize: 15,
     color: colors.primary,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
   },
 
   timer: {
@@ -125,6 +149,17 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 25,
     color: colors.primary,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
+  },
+  error: {
+    color: colors.white,
+    marginBottom: 20,
+    fontSize: Platform.OS === "ios" ? 15 : 14,
+    alignSelf: "center",
+    padding: 10,
+    backgroundColor: "orangered",
+    fontWeight: "bold",
+    width: "100%",
+    textAlign: "center",
   },
 });

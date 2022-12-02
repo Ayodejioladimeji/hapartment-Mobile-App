@@ -4,6 +4,7 @@ import {
   MaterialCommunityIcons,
   MaterialIcons,
 } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   View,
   StyleSheet,
@@ -12,13 +13,24 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import colors from "../assets/colors/colors";
 import GoBack from "../common/GoBack";
-import MyStatusBar from "../common/MyStatusBar";
+import { GLOBALTYPES } from "../redux/actions/globalTypes";
 
 //
 
 const ProfileScreen = ({ navigation }) => {
+  const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  // The logout method
+  const logout = () => {
+    AsyncStorage.removeItem("access_token");
+    dispatch({ type: GLOBALTYPES.TOKEN, payload: "" });
+  };
+
+  //
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
       <GoBack navigation={navigation} title="User Profile" />
@@ -34,8 +46,8 @@ const ProfileScreen = ({ navigation }) => {
               source={require("../assets/images/profile.jpeg")}
               style={styles.profileImage}
             />
-            <Text style={styles.nameText}>Ayodeji Oladimeji</Text>
-            <Text style={styles.usernameText}>@Layobright</Text>
+            <Text style={styles.nameText}>{user.fullname}</Text>
+            <Text style={styles.usernameText}>@{user.username}</Text>
             <TouchableOpacity
               style={styles.profileButton}
               onPress={() => navigation.navigate("EditProfileScreen")}
@@ -163,7 +175,7 @@ const ProfileScreen = ({ navigation }) => {
             />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.profileDetails}>
+          <TouchableOpacity style={styles.profileDetails} onPress={logout}>
             <View style={styles.profileLeft}>
               <View style={styles.detailsBox}>
                 <FontAwesome
@@ -214,12 +226,12 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   nameText: {
-    fontFamily: "NunitoSans-Black",
+    // fontFamily: "//NunitoSans-Black",
     fontSize: 17,
     textAlign: "center",
   },
   usernameText: {
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     textAlign: "center",
     fontSize: 15,
   },
@@ -235,7 +247,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.white,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
   },
   profileDetailsWrapper: {
     alignItems: "center",
@@ -269,7 +281,7 @@ const styles = StyleSheet.create({
   detailsText: {
     color: colors.textDark,
     fontSize: 15,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
   },
   detailsBox: {
     height: 30,

@@ -89,12 +89,12 @@ const styles = StyleSheet.create({
   },
   landlordText: {
     color: colors.textDark,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: 14,
   },
   addressText: {
     color: colors.textDark,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
     fontSize: 12,
   },
   arrow: {

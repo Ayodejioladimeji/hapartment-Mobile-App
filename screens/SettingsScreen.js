@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
   },
   settingsText: {
     color: colors.textDark,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: Platform.OS === "ios" ? 15 : 14,
   },
   arrow: {

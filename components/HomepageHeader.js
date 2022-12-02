@@ -1,24 +1,54 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, Platform } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Platform,
+  ActivityIndicator,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
-// import fontsize from "../assets/fontsize/fontsize";
+import { useSelector } from "react-redux";
 
 //
 
 const HomepageHeader = () => {
+  const { user, token } = useSelector((state) => state.auth);
+  const { userloading } = useSelector((state) => state.alert);
+
+  //
   return (
     <View style={styles.headerWrapper}>
-      <View style={styles.headerLeft}>
-        <Image
-          source={require("../assets/images/profile.jpeg")}
-          style={styles.headerImage}
-        />
-        <View style={styles.headerBox}>
-          <Text style={styles.headerName}>Hi, Ayodeji</Text>
-          <Text style={styles.headerLocation}>Lagos State</Text>
+      {token !== "" ? (
+        <>
+          {(!userloading && !user) || userloading ? (
+            <ActivityIndicator color={colors.white} size="small" />
+          ) : (
+            <View style={styles.headerLeft}>
+              <Image
+                source={require("../assets/images/user.jpg")}
+                style={styles.headerImage}
+              />
+              <View style={styles.headerBox}>
+                <Text style={styles.headerName}>Hi, {user.username}</Text>
+                <Text style={styles.headerLocation}>{user.userType}</Text>
+              </View>
+            </View>
+          )}
+        </>
+      ) : (
+        <View style={styles.headerLeft}>
+          <Image
+            source={require("../assets/images/user.jpg")}
+            style={styles.headerImage}
+          />
+          <View style={styles.headerBox}>
+            <Text style={styles.headerName}>Random user</Text>
+            <Text style={styles.headerLocation}>Welcome</Text>
+          </View>
         </View>
-      </View>
+      )}
 
       <View style={styles.headerRight}>
         <MaterialCommunityIcons
@@ -63,7 +93,8 @@ const styles = StyleSheet.create({
     // fontSize: fontsize.four,
     color: colors.white,
     fontWeight: "600",
-    fontFamily: "AlfaSlabOne-Regular",
+    fontFamily: "//AlfaSlabOne-Regular",
+    textTransform: "capitalize",
   },
 
   headerRight: {
@@ -72,7 +103,8 @@ const styles = StyleSheet.create({
 
   headerLocation: {
     color: colors.white,
-    fontFamily: "Lobster-Regular",
-    // fontSize: fontsize.four,
+    // fontFamily: "//Lobster-Regular",
+    textTransform: "capitalize",
+    fontSize: 15,
   },
 });

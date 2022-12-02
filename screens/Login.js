@@ -7,14 +7,17 @@ import {
   TouchableOpacity,
   ScrollView,
   Platform,
+  ActivityIndicator,
+  TouchableWithoutFeedback,
 } from "react-native";
 import React from "react";
-import MyStatusBar from "../common/MyStatusBar";
 import colors from "../assets/colors/colors";
-import GoBack from "../common/GoBack";
 import { useNavigation } from "@react-navigation/native";
 import EmailValidator from "email-validator";
 import { Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/actions/authAction";
+import Navigate from "../common/Navigate";
 
 // VALIDATION REGEX
 const passwordUpper = /(?=.*[A-Z])/;
@@ -26,6 +29,8 @@ const passwordRegex = /(?=.*[0-9])/;
 
 const Login = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const { authloading, error, userError } = useSelector((state) => state.alert);
 
   //
   return (
@@ -36,7 +41,11 @@ const Login = () => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(async () => {
-          console.log(values);
+          const newData = {
+            email: values.email.toLowerCase(),
+            password: values.password,
+          };
+          dispatch(login(newData));
           setSubmitting(false);
         }, 500);
       }}
@@ -80,11 +89,14 @@ const Login = () => {
         } = props;
         return (
           <View style={{ flex: 1, backgroundColor: colors.white }}>
-            <GoBack navigation={navigation} title="Login" />
+            <Navigate navigate="WhoAreYou" title="Login" />
 
             <ScrollView>
               <View style={styles.registerContainer}>
                 <Text style={styles.heading}>Login to continue</Text>
+
+                {error && <Text style={styles.error}>{error}</Text>}
+                {userError && <Text style={styles.error}>{userError}</Text>}
 
                 <View stye={styles.formContainer}>
                   <View style={styles.editProfileBox}>
@@ -96,6 +108,7 @@ const Login = () => {
                       onBlur={handleBlur("email")}
                       value={values.email}
                       name="email"
+                      autoComplete={Platform.OS === "web" ? "none" : "off"}
                     />
                     {errors.email && touched.email && (
                       <Text style={styles.errors}>{errors.email}</Text>
@@ -125,12 +138,15 @@ const Login = () => {
                     Forgot password ?
                   </Text>
 
-                  <TouchableOpacity
-                    style={styles.profileButton}
-                    onPress={() => navigation.navigate("RootHome")}
-                  >
-                    <Text style={styles.profileButtonText}>Login</Text>
-                  </TouchableOpacity>
+                  <TouchableWithoutFeedback onPress={handleSubmit}>
+                    <View style={styles.profileButton}>
+                      {authloading ? (
+                        <ActivityIndicator size="small" color={colors.white} />
+                      ) : (
+                        <Text style={styles.profileButtonText}>Login</Text>
+                      )}
+                    </View>
+                  </TouchableWithoutFeedback>
                 </View>
               </View>
             </ScrollView>
@@ -151,7 +167,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: Platform.OS === "ios" ? 20 : 18,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     alignSelf: "center",
     marginBottom: 30,
     color: colors.primary,
@@ -164,7 +180,7 @@ const styles = StyleSheet.create({
   inputText: {
     marginBottom: 5,
     fontSize: 15,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
     fontWeight: "600",
   },
 
@@ -203,7 +219,7 @@ const styles = StyleSheet.create({
     marginBottom: 120,
     alignSelf: "center",
     fontSize: 17,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
   },
   login: {
     color: colors.primary,
@@ -213,5 +229,17 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 10,
     fontSize: Platform.OS === "ios" ? 13 : 12,
+  },
+
+  error: {
+    color: colors.white,
+    marginBottom: 20,
+    fontSize: Platform.OS === "ios" ? 15 : 14,
+    alignSelf: "center",
+    padding: 10,
+    backgroundColor: "orangered",
+    fontWeight: "bold",
+    width: "90%",
+    textAlign: "center",
   },
 });

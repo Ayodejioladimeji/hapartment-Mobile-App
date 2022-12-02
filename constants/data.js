@@ -2,7 +2,7 @@ const data = [
   {
     id: "1",
     image: [
-      "https://res.cloudinary.com/devsource/image/upload/v1664194289/hapartment/aa059c230652d65ddb853a87d13a13da_ylko6z.jpg",
+      // "https://res.cloudinary.com/devsource/image/upload/v1664194289/hapartment/aa059c230652d65ddb853a87d13a13da_ylko6z.jpg",
       "https://res.cloudinary.com/devsource/image/upload/v1664194287/hapartment/Rectangle_2_emy8bv.png",
       "https://res.cloudinary.com/devsource/image/upload/v1664194285/hapartment/62_wjqjtf.jpg",
       "https://res.cloudinary.com/devsource/image/upload/v1664194286/hapartment/Group_7-1_s9php4.png",

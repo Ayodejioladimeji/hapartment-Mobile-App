@@ -113,8 +113,8 @@ const styles = StyleSheet.create({
   },
 
   cardBox: {
-    padding: 10,
-    paddingHorizontal: 13,
+    // padding: 10,
+    paddingHorizontal: 5,
     width: "60%",
   },
   cardName: {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontWeight: "600",
     fontSize: Platform.OS === "ios" ? 13 : 12,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     marginBottom: 10,
   },
 
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     marginLeft: 2,
     color: colors.black,
     fontSize: 11,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
     flexWrap: "wrap",
   },
   cardFooter: {
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     color: colors.black,
     fontSize: 9,
     marginLeft: 3,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
   },
   cardTimeWrapper: {
     marginTop: 15,
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   cardTime: {
     color: colors.textLight,
     fontSize: 11,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
   },
 
   verify: {

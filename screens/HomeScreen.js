@@ -1,12 +1,5 @@
 import React, { useCallback } from "react";
-import {
-  Button,
-  View,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-} from "react-native";
+import { View, ScrollView, StyleSheet, Text } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 
@@ -21,17 +14,18 @@ import NewListings from "../components/NewListings";
 import SearchComponent from "../components/SearchComponent";
 import SearchCard from "../common/SearchCard";
 import data from "../constants/data";
+import UserApi from "../api/UserApi";
 
 //
 
 const HomeScreen = ({ navigation }) => {
   // initialize font family
   const [fontsLoaded] = useFonts({
-    "Lobster-Regular": require("../assets/fonts/Lobster-Regular.ttf"),
-    "AlfaSlabOne-Regular": require("../assets/fonts/AlfaSlabOne-Regular.ttf"),
-    "NunitoSans-Regular": require("../assets/fonts/NunitoSans-Regular.ttf"),
-    "NunitoSans-Black": require("../assets/fonts/NunitoSans-Black.ttf"),
-    "NunitoSans-Bold": require("../assets/fonts/NunitoSans-Bold.ttf"),
+    "//Lobster-Regular": require("../assets/fonts///Lobster-Regular.ttf"),
+    "//AlfaSlabOne-Regular": require("../assets/fonts///AlfaSlabOne-Regular.ttf"),
+    "//NunitoSans-Regular": require("../assets/fonts///NunitoSans-Regular.ttf"),
+    "//NunitoSans-Black": require("../assets/fonts///NunitoSans-Black.ttf"),
+    "//NunitoSans-Bold": require("../assets/fonts///NunitoSans-Bold.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -43,13 +37,14 @@ const HomeScreen = ({ navigation }) => {
   if (!fontsLoaded) {
     return null;
   }
+  //
 
   //
   return (
-    // <View style={styles.homeScreenWrapper}>
     <View style={styles.homeScreenWrapper} onLayout={onLayoutRootView}>
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
       <HomepageHeader />
+      <UserApi />
 
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
@@ -84,9 +79,10 @@ const styles = StyleSheet.create({
     marginBottom: 200,
   },
   exploreText: {
-    marginBottom: 15,
-    fontSize: 16,
-    fontFamily: "NunitoSans-Bold",
+    marginBottom: 10,
+    fontSize: 15,
+    // fontFamily: "//NunitoSans-Bold",
     color: colors.primary,
+    fontWeight: "500",
   },
 });

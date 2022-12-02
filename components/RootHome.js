@@ -8,10 +8,15 @@ import SearchScreen from "../screens/SearchScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import LandlordScreen from "../screens/LandlordScreen";
+import WhoAreYou from "../screens/WhoAreYou";
+import { useSelector } from "react-redux";
 
 const Tab = createBottomTabNavigator();
 
 const RootHome = () => {
+  const { token } = useSelector((state) => state.auth);
+
+  //
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -60,7 +65,11 @@ const RootHome = () => {
       />
       <Tab.Screen name="Search" component={SearchScreen} />
       <Tab.Screen name="Agents" component={LandlordScreen} />
-      <Tab.Screen name="Account" component={ProfileScreen} />
+      {token === "" ? (
+        <Tab.Screen name="Account" component={WhoAreYou} />
+      ) : (
+        <Tab.Screen name="Account" component={ProfileScreen} />
+      )}
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );

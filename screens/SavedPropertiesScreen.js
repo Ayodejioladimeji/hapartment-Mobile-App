@@ -48,6 +48,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 17,
     color: colors.white,
-    fontFamily: "Lobster-Regular",
+    // fontFamily: "//Lobster-Regular",
   },
 });

@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderBottomColor: colors.textLighter,
     borderBottomWidth: Platform.OS === "ios" ? 0.17 : 0.3,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
 
   profileBox: {
@@ -86,12 +86,12 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   nameText: {
-    fontFamily: "NunitoSans-Black",
+    // fontFamily: "//NunitoSans-Black",
     fontSize: 17,
     textAlign: "center",
   },
   usernameText: {
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     textAlign: "center",
     fontSize: 15,
   },
@@ -108,17 +108,17 @@ const styles = StyleSheet.create({
   },
   contactText: {
     color: colors.white,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     marginLeft: 10,
   },
   apartment: {
     marginVertical: 20,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
   apartmentText: {
     marginBottom: 20,
-    fontSize: 16,
-    fontFamily: "NunitoSans-Bold",
+    fontSize: 14,
+    // fontFamily: "//NunitoSans-Bold",
     alignSelf: "center",
   },
 });

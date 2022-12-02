@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
   },
   nameText: {
-    fontFamily: "NunitoSans-Black",
+    // fontFamily: "//NunitoSans-Black",
     fontSize: 17,
     textAlign: "center",
   },
   usernameText: {
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     textAlign: "center",
     fontSize: 15,
   },
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   inputText: {
     marginBottom: 5,
     fontSize: 13,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
   },
 
   formInput: {

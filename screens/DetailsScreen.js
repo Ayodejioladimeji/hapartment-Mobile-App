@@ -163,7 +163,7 @@ const DetailsScreen = ({ route }) => {
 
         {/* Video section */}
         <View style={styles.videoWrapper}>
-          <Text style={{ marginBottom: 10, fontFamily: "NunitoSans-Bold" }}>
+          <Text style={{ marginBottom: 10, fontFamily: "//NunitoSans-Bold" }}>
             Apartment Video
           </Text>
 
@@ -207,13 +207,13 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
-    fontFamily: "NunitoSans-Black",
+    // fontFamily: "//NunitoSans-Black",
     color: colors.primary,
     fontWeight: "bold",
   },
   amount: {
     fontSize: 20,
-    fontFamily: "NunitoSans-Black",
+    // fontFamily: "//NunitoSans-Black",
     color: colors.primary,
     fontWeight: "bold",
     marginHorizontal: 10,
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
   },
   locationText: {
     fontSize: 13,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
     color: colors.secondary,
   },
 
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     color: colors.secondary,
     fontSize: 12,
     marginLeft: 3,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
   },
   mapWrapper: {
     flexDirection: "row",
@@ -268,13 +268,13 @@ const styles = StyleSheet.create({
   mapText: {
     color: colors.white,
     fontWeight: "bold",
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: 12,
   },
   cardTime: {
     color: colors.primary,
     fontSize: 12,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
   },
 
   descriptionWrapper: {
@@ -287,12 +287,12 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 15,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontWeight: "600",
     marginBottom: 5,
   },
   content: {
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
     lineHeight: 25,
     fontSize: 14,
     color: colors.textLight,
@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   facilitiesText: {
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     textAlign: "center",
     fontSize: Platform.OS === "ios" ? 15 : 12,
   },
@@ -358,12 +358,12 @@ const styles = StyleSheet.create({
   },
   agentName: {
     fontSize: 13,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     color: colors.secondary,
   },
   desc: {
     fontSize: 11,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
     color: colors.primary,
   },
   viewWrapper: {
@@ -376,7 +376,7 @@ const styles = StyleSheet.create({
   },
   viewText: {
     color: colors.white,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     fontSize: 11,
   },
 });

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Platform,
+  ActivityIndicator,
 } from "react-native";
 import React from "react";
 import colors from "../assets/colors/colors";
@@ -14,6 +15,8 @@ import GoBack from "../common/GoBack";
 import { useNavigation } from "@react-navigation/native";
 import EmailValidator from "email-validator";
 import { Formik } from "formik";
+import { register } from "../redux/actions/authAction";
+import { useDispatch, useSelector } from "react-redux";
 
 // VALIDATION REGEX
 const passwordUpper = /(?=.*[A-Z])/;
@@ -26,29 +29,30 @@ const passwordRegex = /(?=.*[0-9])/;
 const Register = ({ route }) => {
   const navigation = useNavigation();
   const userType = route.params;
+  const dispatch = useDispatch();
+  const { authloading, error } = useSelector((state) => state.alert);
 
   return (
     <Formik
       initialValues={{
         fullname: "",
-        lastname: "",
         email: "",
         username: "",
         password: "",
         password2: "",
       }}
       onSubmit={(values, { setSubmitting }) => {
-        const { fullname, lastname, email, username, password } = values;
+        const { fullname, email, username, password } = values;
         setTimeout(async () => {
           const newData = {
             fullname,
-            lastname,
-            email,
-            username,
+            email: email.toLowerCase(),
+            username: username.toLowerCase(),
             password,
             userType,
           };
-          console.log(newData);
+          dispatch(register(newData, navigation));
+
           setSubmitting(false);
         }, 500);
       }}
@@ -58,10 +62,6 @@ const Register = ({ route }) => {
 
         if (!values.fullname) {
           errors.fullname = "fullname is required";
-        }
-
-        if (!values.lastname) {
-          errors.lastname = "Lastname is required";
         }
 
         if (!values.email) {
@@ -120,6 +120,8 @@ const Register = ({ route }) => {
             >
               <View style={styles.registerContainer}>
                 <Text style={styles.heading}>Create an account</Text>
+
+                {error && <Text style={styles.error}>{error}</Text>}
 
                 <View stye={styles.formContainer}>
                   <View style={styles.editProfileBox}>
@@ -200,11 +202,16 @@ const Register = ({ route }) => {
                   </View>
 
                   <TouchableOpacity
+                    onPress={handleSubmit}
                     style={styles.profileButton}
-                    onPress={() => navigation.navigate("Login")}
-                    // onPress={handleSubmit}
                   >
-                    <Text style={styles.profileButtonText}>Create Account</Text>
+                    {authloading ? (
+                      <ActivityIndicator size="small" color={colors.white} />
+                    ) : (
+                      <Text style={styles.profileButtonText}>
+                        Create Account
+                      </Text>
+                    )}
                   </TouchableOpacity>
 
                   <Text style={styles.member}>
@@ -236,7 +243,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: Platform.OS === "ios" ? 20 : 18,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     alignSelf: "center",
     marginBottom: 30,
     color: colors.primary,
@@ -249,7 +256,7 @@ const styles = StyleSheet.create({
   inputText: {
     marginBottom: 5,
     fontSize: Platform.OS === "ios" ? 15 : 14,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
     fontWeight: "600",
   },
 
@@ -282,7 +289,7 @@ const styles = StyleSheet.create({
     marginBottom: 120,
     alignSelf: "center",
     fontSize: Platform.OS === "ios" ? 16 : 14,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
   },
   login: {
     color: colors.primary,
@@ -292,5 +299,16 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginBottom: 10,
     fontSize: Platform.OS === "ios" ? 13 : 12,
+  },
+  error: {
+    color: colors.white,
+    marginBottom: 20,
+    fontSize: Platform.OS === "ios" ? 15 : 14,
+    alignSelf: "center",
+    padding: 10,
+    backgroundColor: "orangered",
+    fontWeight: "bold",
+    width: "90%",
+    textAlign: "center",
   },
 });

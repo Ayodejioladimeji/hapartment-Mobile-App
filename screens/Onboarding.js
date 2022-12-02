@@ -25,11 +25,11 @@ const Onboarding = () => {
 
   // initialize font family
   const [fontsLoaded] = useFonts({
-    "Lobster-Regular": require("../assets/fonts/Lobster-Regular.ttf"),
-    "AlfaSlabOne-Regular": require("../assets/fonts/AlfaSlabOne-Regular.ttf"),
-    "NunitoSans-Regular": require("../assets/fonts/NunitoSans-Regular.ttf"),
-    "NunitoSans-Black": require("../assets/fonts/NunitoSans-Black.ttf"),
-    "NunitoSans-Bold": require("../assets/fonts/NunitoSans-Bold.ttf"),
+    "//Lobster-Regular": require("../assets/fonts///Lobster-Regular.ttf"),
+    "//AlfaSlabOne-Regular": require("../assets/fonts///AlfaSlabOne-Regular.ttf"),
+    "//NunitoSans-Regular": require("../assets/fonts///NunitoSans-Regular.ttf"),
+    "//NunitoSans-Black": require("../assets/fonts///NunitoSans-Black.ttf"),
+    "//NunitoSans-Bold": require("../assets/fonts///NunitoSans-Bold.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -91,7 +91,7 @@ const Onboarding = () => {
   };
 
   const handleDone = () => {
-    navigation.navigate("WhoAreYou");
+    navigation.navigate("RootHome");
   };
 
   //
@@ -148,14 +148,14 @@ const styles = StyleSheet.create({
     fontSize: Platform.OS === "ios" ? 23 : 20,
     color: colors.primary,
     textAlign: "center",
-    // fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     marginHorizontal: 20,
   },
   text: {
     fontSize: 15,
     color: colors.textDark,
     textAlign: "center",
-    // fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
     marginHorizontal: 50,
     lineHeight: 20,
     marginTop: 10,

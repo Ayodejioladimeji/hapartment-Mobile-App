@@ -411,14 +411,14 @@ const styles = StyleSheet.create({
     fontSize: Platform.OS === "ios" ? 18 : 16,
     textAlign: "center",
     marginBottom: 30,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     color: colors.secondary,
     paddingHorizontal: 20,
   },
 
   selectHeading: {
     marginBottom: 7,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
     fontSize: Platform.OS === "ios" ? 18 : 14,
     marginTop: 20,
     color: colors.primary,

@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
   lagosText: {
     fontSize: 16,
     fontWeight: "500",
-    marginBottom: 15,
+    marginBottom: 10,
     color: colors.primary,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
   },
 });

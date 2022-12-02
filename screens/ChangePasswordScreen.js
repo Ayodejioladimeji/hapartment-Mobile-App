@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     fontSize: Platform.OS === "ios" ? 20 : 18,
-    fontFamily: "NunitoSans-Bold",
+    // fontFamily: "//NunitoSans-Bold",
     alignSelf: "center",
     marginBottom: 50,
     color: colors.primary,
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   inputText: {
     marginBottom: 5,
     fontSize: 15,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
     fontWeight: "600",
   },
 
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     marginBottom: 120,
     alignSelf: "center",
     fontSize: 17,
-    fontFamily: "NunitoSans-Regular",
+    // fontFamily: "//NunitoSans-Regular",
   },
   login: {
     color: colors.primary,
