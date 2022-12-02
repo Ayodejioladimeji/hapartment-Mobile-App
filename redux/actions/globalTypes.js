@@ -2,5 +2,6 @@ export const GLOBALTYPES = {
   AUTH: "AUTH",
   ALERT: "ALERT",
   TOKEN: "TOKEN",
+  ACTIVATION_TOKEN: "ACTIVATION_TOKEN",
   USER: "USER",
 };

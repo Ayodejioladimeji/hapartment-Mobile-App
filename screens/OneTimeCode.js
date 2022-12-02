@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import MyStatusBar from "../common/MyStatusBar";
 import colors from "../assets/colors/colors";
 import GoBack from "../common/GoBack";
@@ -22,18 +22,73 @@ import { useDispatch, useSelector } from "react-redux";
 const OneTimeCode = () => {
   const navigation = useNavigation();
   const [otpCode, setOtpCode] = useState("");
-  const { activationToken } = useSelector((state) => state.auth);
+  const { activation_token } = useSelector((state) => state.auth);
   const { authloading, error } = useSelector((state) => state.alert);
   const dispatch = useDispatch();
   const [isPinReady, setIsPinReady] = useState(false);
   const maximumCodeLength = 4;
+  const Ref = useRef(null);
+  const [timer, setTimer] = useState("00:00");
+
+  // console.log(email);
+
+  const getTimeRemaining = (e) => {
+    const total = Date.parse(e) - Date.parse(new Date());
+    const seconds = Math.floor((total / 1000) % 60);
+    const minutes = Math.floor((total / 1000 / 60) % 60);
+    return {
+      total,
+      minutes,
+      seconds,
+    };
+  };
+
+  const startTimer = (e) => {
+    let { total, minutes, seconds } = getTimeRemaining(e);
+
+    if (total >= 0) {
+      setTimer(
+        (minutes > 9 ? minutes : "0" + minutes) +
+          ":" +
+          (seconds > 9 ? seconds : "0" + seconds)
+      );
+    }
+  };
+
+  const clearTimer = (e) => {
+    setTimer("02:00");
+
+    if (Ref.current) clearInterval(Ref.current);
+    const id = setInterval(() => {
+      startTimer(e);
+    }, 1000);
+    Ref.current = id;
+  };
+
+  const getDeadTime = () => {
+    let deadline = new Date();
+    deadline.setSeconds(deadline.getSeconds() + 120);
+    return deadline;
+  };
+
+  // Resend code to the user
+  const handleResend = () => {
+    clearTimer(getDeadTime());
+    // const newData = {
+    //   email,
+    // };
+
+    // dispatch(resendCode(newData));
+  };
 
   // handlesubmit
   const handleSubmit = () => {
     const newData = {
-      activation_token: activationToken,
+      activation_token,
       auth_code: otpCode,
     };
+
+    console.log(newData);
     dispatch(authenticate(newData, navigation));
   };
 
@@ -81,9 +136,18 @@ const OneTimeCode = () => {
           </TouchableOpacity>
 
           <Text style={styles.resend}>Didn't get the code ? </Text>
-          <Text style={styles.resendCode}>Resend code</Text>
 
-          <Text style={styles.timer}>0:54</Text>
+          {timer === "00:00" ? (
+            <Text onPress={handleResend} style={styles.resendCode}>
+              Resend code
+            </Text>
+          ) : (
+            <>
+              <Text style={styles.resendCode}>Resend after</Text>
+
+              <Text style={styles.timer}>{timer}</Text>
+            </>
+          )}
         </View>
       </Pressable>
     </View>
