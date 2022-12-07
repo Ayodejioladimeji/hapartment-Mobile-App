@@ -18,6 +18,7 @@ import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/actions/authAction";
 import Navigate from "../common/Navigate";
+import GoBack from "../common/GoBack";
 
 // VALIDATION REGEX
 const passwordUpper = /(?=.*[A-Z])/;
@@ -89,7 +90,8 @@ const Login = () => {
         } = props;
         return (
           <View style={{ flex: 1, backgroundColor: colors.white }}>
-            <Navigate navigate="WhoAreYou" title="Login" />
+            {/* <Navigate navigate="WhoAreYou" title="Login" /> */}
+            <GoBack navigation={navigation} title="Login" />
 
             <ScrollView>
               <View style={styles.registerContainer}>

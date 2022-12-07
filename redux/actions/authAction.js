@@ -115,3 +115,31 @@ export const login = (data) => async (dispatch) => {
     }, 3000);
   }
 };
+
+// forgot password
+export const forgotPassword = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { authloading: true } });
+
+    const res = await postDataApi("/forgotpassword", data);
+
+    dispatch({
+      type: GLOBALTYPES.ACTIVATION_TOKEN,
+      payload: res.data.activation_token,
+    });
+
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { forgotpasswordsuccess: res.data.msg },
+    });
+  } catch (error) {
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { error: error.response.data.msg },
+    });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: { authloading: false } });
+    }, 3000);
+  }
+};

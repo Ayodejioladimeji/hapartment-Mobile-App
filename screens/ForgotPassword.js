@@ -1,23 +1,27 @@
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
   ScrollView,
   Platform,
+  TouchableWithoutFeedback,
 } from "react-native";
 import React from "react";
-import MyStatusBar from "../common/MyStatusBar";
 import colors from "../assets/colors/colors";
 import GoBack from "../common/GoBack";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 //
 
 const ForgotPassword = () => {
   const navigation = useNavigation();
+  const { forgotpasswordsuccess, authloading, error } = useSelector(
+    (state) => state.alert
+  );
+
+  //
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
       <GoBack navigation={navigation} title="Forgot Password" />
@@ -30,6 +34,8 @@ const ForgotPassword = () => {
             send you a one-time-code to reset your password
           </Text>
 
+          {error && <Text style={styles.error}>{error}</Text>}
+
           <View stye={styles.formContainer}>
             <View style={styles.editProfileBox}>
               <Text style={styles.inputText}>Email</Text>
@@ -39,9 +45,15 @@ const ForgotPassword = () => {
               />
             </View>
 
-            <TouchableOpacity style={styles.profileButton}>
-              <Text style={styles.profileButtonText}>Get Code</Text>
-            </TouchableOpacity>
+            <TouchableWithoutFeedback>
+              <View style={styles.profileButton}>
+                {authloading ? (
+                  <ActivityIndicator size="small" color={colors.white} />
+                ) : (
+                  <Text style={styles.profileButtonText}>Get Code</Text>
+                )}
+              </View>
+            </TouchableWithoutFeedback>
 
             <Text style={styles.member}>
               Remember your password ?{" "}
@@ -128,5 +140,16 @@ const styles = StyleSheet.create({
   },
   login: {
     color: colors.primary,
+  },
+  error: {
+    color: colors.white,
+    marginBottom: 20,
+    fontSize: Platform.OS === "ios" ? 15 : 14,
+    alignSelf: "center",
+    padding: 10,
+    backgroundColor: "orangered",
+    fontWeight: "bold",
+    width: "90%",
+    textAlign: "center",
   },
 });
