@@ -51,6 +51,38 @@ export const authenticate = (data) => async (dispatch) => {
   }
 };
 
+// Resend OTP code to user
+export const resendCode = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { resendloading: true } });
+
+    const res = await postDataApi("/resend", data);
+
+    dispatch({
+      type: GLOBALTYPES.ACTIVATION_TOKEN,
+      payload: res.data.activation_token,
+    });
+
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { success: res.data.msg },
+    });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: { resendloading: false } });
+    }, 3000);
+  } catch (error) {
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { error: error.response.data.msg },
+    });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: { authloading: false } });
+    }, 3000);
+  }
+};
+
 // Login the user
 export const login = (data) => async (dispatch) => {
   try {

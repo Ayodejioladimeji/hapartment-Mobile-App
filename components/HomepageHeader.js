@@ -40,11 +40,11 @@ const HomepageHeader = () => {
       ) : (
         <View style={styles.headerLeft}>
           <Image
-            source={require("../assets/images/user.jpg")}
-            style={styles.headerImage}
+            source={require("../assets/icons.png")}
+            style={styles.headerImages}
           />
           <View style={styles.headerBox}>
-            <Text style={styles.headerName}>Random user</Text>
+            <Text style={styles.headerName}>Hapartment</Text>
             <Text style={styles.headerLocation}>Welcome</Text>
           </View>
         </View>
@@ -86,6 +86,13 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderWidth: 2,
     borderColor: colors.white,
+    resizeMode: "contain",
+  },
+  headerImages: {
+    borderRadius: 50,
+    height: 50,
+    width: 50,
+    marginRight: 10,
     resizeMode: "contain",
   },
 

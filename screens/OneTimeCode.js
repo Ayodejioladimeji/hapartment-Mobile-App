@@ -14,7 +14,7 @@ import GoBack from "../common/GoBack";
 import { useNavigation } from "@react-navigation/native";
 import OtpInput from "../components/OtpInput";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { authenticate } from "../redux/actions/authAction";
+import { authenticate, resendCode } from "../redux/actions/authAction";
 import { useDispatch, useSelector } from "react-redux";
 
 //
@@ -74,11 +74,11 @@ const OneTimeCode = () => {
   // Resend code to the user
   const handleResend = () => {
     clearTimer(getDeadTime());
-    // const newData = {
-    //   email,
-    // };
+    const newData = {
+      activationtoken: activation_token,
+    };
 
-    // dispatch(resendCode(newData));
+    dispatch(resendCode(newData));
   };
 
   // handlesubmit
@@ -88,7 +88,6 @@ const OneTimeCode = () => {
       auth_code: otpCode,
     };
 
-    console.log(newData);
     dispatch(authenticate(newData, navigation));
   };
 
