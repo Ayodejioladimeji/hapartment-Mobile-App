@@ -1,8 +1,9 @@
 # HAPARTMENT MOBILE APP
 
-## React Native
+## React Native App
 
 ### Hapartment helps users search for apartment easily and provide them with adequate information to help them make well-informed decisions.
+
 
 ## Thumbnails
 
@@ -10,5 +11,6 @@
 
 ### Website link
 [Visit website here](https://www.hapartment.org)
+
 
 ## Layobright
