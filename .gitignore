@@ -12,5 +12,7 @@ web-build/
 
 .env
 
+screens/
+
 # macOS
 .DS_Store
