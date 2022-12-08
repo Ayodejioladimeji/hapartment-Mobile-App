@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
   TouchableWithoutFeedback,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/native";
 import EmailValidator from "email-validator";
@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/actions/authAction";
 import Navigate from "../common/Navigate";
 import GoBack from "../common/GoBack";
+import { Ionicons } from "@expo/vector-icons";
 
 // VALIDATION REGEX
 const passwordUpper = /(?=.*[A-Z])/;
@@ -32,6 +33,7 @@ const Login = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const { authloading, error, userError } = useSelector((state) => state.alert);
+  const [typePassword, setTypePassword] = useState(false);
 
   //
   return (
@@ -120,7 +122,7 @@ const Login = () => {
                   <View style={styles.editProfileBox}>
                     <Text style={styles.inputText}>Password</Text>
                     <TextInput
-                      secureTextEntry={true}
+                      secureTextEntry={typePassword ? false : true}
                       style={styles.formInput}
                       placeholder="**********"
                       onChangeText={handleChange("password")}
@@ -131,6 +133,27 @@ const Login = () => {
                     {errors.password && touched.password && (
                       <Text style={styles.errors}>{errors.password}</Text>
                     )}
+
+                    {/* password toggle */}
+                    <TouchableWithoutFeedback
+                      onPress={() => setTypePassword(!typePassword)}
+                    >
+                      <View style={styles.eye}>
+                        {typePassword ? (
+                          <Ionicons
+                            name="eye-off-outline"
+                            size={22}
+                            color={colors.textLight}
+                          />
+                        ) : (
+                          <Ionicons
+                            name="eye-outline"
+                            size={22}
+                            color={colors.textLight}
+                          />
+                        )}
+                      </View>
+                    </TouchableWithoutFeedback>
                   </View>
 
                   <Text
@@ -178,6 +201,16 @@ const styles = StyleSheet.create({
   editProfileBox: {
     marginHorizontal: 20,
     marginTop: 10,
+    position: "relative",
+  },
+  eye: {
+    position: "absolute",
+    right: 0,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 50,
+    top: 28,
   },
   inputText: {
     marginBottom: 5,

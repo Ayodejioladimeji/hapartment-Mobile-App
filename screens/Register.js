@@ -203,13 +203,13 @@ const Register = ({ route }) => {
                         {typePassword ? (
                           <Ionicons
                             name="eye-off-outline"
-                            size={24}
+                            size={22}
                             color={colors.textLight}
                           />
                         ) : (
                           <Ionicons
                             name="eye-outline"
-                            size={24}
+                            size={22}
                             color={colors.textLight}
                           />
                         )}
@@ -240,13 +240,13 @@ const Register = ({ route }) => {
                         {typePass ? (
                           <Ionicons
                             name="eye-off-outline"
-                            size={24}
+                            size={22}
                             color={colors.textLight}
                           />
                         ) : (
                           <Ionicons
                             name="eye-outline"
-                            size={24}
+                            size={22}
                             color={colors.textLight}
                           />
                         )}

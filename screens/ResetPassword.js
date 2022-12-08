@@ -30,6 +30,10 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
   const { authloading, error } = useSelector((state) => state.alert);
   const { activation_token } = useSelector((state) => state.auth);
+  const [typePassword, setTypePassword] = useState(false);
+  const [typePass, setTypePass] = useState(false);
+
+  //
 
   return (
     <Formik
@@ -131,7 +135,7 @@ const ResetPassword = () => {
                   <View style={styles.editProfileBox}>
                     <Text style={styles.inputText}>New password</Text>
                     <TextInput
-                      secureTextEntry={true}
+                      secureTextEntry={typePassword ? false : true}
                       style={styles.formInput}
                       placeholder="**********"
                       onChangeText={handleChange("password")}
@@ -147,12 +151,33 @@ const ResetPassword = () => {
                         Number, one character
                       </Text>
                     )}
+
+                    {/* password toggle */}
+                    <TouchableWithoutFeedback
+                      onPress={() => setTypePassword(!typePassword)}
+                    >
+                      <View style={styles.eye}>
+                        {typePassword ? (
+                          <Ionicons
+                            name="eye-off-outline"
+                            size={22}
+                            color={colors.textLight}
+                          />
+                        ) : (
+                          <Ionicons
+                            name="eye-outline"
+                            size={22}
+                            color={colors.textLight}
+                          />
+                        )}
+                      </View>
+                    </TouchableWithoutFeedback>
                   </View>
 
                   <View style={styles.editProfileBox}>
                     <Text style={styles.inputText}>Confirm password</Text>
                     <TextInput
-                      secureTextEntry={true}
+                      secureTextEntry={typePass ? false : true}
                       style={styles.formInput}
                       placeholder="***********"
                       onChangeText={handleChange("password2")}
@@ -163,6 +188,27 @@ const ResetPassword = () => {
                     {errors.password2 && touched.password2 && (
                       <Text style={styles.errors}>{errors.password2}</Text>
                     )}
+
+                    {/* password toggle */}
+                    <TouchableWithoutFeedback
+                      onPress={() => setTypePass(!typePass)}
+                    >
+                      <View style={styles.eye}>
+                        {typePass ? (
+                          <Ionicons
+                            name="eye-off-outline"
+                            size={22}
+                            color={colors.textLight}
+                          />
+                        ) : (
+                          <Ionicons
+                            name="eye-outline"
+                            size={22}
+                            color={colors.textLight}
+                          />
+                        )}
+                      </View>
+                    </TouchableWithoutFeedback>
                   </View>
 
                   <TouchableOpacity
@@ -206,6 +252,16 @@ const styles = StyleSheet.create({
   editProfileBox: {
     marginHorizontal: 20,
     marginTop: 10,
+    position: "relative",
+  },
+  eye: {
+    position: "absolute",
+    right: 0,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 50,
+    top: 28,
   },
   inputText: {
     marginBottom: 5,
