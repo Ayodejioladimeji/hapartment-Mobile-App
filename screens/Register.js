@@ -8,8 +8,9 @@ import {
   ScrollView,
   Platform,
   ActivityIndicator,
+  TouchableWithoutFeedback,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import colors from "../assets/colors/colors";
 import GoBack from "../common/GoBack";
 import { useNavigation } from "@react-navigation/native";
@@ -17,6 +18,7 @@ import EmailValidator from "email-validator";
 import { Formik } from "formik";
 import { register } from "../redux/actions/authAction";
 import { useDispatch, useSelector } from "react-redux";
+import { Ionicons } from "@expo/vector-icons";
 
 // VALIDATION REGEX
 const passwordUpper = /(?=.*[A-Z])/;
@@ -31,6 +33,10 @@ const Register = ({ route }) => {
   const userType = route.params;
   const dispatch = useDispatch();
   const { authloading, error } = useSelector((state) => state.alert);
+  const [typePassword, setTypePassword] = useState(false);
+  const [typePass, setTypePass] = useState(false);
+
+  //
 
   return (
     <Formik
@@ -172,7 +178,7 @@ const Register = ({ route }) => {
                   <View style={styles.editProfileBox}>
                     <Text style={styles.inputText}>Password</Text>
                     <TextInput
-                      secureTextEntry={true}
+                      secureTextEntry={typePassword ? false : true}
                       style={styles.formInput}
                       placeholder="**********"
                       onChangeText={handleChange("password")}
@@ -180,15 +186,41 @@ const Register = ({ route }) => {
                       value={values.password}
                       name="password"
                     />
-                    {errors.password && touched.password && (
+                    {errors.password && touched.password ? (
                       <Text style={styles.errors}>{errors.password}</Text>
+                    ) : (
+                      <Text style={styles.note}>
+                        Password must be 8 characters long, one Uppercase, one
+                        Number, one character
+                      </Text>
                     )}
+
+                    {/* password toggle */}
+                    <TouchableWithoutFeedback
+                      onPress={() => setTypePassword(!typePassword)}
+                    >
+                      <View style={styles.eye}>
+                        {typePassword ? (
+                          <Ionicons
+                            name="eye-off-outline"
+                            size={24}
+                            color={colors.textLight}
+                          />
+                        ) : (
+                          <Ionicons
+                            name="eye-outline"
+                            size={24}
+                            color={colors.textLight}
+                          />
+                        )}
+                      </View>
+                    </TouchableWithoutFeedback>
                   </View>
 
                   <View style={styles.editProfileBox}>
                     <Text style={styles.inputText}>Confirm password</Text>
                     <TextInput
-                      secureTextEntry={true}
+                      secureTextEntry={typePass ? false : true}
                       style={styles.formInput}
                       placeholder="***********"
                       onChangeText={handleChange("password2")}
@@ -199,6 +231,27 @@ const Register = ({ route }) => {
                     {errors.password2 && touched.password2 && (
                       <Text style={styles.errors}>{errors.password2}</Text>
                     )}
+
+                    {/* password toggle */}
+                    <TouchableWithoutFeedback
+                      onPress={() => setTypePass(!typePass)}
+                    >
+                      <View style={styles.eye}>
+                        {typePass ? (
+                          <Ionicons
+                            name="eye-off-outline"
+                            size={24}
+                            color={colors.textLight}
+                          />
+                        ) : (
+                          <Ionicons
+                            name="eye-outline"
+                            size={24}
+                            color={colors.textLight}
+                          />
+                        )}
+                      </View>
+                    </TouchableWithoutFeedback>
                   </View>
 
                   <TouchableOpacity
@@ -252,6 +305,16 @@ const styles = StyleSheet.create({
   editProfileBox: {
     marginHorizontal: 20,
     marginTop: 10,
+    position: "relative",
+  },
+  eye: {
+    position: "absolute",
+    right: 0,
+    height: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 50,
+    top: 28,
   },
   inputText: {
     marginBottom: 5,
@@ -296,6 +359,12 @@ const styles = StyleSheet.create({
   },
   errors: {
     color: "red",
+    marginTop: 5,
+    marginBottom: 10,
+    fontSize: Platform.OS === "ios" ? 13 : 12,
+  },
+  note: {
+    color: colors.textLight,
     marginTop: 5,
     marginBottom: 10,
     fontSize: Platform.OS === "ios" ? 13 : 12,

@@ -125,8 +125,13 @@ const ChangePasswordScreen = () => {
                       value={values.password}
                       name="password"
                     />
-                    {errors.password && touched.password && (
+                    {errors.password && touched.password ? (
                       <Text style={styles.errors}>{errors.password}</Text>
+                    ) : (
+                      <Text style={styles.note}>
+                        Password must be 8 characters long, one Uppercase, one
+                        Number, one character
+                      </Text>
                     )}
                   </View>
 
@@ -238,6 +243,12 @@ const styles = StyleSheet.create({
   },
   errors: {
     color: "red",
+    marginTop: 5,
+    marginBottom: 10,
+    fontSize: Platform.OS === "ios" ? 13 : 12,
+  },
+  note: {
+    color: colors.textLight,
     marginTop: 5,
     marginBottom: 10,
     fontSize: Platform.OS === "ios" ? 13 : 12,
