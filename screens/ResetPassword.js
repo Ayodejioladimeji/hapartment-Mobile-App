@@ -1,6 +1,7 @@
 import {
   View,
   Text,
+  Image,
   StyleSheet,
   TextInput,
   TouchableOpacity,
@@ -13,7 +14,7 @@ import colors from "../assets/colors/colors";
 import GoBack from "../common/GoBack";
 import { useNavigation } from "@react-navigation/native";
 import { Formik } from "formik";
-import { changePassword } from "../redux/actions/authAction";
+import { resetPassword } from "../redux/actions/authAction";
 import { useDispatch, useSelector } from "react-redux";
 
 // VALIDATION REGEX
@@ -24,34 +25,42 @@ const passwordRegex = /(?=.*[0-9])/;
 
 //
 
-const ChangePasswordScreen = () => {
+const ResetPassword = () => {
   const navigation = useNavigation();
-  const { token } = useSelector((state) => state.auth);
-  const { authloading, error } = useSelector((state) => state.alert);
   const dispatch = useDispatch();
+  const { authloading, error } = useSelector((state) => state.alert);
+  const { activation_token } = useSelector((state) => state.auth);
 
-  //
   return (
     <Formik
       initialValues={{
-        currentPassword: "",
+        otpcode: "",
         password: "",
         password2: "",
       }}
       onSubmit={(values, { setSubmitting }) => {
+        const { otpcode, password } = values;
         setTimeout(async () => {
           const newData = {
-            account_password: values.currentPassword,
-            new_password: values.password,
+            activation_token,
+            auth_code: otpcode,
+            password,
           };
-          // console.log(newData);
-          dispatch(changePassword(newData, token));
+          dispatch(resetPassword(newData, navigation));
+
           setSubmitting(false);
         }, 500);
       }}
       //   HANDLING VALIDATION MESSAGES
       validate={(values) => {
         let errors = {};
+
+        if (!values.otpcode) {
+          errors.otpcode = "otpcode is required";
+        }
+        // else if (typeof values.otpcode !== number) {
+        //   errors.otpcode = "Invalid code";
+        // }
 
         //   THE PASSWORD SECTION
         if (!values.password) {
@@ -68,7 +77,9 @@ const ChangePasswordScreen = () => {
           errors.password = "Password must contain one special character";
         }
 
-        if (values.password2 !== values.password) {
+        if (!values.password2) {
+          errors.password2 = "Confirm password is required";
+        } else if (values.password !== values.password2) {
           errors.password2 = "Password does not match";
         }
 
@@ -85,37 +96,40 @@ const ChangePasswordScreen = () => {
           handleBlur,
           handleSubmit,
         } = props;
+
         return (
           <View style={{ flex: 1, backgroundColor: colors.white }}>
-            <GoBack navigation={navigation} title="Password Change" />
+            <GoBack navigation={navigation} title="Reset Password" />
 
-            <ScrollView>
+            <ScrollView
+              contentInsetAdjustmentBehavior="automatic"
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+            >
               <View style={styles.registerContainer}>
-                <Text style={styles.heading}>Change your password</Text>
+                <Text style={styles.heading}>Reset your password</Text>
 
                 {error && <Text style={styles.error}>{error}</Text>}
 
                 <View stye={styles.formContainer}>
                   <View style={styles.editProfileBox}>
-                    <Text style={styles.inputText}>Current Password</Text>
+                    <Text style={styles.inputText}>OTP Ccode</Text>
                     <TextInput
-                      secureTextEntry={true}
                       style={styles.formInput}
-                      placeholder="**********"
-                      onChangeText={handleChange("currentPassword")}
-                      onBlur={handleBlur("currentPassword")}
-                      value={values.currentPassword}
-                      name="password"
+                      placeholder="Provide your otpcode"
+                      onChangeText={handleChange("otpcode")}
+                      onBlur={handleBlur("otpcode")}
+                      value={values.otpcode}
+                      name="otpcode"
+                      keyboardType="numeric"
                     />
-                    {errors.currentPassword && touched.currentPassword && (
-                      <Text style={styles.errors}>
-                        {errors.currentPassword}
-                      </Text>
+                    {errors.otpcode && touched.otpcode && (
+                      <Text style={styles.errors}>{errors.otpcode}</Text>
                     )}
                   </View>
 
                   <View style={styles.editProfileBox}>
-                    <Text style={styles.inputText}>Password</Text>
+                    <Text style={styles.inputText}>New password</Text>
                     <TextInput
                       secureTextEntry={true}
                       style={styles.formInput}
@@ -131,11 +145,11 @@ const ChangePasswordScreen = () => {
                   </View>
 
                   <View style={styles.editProfileBox}>
-                    <Text style={styles.inputText}>Confirm Password</Text>
+                    <Text style={styles.inputText}>Confirm password</Text>
                     <TextInput
                       secureTextEntry={true}
                       style={styles.formInput}
-                      placeholder="**********"
+                      placeholder="***********"
                       onChangeText={handleChange("password2")}
                       onBlur={handleBlur("password2")}
                       value={values.password2}
@@ -154,7 +168,7 @@ const ChangePasswordScreen = () => {
                       <ActivityIndicator size="small" color={colors.white} />
                     ) : (
                       <Text style={styles.profileButtonText}>
-                        change Password
+                        Reset Password
                       </Text>
                     )}
                   </TouchableOpacity>
@@ -168,7 +182,7 @@ const ChangePasswordScreen = () => {
   );
 };
 
-export default ChangePasswordScreen;
+export default ResetPassword;
 
 const styles = StyleSheet.create({
   registerContainer: {
@@ -180,7 +194,7 @@ const styles = StyleSheet.create({
     fontSize: Platform.OS === "ios" ? 20 : 18,
     // fontFamily: "//NunitoSans-Bold",
     alignSelf: "center",
-    marginBottom: 50,
+    marginBottom: 30,
     color: colors.primary,
   },
 
@@ -190,7 +204,7 @@ const styles = StyleSheet.create({
   },
   inputText: {
     marginBottom: 5,
-    fontSize: 15,
+    fontSize: Platform.OS === "ios" ? 15 : 14,
     // fontFamily: "//NunitoSans-Regular",
     fontWeight: "600",
   },
@@ -203,34 +217,27 @@ const styles = StyleSheet.create({
     borderColor: colors.textLighter,
     fontSize: 15,
   },
-  forgotPassword: {
-    color: colors.primary,
-    marginTop: 20,
-    alignSelf: "flex-end",
-    marginHorizontal: 20,
-  },
   profileButton: {
     marginHorizontal: 20,
     marginTop: 20,
     backgroundColor: colors.primary,
+    height: Platform.OS === "ios" ? 55 : 50,
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 5,
-    height: Platform.OS === "ios" ? 55 : 50,
   },
 
   profileButtonText: {
     color: colors.white,
     fontWeight: "700",
     fontSize: Platform.OS === "ios" ? 16 : 14,
-    textTransform: "uppercase",
   },
 
   member: {
     marginTop: 20,
     marginBottom: 120,
     alignSelf: "center",
-    fontSize: 17,
+    fontSize: Platform.OS === "ios" ? 16 : 14,
     // fontFamily: "//NunitoSans-Regular",
   },
   login: {

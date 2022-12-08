@@ -9,8 +9,6 @@ const UserApi = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
 
-  console.log(token);
-
   //
 
   useEffect(() => {

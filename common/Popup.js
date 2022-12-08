@@ -15,17 +15,35 @@ import { GLOBALTYPES } from "../redux/actions/globalTypes";
 
 const Popup = ({ image, text, buttonText, navigation }) => {
   const dispatch = useDispatch();
-  const { success, authenticate } = useSelector((state) => state.alert);
+  const {
+    success,
+    authenticate,
+    forgotpasswordsuccess,
+    resetpasswordsuccess,
+    changepasswordsuccess,
+  } = useSelector((state) => state.alert);
   const scaleValue = React.useRef(new Animated.Value(0)).current;
 
   //
   React.useEffect(() => {
     toggleModal();
-  }, [authenticate, success]);
+  }, [
+    authenticate,
+    success,
+    forgotpasswordsuccess,
+    resetpasswordsuccess,
+    changepasswordsuccess,
+  ]);
 
   // modal method
   const toggleModal = () => {
-    if (success || authenticate) {
+    if (
+      success ||
+      authenticate ||
+      forgotpasswordsuccess ||
+      resetpasswordsuccess ||
+      changepasswordsuccess
+    ) {
       Animated.spring(scaleValue, {
         toValue: 1,
         duration: 300,
@@ -40,6 +58,10 @@ const Popup = ({ image, text, buttonText, navigation }) => {
 
     if (success) {
       navigation.navigate("OneTimeCode");
+    } else if (forgotpasswordsuccess) {
+      navigation.navigate("ResetPassword");
+    } else if (resetpasswordsuccess) {
+      navigation.navigate("Login");
     } else {
       navigation.navigate("RootHome");
     }

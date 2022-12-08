@@ -61,6 +61,7 @@ const OtpInput = ({ code, setCode, maximumLength, setIsPinReady }) => {
         maxLength={maximumLength}
         ref={inputRef}
         onBlur={handleOnBlur}
+        keyboardType="number-pad"
       />
     </OTPInputContainer>
   );

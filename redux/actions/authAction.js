@@ -1,5 +1,5 @@
 import { Alert } from "react-native";
-import { postDataApi } from "../../utils/fetchData";
+import { postDataApi, postDataApis } from "../../utils/fetchData";
 import { GLOBALTYPES } from "./globalTypes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
@@ -131,6 +131,52 @@ export const forgotPassword = (data) => async (dispatch) => {
     dispatch({
       type: GLOBALTYPES.ALERT,
       payload: { forgotpasswordsuccess: res.data.msg },
+    });
+  } catch (error) {
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { error: error.response.data.msg },
+    });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: { authloading: false } });
+    }, 3000);
+  }
+};
+
+// reset password
+export const resetPassword = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { authloading: true } });
+
+    const res = await postDataApi("/resetpassword", data);
+
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { resetpasswordsuccess: res.data.msg },
+    });
+  } catch (error) {
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { error: error.response.data.msg },
+    });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: { authloading: false } });
+    }, 3000);
+  }
+};
+
+// change password
+export const changePassword = (data, token) => async (dispatch) => {
+  try {
+    dispatch({ type: GLOBALTYPES.ALERT, payload: { authloading: true } });
+
+    const res = await postDataApis("/changepassword", data, token);
+
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { changepasswordsuccess: res.data.msg },
     });
   } catch (error) {
     dispatch({

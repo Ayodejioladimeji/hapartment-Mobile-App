@@ -21,6 +21,7 @@ import ChangePasswordScreen from "./screens/ChangePasswordScreen";
 import NotificationScreen from "./screens/NotificationScreen";
 import DataProvider from "./redux/store";
 import Alert from "./common/Alert";
+import ResetPassword from "./screens/ResetPassword";
 const Stack = createStackNavigator();
 
 //
@@ -69,6 +70,7 @@ function App() {
             <Stack.Screen name="OneTimeCode" component={OneTimeCode} />
 
             <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+            <Stack.Screen name="ResetPassword" component={ResetPassword} />
 
             <Stack.Screen
               name="EditProfileScreen"

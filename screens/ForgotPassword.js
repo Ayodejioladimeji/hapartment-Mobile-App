@@ -6,68 +6,123 @@ import {
   ScrollView,
   Platform,
   TouchableWithoutFeedback,
+  ActivityIndicator,
 } from "react-native";
 import React from "react";
 import colors from "../assets/colors/colors";
 import GoBack from "../common/GoBack";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import EmailValidator from "email-validator";
+import { Formik } from "formik";
+import { forgotPassword } from "../redux/actions/authAction";
 
 //
 
 const ForgotPassword = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const { forgotpasswordsuccess, authloading, error } = useSelector(
     (state) => state.alert
   );
 
-  //
   return (
-    <View style={{ flex: 1, backgroundColor: colors.white }}>
-      <GoBack navigation={navigation} title="Forgot Password" />
+    <Formik
+      initialValues={{
+        email: "",
+      }}
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(async () => {
+          const newData = {
+            email: values.email.toLowerCase(),
+          };
 
-      <ScrollView>
-        <View style={styles.registerContainer}>
-          <Text style={styles.heading}>Forgot your Password ?</Text>
-          <Text style={styles.subHeading}>
-            Enter the email address associated with your account and we will
-            send you a one-time-code to reset your password
-          </Text>
+          dispatch(forgotPassword(newData));
+          setSubmitting(false);
+        }, 500);
+      }}
+      //   HANDLING VALIDATION MESSAGES
+      validate={(values) => {
+        let errors = {};
 
-          {error && <Text style={styles.error}>{error}</Text>}
+        if (!values.email) {
+          errors.email = "Email is required";
+        } else if (!EmailValidator.validate(values.email)) {
+          errors.email = "Invalid email address";
+        }
 
-          <View stye={styles.formContainer}>
-            <View style={styles.editProfileBox}>
-              <Text style={styles.inputText}>Email</Text>
-              <TextInput
-                style={styles.formInput}
-                placeholder="Provide your email"
-              />
-            </View>
+        return errors;
+      }}
+    >
+      {(props) => {
+        const {
+          values,
+          touched,
+          errors,
+          isSubmitting,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+        } = props;
 
-            <TouchableWithoutFeedback>
-              <View style={styles.profileButton}>
-                {authloading ? (
-                  <ActivityIndicator size="small" color={colors.white} />
-                ) : (
-                  <Text style={styles.profileButtonText}>Get Code</Text>
-                )}
+        //
+        return (
+          <View style={{ flex: 1, backgroundColor: colors.white }}>
+            <GoBack navigation={navigation} title="Forgot Password" />
+
+            <ScrollView>
+              <View style={styles.registerContainer}>
+                <Text style={styles.heading}>Forgot your Password ?</Text>
+                <Text style={styles.subHeading}>
+                  Enter the email address associated with your account and we
+                  will send you a one-time-code to reset your password
+                </Text>
+
+                {error && <Text style={styles.error}>{error}</Text>}
+
+                <View stye={styles.formContainer}>
+                  <View style={styles.editProfileBox}>
+                    <Text style={styles.inputText}>Email</Text>
+                    <TextInput
+                      style={styles.formInput}
+                      placeholder="Provide your email"
+                      onChangeText={handleChange("email")}
+                      onBlur={handleBlur("email")}
+                      value={values.email}
+                      name="email"
+                      autoComplete={Platform.OS === "web" ? "none" : "off"}
+                    />
+                    {errors.email && touched.email && (
+                      <Text style={styles.errors}>{errors.email}</Text>
+                    )}
+                  </View>
+
+                  <TouchableWithoutFeedback onPress={handleSubmit}>
+                    <View style={styles.profileButton}>
+                      {authloading ? (
+                        <ActivityIndicator size="small" color={colors.white} />
+                      ) : (
+                        <Text style={styles.profileButtonText}>Get Code</Text>
+                      )}
+                    </View>
+                  </TouchableWithoutFeedback>
+
+                  <Text style={styles.member}>
+                    Remember your password ?{" "}
+                    <Text
+                      onPress={() => navigation.navigate("Login")}
+                      style={styles.login}
+                    >
+                      Login
+                    </Text>
+                  </Text>
+                </View>
               </View>
-            </TouchableWithoutFeedback>
-
-            <Text style={styles.member}>
-              Remember your password ?{" "}
-              <Text
-                onPress={() => navigation.navigate("Login")}
-                style={styles.login}
-              >
-                Login
-              </Text>
-            </Text>
+            </ScrollView>
           </View>
-        </View>
-      </ScrollView>
-    </View>
+        );
+      }}
+    </Formik>
   );
 };
 
@@ -140,6 +195,12 @@ const styles = StyleSheet.create({
   },
   login: {
     color: colors.primary,
+  },
+  errors: {
+    color: "red",
+    marginTop: 5,
+    marginBottom: 10,
+    fontSize: Platform.OS === "ios" ? 13 : 12,
   },
   error: {
     color: colors.white,

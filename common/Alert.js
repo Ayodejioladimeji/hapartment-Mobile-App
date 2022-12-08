@@ -5,9 +5,17 @@ import Popup from "./Popup";
 import { useNavigation } from "@react-navigation/native";
 
 const Alert = () => {
-  const { logout, success, authenticate } = useSelector((state) => state.alert);
+  const {
+    logout,
+    success,
+    authenticate,
+    forgotpasswordsuccess,
+    resetpasswordsuccess,
+    changepasswordsuccess,
+  } = useSelector((state) => state.alert);
   const navigation = useNavigation();
 
+  //
   return (
     <View>
       {success && (
@@ -15,6 +23,33 @@ const Alert = () => {
           image={require("../assets/images/gmail.png")}
           text={success}
           buttonText="Continue"
+          navigation={navigation}
+        />
+      )}
+
+      {forgotpasswordsuccess && (
+        <Popup
+          image={require("../assets/images/gmail.png")}
+          text={forgotpasswordsuccess}
+          buttonText="Continue"
+          navigation={navigation}
+        />
+      )}
+
+      {resetpasswordsuccess && (
+        <Popup
+          image={require("../assets/images/success.png")}
+          text={resetpasswordsuccess}
+          buttonText="Login"
+          navigation={navigation}
+        />
+      )}
+
+      {changepasswordsuccess && (
+        <Popup
+          image={require("../assets/images/success.png")}
+          text={changepasswordsuccess}
+          buttonText="OK"
           navigation={navigation}
         />
       )}

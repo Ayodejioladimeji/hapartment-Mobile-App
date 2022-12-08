@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
   selectHeading: {
     marginBottom: 7,
     // fontFamily: "//NunitoSans-Regular",
-    fontSize: Platform.OS === "ios" ? 18 : 14,
+    fontSize: Platform.OS === "ios" ? 15 : 14,
     marginTop: 20,
     color: colors.primary,
     fontWeight: "700",
