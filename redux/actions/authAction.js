@@ -37,7 +37,7 @@ export const authenticate = (data) => async (dispatch) => {
 
     dispatch({
       type: GLOBALTYPES.ALERT,
-      payload: { authenticate: res.data.msg },
+      payload: { authenticateUser: res.data.msg },
     });
   } catch (error) {
     dispatch({

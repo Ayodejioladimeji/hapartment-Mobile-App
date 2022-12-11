@@ -12,6 +12,7 @@ const Alert = () => {
     forgotpasswordsuccess,
     resetpasswordsuccess,
     changepasswordsuccess,
+    authenticateUser,
   } = useSelector((state) => state.alert);
   const navigation = useNavigation();
 
@@ -58,6 +59,15 @@ const Alert = () => {
         <Popup
           image={require("../assets/images/success.png")}
           text={authenticate}
+          buttonText="OK"
+          navigation={navigation}
+        />
+      )}
+
+      {authenticateUser && (
+        <Popup
+          image={require("../assets/images/success.png")}
+          text={authenticateUser}
           buttonText="OK"
           navigation={navigation}
         />
