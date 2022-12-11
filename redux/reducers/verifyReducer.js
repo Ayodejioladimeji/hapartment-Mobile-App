@@ -5,6 +5,7 @@ const initialState = {
   identity_selfie: null,
   document_type: "",
   identity_document: null,
+  identity_mobile: "",
 };
 
 const verifyReducer = (state = initialState, action) => {
@@ -30,6 +31,11 @@ const verifyReducer = (state = initialState, action) => {
       return {
         ...state,
         identity_document: payload,
+      };
+    case GLOBALTYPES.IDENTITY_MOBILE:
+      return {
+        ...state,
+        identity_mobile: payload,
       };
     default:
       return state;
