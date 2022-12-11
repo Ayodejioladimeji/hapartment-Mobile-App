@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
@@ -10,15 +10,13 @@ const GoBack = ({ navigation, title }) => {
   return (
     <View>
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
-      <View style={styles.goBack}>
-        <MaterialIcons
-          name="arrow-back"
-          size={27}
-          color={colors.white}
-          onPress={() => navigation.goBack()}
-        />
-        <Text style={styles.goBackText}>{title}</Text>
-      </View>
+
+      <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+        <View style={styles.goBack}>
+          <MaterialIcons name="arrow-back" size={27} color={colors.white} />
+          <Text style={styles.goBackText}>{title}</Text>
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 };

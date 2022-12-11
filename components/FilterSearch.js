@@ -161,7 +161,10 @@ const FilterSearch = () => {
         <View style={styles.country}>
           <Text style={styles.selectHeading}>Select Property Type</Text>
           <Dropdown
-            style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+            style={[
+              styles.dropdown,
+              isFocus && { borderColor: colors.primary },
+            ]}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
             inputSearchStyle={styles.inputSearchStyle}

@@ -28,7 +28,15 @@
     },
     "web": {
       "favicon": "./assets/icon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission" : "Allow Hapartment to access your camera"
+        }
+      ]
+    ]
   }
 }
 

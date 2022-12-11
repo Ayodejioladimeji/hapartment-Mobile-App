@@ -22,6 +22,9 @@ import NotificationScreen from "./screens/NotificationScreen";
 import DataProvider from "./redux/store";
 import Alert from "./common/Alert";
 import ResetPassword from "./screens/ResetPassword";
+import IdentityOne from "./screens/IdentityOne";
+import IdentityTwo from "./screens/IdentityTwo";
+import IdentityThree from "./screens/IdentityThree";
 const Stack = createStackNavigator();
 
 //
@@ -103,6 +106,9 @@ function App() {
               name="NotificationScreen"
               component={NotificationScreen}
             />
+            <Stack.Screen name="IdentityOne" component={IdentityOne} />
+            <Stack.Screen name="IdentityTwo" component={IdentityTwo} />
+            <Stack.Screen name="IdentityThree" component={IdentityThree} />
           </Stack.Navigator>
         </NavigationContainer>
       </DataProvider>

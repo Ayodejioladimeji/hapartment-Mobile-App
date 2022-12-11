@@ -104,7 +104,7 @@ export const login = (data) => async (dispatch) => {
       payload: { authenticate: res.data.msg },
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error.response);
     dispatch({
       type: GLOBALTYPES.ALERT,
       payload: { error: error.response.data.msg },
