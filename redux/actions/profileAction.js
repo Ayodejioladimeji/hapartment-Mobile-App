@@ -3,6 +3,7 @@ import { GLOBALTYPES } from "./globalTypes";
 
 //
 
+// Edit user profile
 export const profile = (data, token, profile_callback) => async (dispatch) => {
   try {
     const res = await patchDataApi("/updateUser", data, token);
@@ -20,6 +21,27 @@ export const profile = (data, token, profile_callback) => async (dispatch) => {
     setTimeout(() => {
       dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
     }, 8000);
+  } catch (error) {
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { error: error.response.data.msg },
+    });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+    }, 3000);
+  }
+};
+
+// verify Agent identity
+export const identity = (data, token) => async (dispatch) => {
+  try {
+    const res = await patchDataApi("/verifyagent", data, token);
+
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { verifyagent: res.data.msg },
+    });
   } catch (error) {
     dispatch({
       type: GLOBALTYPES.ALERT,

@@ -92,11 +92,13 @@ const Popup = ({ image, text, buttonText, navigation }) => {
 
           <Text style={styles.text}>{text}</Text>
 
-          <TouchableWithoutFeedback onPress={next}>
-            <View style={styles.modalButton}>
-              <Text style={styles.modalButtonText}>{buttonText}</Text>
-            </View>
-          </TouchableWithoutFeedback>
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={next}
+            style={styles.modalButton}
+          >
+            <Text style={styles.modalButtonText}>{buttonText}</Text>
+          </TouchableOpacity>
         </Animated.View>
       </View>
     </Modal>

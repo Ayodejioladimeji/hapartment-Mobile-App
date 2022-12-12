@@ -7,7 +7,7 @@ export const checkImage = (file) => {
     err = "Image format is incorrect";
   }
 
-  if (file.fileSize > 1024 * 1024) {
+  if (file.fileSize > 1650 * 1650) {
     err = "File too large, choose file less than 1MB";
   }
 

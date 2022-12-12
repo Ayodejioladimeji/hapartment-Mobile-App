@@ -3,16 +3,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Popup from "./Popup";
 import { useNavigation } from "@react-navigation/native";
+import IdentityVerificationModal from "./identityVerificationModal";
 
 const Alert = () => {
   const {
-    logout,
     success,
     authenticate,
     forgotpasswordsuccess,
     resetpasswordsuccess,
     changepasswordsuccess,
     authenticateUser,
+    verifyagent,
   } = useSelector((state) => state.alert);
   const navigation = useNavigation();
 
@@ -72,6 +73,8 @@ const Alert = () => {
           navigation={navigation}
         />
       )}
+
+      {verifyagent && <IdentityVerificationModal />}
 
       {/* {logout && (
         <Popup

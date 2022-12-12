@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderWidth: 2,
     borderColor: colors.white,
-    resizeMode: "contain",
+    resizeMode: "cover",
   },
   headerImages: {
     borderRadius: 50,

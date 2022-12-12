@@ -1,21 +1,13 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Modal,
-  Image,
-  Text,
-  TouchableOpacity,
-  Animated,
-  TouchableWithoutFeedback,
-} from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { View, StyleSheet, Modal, Image, Text, Animated } from "react-native";
+import { useSelector } from "react-redux";
 import colors from "../assets/colors/colors";
-import { GLOBALTYPES } from "../redux/actions/globalTypes";
+
+//
 
 const VerifyErrorModal = () => {
-  const dispatch = useDispatch();
   const scaleValue = React.useRef(new Animated.Value(0)).current;
+  const { user } = useSelector((state) => state.auth);
 
   //
   React.useEffect(() => {
@@ -50,7 +42,9 @@ const VerifyErrorModal = () => {
           </View>
 
           <Text style={styles.text}>
-            Please verify your Identity to continue
+            {user.verification.length === 0
+              ? "Please verify your Identity to continue"
+              : "Your verification is under processing, please wait..."}
           </Text>
         </Animated.View>
       </View>

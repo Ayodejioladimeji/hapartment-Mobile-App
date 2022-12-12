@@ -33,6 +33,7 @@ const SearchComponent = () => {
       </View>
 
       <TouchableOpacity
+        activeOpacity={0.5}
         style={styles.searchFilter}
         onPress={() => navigation.navigate("FilterScreen")}
       >

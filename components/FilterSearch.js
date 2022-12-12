@@ -384,7 +384,11 @@ const FilterSearch = () => {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.filterButton} onPress={handleSubmit}>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          style={styles.filterButton}
+          onPress={handleSubmit}
+        >
           <Text
             style={{
               color: colors.white,
@@ -411,12 +415,13 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   filterHeading: {
-    fontSize: Platform.OS === "ios" ? 18 : 16,
+    fontSize: Platform.OS === "ios" ? 17 : 16,
     textAlign: "center",
     marginBottom: 30,
     // fontFamily: "//NunitoSans-Bold",
     color: colors.secondary,
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
+    fontWeight: "600",
   },
 
   selectHeading: {

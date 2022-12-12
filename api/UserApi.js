@@ -15,7 +15,7 @@ const UserApi = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        // dispatch({ type: GLOBALTYPES.ALERT, payload: { userloading: true } });
+        dispatch({ type: GLOBALTYPES.USER_LOADING, payload: true });
 
         if (token !== "") {
           const res = await getDataApi("/user", token);
@@ -30,12 +30,9 @@ const UserApi = () => {
             payload: token,
           });
         }
-        // setTimeout(() => {
-        //   dispatch({
-        //     type: GLOBALTYPES.ALERT,
-        //     payload: { userloading: false },
-        //   });
-        // }, 2000);
+        setTimeout(() => {
+          dispatch({ type: GLOBALTYPES.USER_LOADING, payload: false });
+        }, 3000);
         //
       } catch (error) {
         console.log(error);

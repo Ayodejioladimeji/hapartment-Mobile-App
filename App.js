@@ -25,6 +25,7 @@ import ResetPassword from "./screens/ResetPassword";
 import IdentityOne from "./screens/IdentityOne";
 import IdentityTwo from "./screens/IdentityTwo";
 import IdentityThree from "./screens/IdentityThree";
+import Identity from "./screens/Identity";
 const Stack = createStackNavigator();
 
 //
@@ -107,6 +108,7 @@ function App() {
               component={NotificationScreen}
             />
             <Stack.Screen name="IdentityOne" component={IdentityOne} />
+            <Stack.Screen name="Identity" component={Identity} />
             <Stack.Screen name="IdentityTwo" component={IdentityTwo} />
             <Stack.Screen name="IdentityThree" component={IdentityThree} />
           </Stack.Navigator>

@@ -29,12 +29,13 @@ const Card = ({ item, navigation }) => {
             <Text style={styles.verifyText}>Verified</Text>
           </View>
 
-          <TouchableOpacity style={styles.favoriteWrapper}>
+          <TouchableOpacity activeOpacity={0.5} style={styles.favoriteWrapper}>
             <MaterialIcons name="favorite" style={styles.favorite} />
           </TouchableOpacity>
         </View>
 
         <TouchableOpacity
+          activeOpacity={0.5}
           style={styles.cardBox}
           onPress={() => navigation.navigate("DetailsScreen", { item })}
         >
