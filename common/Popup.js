@@ -70,8 +70,6 @@ const Popup = ({ image, text, buttonText, navigation }) => {
     } else {
       navigation.navigate("RootHome");
     }
-
-    dispatch({ type: GLOBALTYPES.ALERT, payload: { authloading: false } });
   };
 
   //

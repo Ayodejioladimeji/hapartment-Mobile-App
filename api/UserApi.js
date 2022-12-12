@@ -8,6 +8,7 @@ import { getDataApi } from "../utils/fetchData";
 const UserApi = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
+  const { profile_callback } = useSelector((state) => state.profile);
 
   //
 
@@ -42,7 +43,7 @@ const UserApi = () => {
     };
 
     getData();
-  }, [token]);
+  }, [token, profile_callback]);
 
   return <View></View>;
 };

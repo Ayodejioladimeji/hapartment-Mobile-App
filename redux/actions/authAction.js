@@ -1,8 +1,8 @@
-import { Alert } from "react-native";
 import { postDataApi, postDataApis } from "../../utils/fetchData";
 import { GLOBALTYPES } from "./globalTypes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
+
+//
 
 export const register = (data) => async (dispatch) => {
   try {
@@ -39,6 +39,8 @@ export const authenticate = (data) => async (dispatch) => {
       type: GLOBALTYPES.ALERT,
       payload: { authenticateUser: res.data.msg },
     });
+
+    dispatch({ type: GLOBALTYPES.ACTIVATION_TOKEN, payload: "" });
   } catch (error) {
     dispatch({
       type: GLOBALTYPES.ALERT,

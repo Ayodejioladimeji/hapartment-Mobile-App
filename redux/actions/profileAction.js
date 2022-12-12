@@ -1,19 +1,25 @@
-import { postDataApis } from "../../utils/fetchData";
+import { patchDataApi } from "../../utils/fetchData";
 import { GLOBALTYPES } from "./globalTypes";
 
+//
 
-export const identity = (data) => async (dispatch) => {
+export const profile = (data, token, profile_callback) => async (dispatch) => {
   try {
-    dispatch({ type: GLOBALTYPES.ALERT, payload: { authloading: true } });
-
-    const res = await postDataApis("/register", data);
+    const res = await patchDataApi("/updateUser", data, token);
 
     dispatch({
-      type: GLOBALTYPES.ACTIVATION_TOKEN,
-      payload: res.data.activation_token,
+      type: GLOBALTYPES.PROFILE_CALLBACK,
+      payload: !profile_callback,
     });
 
-    dispatch({ type: GLOBALTYPES.ALERT, payload: { success: res.data.msg } });
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { authenticate: res.data.msg },
+    });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+    }, 8000);
   } catch (error) {
     dispatch({
       type: GLOBALTYPES.ALERT,
@@ -21,7 +27,7 @@ export const identity = (data) => async (dispatch) => {
     });
 
     setTimeout(() => {
-      dispatch({ type: GLOBALTYPES.ALERT, payload: { authloading: false } });
+      dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
     }, 3000);
   }
 };

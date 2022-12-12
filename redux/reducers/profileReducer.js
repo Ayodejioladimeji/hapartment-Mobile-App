@@ -1,17 +1,17 @@
 import { GLOBALTYPES } from "../actions/globalTypes";
 
 const initialState = {
-  profile: {},
+  profile_callback: false,
 };
 
 const profileReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case GLOBALTYPES.USER_PROFILE:
+    case GLOBALTYPES.PROFILE_CALLBACK:
       return {
         ...state,
-        profile: payload,
+        profile_callback: payload,
       };
 
     default:

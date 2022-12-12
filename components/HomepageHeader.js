@@ -26,10 +26,17 @@ const HomepageHeader = () => {
             <ActivityIndicator color={colors.white} size="small" />
           ) : (
             <View style={styles.headerLeft}>
-              <Image
-                source={require("../assets/images/user.jpg")}
-                style={styles.headerImage}
-              />
+              {!user.image ? (
+                <Image
+                  source={require("../assets/images/user.jpg")}
+                  style={styles.headerImage}
+                />
+              ) : (
+                <Image
+                  source={{ uri: user.image }}
+                  style={styles.headerImage}
+                />
+              )}
               <View style={styles.headerBox}>
                 <Text style={styles.headerName}>Hi, {user.username}</Text>
                 <Text style={styles.headerLocation}>{user.userType}</Text>
