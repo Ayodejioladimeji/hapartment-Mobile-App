@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     borderColor: colors.white,
     resizeMode: "cover",
   },
+
   headerImages: {
     borderRadius: 50,
     height: 50,

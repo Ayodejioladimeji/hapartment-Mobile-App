@@ -3,13 +3,11 @@ import {
   Text,
   Image,
   StyleSheet,
-  ScrollView,
   Platform,
   TouchableOpacity,
 } from "react-native";
 import React from "react";
 import {
-  Feather,
   FontAwesome5,
   Ionicons,
   MaterialCommunityIcons,
@@ -26,7 +24,11 @@ const SearchCard = ({ item }) => {
   //
   return (
     <View>
-      <View style={styles.cardsWrapper}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={styles.cardsWrapper}
+        onPress={() => navigation.navigate("AgentDetailsScreen", { item })}
+      >
         <View style={styles.imagesWrapper}>
           <Image source={{ uri: item.image[0] }} style={styles.cardImage} />
 
@@ -39,11 +41,7 @@ const SearchCard = ({ item }) => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.cardBox}
-          onPress={() => navigation.navigate("AgentDetailsScreen", { item })}
-        >
+        <View style={styles.cardBox}>
           <Text style={styles.nameText}>
             {item.name.substring(0, 25) + "..."}
           </Text>
@@ -80,8 +78,8 @@ const SearchCard = ({ item }) => {
           <View style={styles.cardTimeWrapper}>
             <Text style={styles.cardTime}>Updated {item.time}</Text>
           </View>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };

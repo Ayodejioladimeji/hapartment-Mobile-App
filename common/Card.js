@@ -22,7 +22,11 @@ const Card = ({ item, navigation }) => {
   //
   return (
     <View>
-      <View style={styles.cardWrapper}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={styles.cardWrapper}
+        onPress={() => navigation.navigate("DetailsScreen", { item })}
+      >
         <View style={styles.imageWrapper}>
           <Image source={{ uri: item.image[0] }} style={styles.cardImage} />
           <View style={styles.verify}>
@@ -34,11 +38,7 @@ const Card = ({ item, navigation }) => {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.cardBox}
-          onPress={() => navigation.navigate("DetailsScreen", { item })}
-        >
+        <View style={styles.cardBox}>
           <View style={styles.cardName}>
             <Text style={styles.nameText}>{item.name}</Text>
             <Text style={styles.amountText}>₦{item.amount}</Text>
@@ -72,8 +72,8 @@ const Card = ({ item, navigation }) => {
           <View style={styles.cardTimeWrapper}>
             <Text style={styles.cardTime}>Updated {item.time}</Text>
           </View>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };

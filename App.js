@@ -26,6 +26,11 @@ import IdentityOne from "./screens/IdentityOne";
 import IdentityTwo from "./screens/IdentityTwo";
 import IdentityThree from "./screens/IdentityThree";
 import Identity from "./screens/Identity";
+import ListProperty from "./screens/ListProperty";
+import BasicInformation from "./screens/BasicInformation";
+import PropertyDetails from "./screens/PropertyDetails";
+import Description from "./screens/Description";
+
 const Stack = createStackNavigator();
 
 //
@@ -111,6 +116,13 @@ function App() {
             <Stack.Screen name="Identity" component={Identity} />
             <Stack.Screen name="IdentityTwo" component={IdentityTwo} />
             <Stack.Screen name="IdentityThree" component={IdentityThree} />
+            <Stack.Screen name="ListProperty" component={ListProperty} />
+            <Stack.Screen
+              name="BasicInformation"
+              component={BasicInformation}
+            />
+            <Stack.Screen name="PropertyDetails" component={PropertyDetails} />
+            <Stack.Screen name="Description" component={Description} />
           </Stack.Navigator>
         </NavigationContainer>
       </DataProvider>
