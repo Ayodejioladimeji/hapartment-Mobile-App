@@ -29,31 +29,31 @@ const homefacilities = [
   },
   {
     name: "Chandelier",
-    id: 7,
+    id: 8,
   },
   {
     name: "Dinning Area",
-    id: 7,
+    id: 9,
   },
   {
     name: "Dish Washer",
-    id: 7,
+    id: 10,
   },
   {
     name: "Hot Water",
-    id: 7,
+    id: 11,
   },
   {
     name: "Microwave",
-    id: 7,
+    id: 12,
   },
   {
     name: "POP Ceiling",
-    id: 7,
+    id: 13,
   },
   {
     name: "Prepaid Meter",
-    id: 7,
+    id: 14,
   },
 ];
 

@@ -12,7 +12,7 @@ const LagosListings = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.lagosWrapper}>
-      <Text style={styles.lagosText}>Lagos apartments</Text>
+      <Text style={styles.lagosText}>Featured Apartments</Text>
 
       <FlatList
         data={data}

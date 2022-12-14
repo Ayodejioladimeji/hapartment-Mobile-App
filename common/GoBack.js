@@ -13,7 +13,7 @@ const GoBack = ({ navigation, title }) => {
 
       <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
         <View style={styles.goBack}>
-          <MaterialIcons name="arrow-back" size={27} color={colors.white} />
+          <MaterialIcons name="chevron-left" size={27} color={colors.white} />
           <Text style={styles.goBackText}>{title}</Text>
         </View>
       </TouchableWithoutFeedback>
@@ -26,7 +26,7 @@ export default GoBack;
 const styles = StyleSheet.create({
   goBack: {
     flexDirection: "row",
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
     height: 60,
     alignItems: "center",
     justifyContent: "flex-start",

@@ -1,59 +1,59 @@
 const areafacilities = [
   {
-    name: "Tiled floor",
+    name: "Hospital",
     id: 1,
   },
   {
-    name: "Kitchen Shelf",
+    name: "Shopping Mall",
     id: 2,
   },
   {
-    name: "Kitchen Cabinets",
+    name: "School",
     id: 3,
   },
   {
-    name: "Wardrobe",
+    name: "Police Station",
     id: 4,
   },
   {
-    name: "24-hours Electricity",
+    name: "Public Transport",
     id: 5,
   },
   {
-    name: "Air Conditioning",
+    name: "Drug Store",
     id: 6,
   },
   {
-    name: "Balcony",
+    name: "Sports Center",
     id: 7,
   },
   {
-    name: "Chandelier",
-    id: 7,
+    name: "Airport",
+    id: 8,
   },
   {
-    name: "Dinning Area",
-    id: 7,
+    name: "Supermarket",
+    id: 9,
   },
   {
-    name: "Dish Washer",
-    id: 7,
+    name: "Local Market",
+    id: 10,
   },
   {
-    name: "Hot Water",
-    id: 7,
+    name: "Church",
+    id: 11,
   },
   {
-    name: "Microwave",
-    id: 7,
+    name: "Mosque",
+    id: 12,
   },
   {
-    name: "POP Ceiling",
-    id: 7,
+    name: "Chemist",
+    id: 13,
   },
   {
-    name: "Prepaid Meter",
-    id: 7,
+    name: "Palace",
+    id: 14,
   },
 ];
 

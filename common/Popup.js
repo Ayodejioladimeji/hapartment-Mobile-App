@@ -22,6 +22,7 @@ const Popup = ({ image, text, buttonText, navigation }) => {
     resetpasswordsuccess,
     changepasswordsuccess,
     authenticateUser,
+    createListingSuccess,
   } = useSelector((state) => state.alert);
   const scaleValue = React.useRef(new Animated.Value(0)).current;
 
@@ -35,6 +36,7 @@ const Popup = ({ image, text, buttonText, navigation }) => {
     resetpasswordsuccess,
     changepasswordsuccess,
     authenticateUser,
+    createListingSuccess,
   ]);
 
   // modal method
@@ -45,7 +47,8 @@ const Popup = ({ image, text, buttonText, navigation }) => {
       forgotpasswordsuccess ||
       resetpasswordsuccess ||
       changepasswordsuccess ||
-      authenticateUser
+      authenticateUser ||
+      createListingSuccess
     ) {
       Animated.spring(scaleValue, {
         toValue: 1,
@@ -67,6 +70,8 @@ const Popup = ({ image, text, buttonText, navigation }) => {
       navigation.navigate("Login");
     } else if (authenticateUser) {
       navigation.navigate("Login");
+    } else if (createListingSuccess) {
+      navigation.navigate("RootHome");
     } else {
       navigation.navigate("RootHome");
     }

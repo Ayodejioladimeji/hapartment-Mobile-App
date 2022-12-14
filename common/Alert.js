@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import Popup from "./Popup";
 import { useNavigation } from "@react-navigation/native";
 import IdentityVerificationModal from "./identityVerificationModal";
+import ListingSuccess from "./ListingSucces";
 
 const Alert = () => {
   const {
@@ -14,6 +15,7 @@ const Alert = () => {
     changepasswordsuccess,
     authenticateUser,
     verifyagent,
+    createListingSuccess,
   } = useSelector((state) => state.alert);
   const navigation = useNavigation();
 
@@ -73,6 +75,8 @@ const Alert = () => {
           navigation={navigation}
         />
       )}
+
+      {createListingSuccess && <ListingSuccess />}
 
       {verifyagent && <IdentityVerificationModal />}
 

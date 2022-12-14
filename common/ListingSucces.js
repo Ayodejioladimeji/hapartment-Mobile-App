@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -18,13 +18,12 @@ import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 //
 
-const IdentityVerificationModal = () => {
+const ListingSuccess = () => {
   const scaleValue = React.useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
-  const { profile_callback, userloading } = useSelector(
-    (state) => state.profile
-  );
+  const { listing_callback } = useSelector((state) => state.listing);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   //
   React.useEffect(() => {
@@ -42,15 +41,15 @@ const IdentityVerificationModal = () => {
 
   // next
   const next = () => {
+    setLoading(true);
     dispatch({
-      type: GLOBALTYPES.PROFILE_CALLBACK,
-      payload: !profile_callback,
+      type: GLOBALTYPES.LISTING_CALLBACK,
+      payload: !listing_callback,
     });
 
     setTimeout(() => {
+      setLoading(false);
       dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
-      dispatch({ type: GLOBALTYPES.VERIFY, payload: {} });
-
       navigation.navigate("RootHome");
     }, 3000);
   };
@@ -68,15 +67,15 @@ const IdentityVerificationModal = () => {
         >
           <View style={{ alignItems: "center" }}>
             <Image
-              source={require("../assets/images/pending.png")}
+              source={require("../assets/images/success.png")}
               style={styles.image}
             />
           </View>
 
-          <Text style={styles.header}>We are on it!</Text>
+          <Text style={styles.header}>Property Created Successfully</Text>
           <Text style={styles.text}>
-            Please check your email for updates on your verification status in
-            the next 2hours.
+            Please check your email for approval status, this might take up to
+            1hr
           </Text>
 
           <TouchableOpacity
@@ -84,7 +83,7 @@ const IdentityVerificationModal = () => {
             onPress={next}
             style={styles.modalButton}
           >
-            {userloading ? (
+            {loading ? (
               <ActivityIndicator size="small" color={colors.white} />
             ) : (
               <Text style={styles.buttonText}>Done</Text>
@@ -96,7 +95,7 @@ const IdentityVerificationModal = () => {
   );
 };
 
-export default IdentityVerificationModal;
+export default ListingSuccess;
 
 const styles = StyleSheet.create({
   modalBackGround: {

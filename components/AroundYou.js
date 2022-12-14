@@ -13,7 +13,7 @@ const AroundYou = () => {
   //
   return (
     <View style={styles.aroundWrapper}>
-      <Text style={styles.aroundText}>Apartments around you</Text>
+      <Text style={styles.aroundText}>Recent Apartments</Text>
 
       <FlatList
         data={data}

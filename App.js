@@ -30,6 +30,9 @@ import ListProperty from "./screens/ListProperty";
 import BasicInformation from "./screens/BasicInformation";
 import PropertyDetails from "./screens/PropertyDetails";
 import Description from "./screens/Description";
+import PropertyImages from "./screens/PropertyImages";
+import CreateListings from "./screens/CreateListings";
+import HowTo from "./screens/HowTo";
 
 const Stack = createStackNavigator();
 
@@ -117,12 +120,8 @@ function App() {
             <Stack.Screen name="IdentityTwo" component={IdentityTwo} />
             <Stack.Screen name="IdentityThree" component={IdentityThree} />
             <Stack.Screen name="ListProperty" component={ListProperty} />
-            <Stack.Screen
-              name="BasicInformation"
-              component={BasicInformation}
-            />
-            <Stack.Screen name="PropertyDetails" component={PropertyDetails} />
-            <Stack.Screen name="Description" component={Description} />
+            <Stack.Screen name="CreateListings" component={CreateListings} />
+            <Stack.Screen name="HowTo" component={HowTo} />
           </Stack.Navigator>
         </NavigationContainer>
       </DataProvider>
