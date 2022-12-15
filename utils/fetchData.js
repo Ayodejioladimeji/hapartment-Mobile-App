@@ -1,9 +1,9 @@
 import axios from "axios";
 
 // bring in the endpoint
-import { ENDPOINT } from "@env";
+// import { ENDPOINT } from "@env";
 
-// const ENDPOINT = "http://localhost:8000/api/v1";
+const ENDPOINT = "http://localhost:8000/api/v1";
 
 console.log(ENDPOINT);
 
@@ -27,6 +27,11 @@ export const getDataApi = async (url, token) => {
   const res = await axios.get(ENDPOINT + url, {
     headers: { Authorization: token },
   });
+  return res;
+};
+
+export const getDataApis = async (url) => {
+  const res = await axios.get(ENDPOINT + url);
   return res;
 };
 

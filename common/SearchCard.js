@@ -15,10 +15,22 @@ import {
 } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { format } from "timeago.js";
 
 //
 
 const SearchCard = ({ item }) => {
+  const {
+    address,
+    images,
+    price,
+    property_type,
+    toilets,
+    status,
+    updatedAt,
+    bathrooms,
+  } = item;
   const navigation = useNavigation();
 
   //
@@ -30,7 +42,7 @@ const SearchCard = ({ item }) => {
         onPress={() => navigation.navigate("AgentDetailsScreen", { item })}
       >
         <View style={styles.imagesWrapper}>
-          <Image source={{ uri: item.image[0] }} style={styles.cardImage} />
+          <Image source={{ uri: images[0].url }} style={styles.cardImage} />
 
           <View style={styles.verify}>
             <Text style={styles.verifyText}>Verified</Text>
@@ -43,10 +55,11 @@ const SearchCard = ({ item }) => {
 
         <View style={styles.cardBox}>
           <Text style={styles.nameText}>
-            {item.name.substring(0, 25) + "..."}
+            {property_type}
+            {/* {name.substring(0, 25) + "..."} */}
           </Text>
 
-          <Text style={styles.amountText}>₦{item.amount}</Text>
+          <Text style={styles.amountText}>₦{price}</Text>
 
           <View style={styles.cardLocation}>
             <MaterialCommunityIcons
@@ -56,27 +69,29 @@ const SearchCard = ({ item }) => {
               style={{ marginLeft: -3 }}
             />
             <Text style={styles.locationText}>
-              {item.location.substring(0, 27) + "..."}
+              {address.substring(0, 27) + "..."}
             </Text>
           </View>
 
           <View style={styles.cardFooter}>
             <View style={styles.cardFooterBox}>
               <Ionicons name="bed-outline" size={14} color={colors.textLight} />
-              <Text style={styles.footerBoxText}>{item.bed} Bed</Text>
+              <Text style={styles.footerBoxText}>2 Bed</Text>
             </View>
             <View style={styles.cardFooterBox}>
               <FontAwesome5 name="bath" size={11} color={colors.textLight} />
-              <Text style={styles.footerBoxText}>{item.bath} Bath</Text>
+              <Text style={styles.footerBoxText}>{bathrooms} Bath</Text>
             </View>
             <View style={styles.cardFooterBox}>
               <FontAwesome5 name="toilet" size={11} color={colors.textLight} />
-              <Text style={styles.footerBoxText}>{item.toilet} Toilet</Text>
+              <Text style={styles.footerBoxText}>{toilets} Toilet</Text>
             </View>
           </View>
 
           <View style={styles.cardTimeWrapper}>
-            <Text style={styles.cardTime}>Updated {item.time}</Text>
+            <Text style={styles.cardTime}>
+              Property updated : {format(updatedAt)}
+            </Text>
           </View>
         </View>
       </TouchableOpacity>

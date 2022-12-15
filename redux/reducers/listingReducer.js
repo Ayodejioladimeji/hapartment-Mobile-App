@@ -16,6 +16,8 @@ const initialState = {
   description: "",
   area_guide: "",
   listing_callback: false,
+  my_listings: [],
+  all_listings: [],
 };
 
 //
@@ -98,6 +100,16 @@ const listingReducer = (state = initialState, action) => {
       return {
         ...state,
         listing_callback: payload,
+      };
+    case GLOBALTYPES.MY_LISTINGS:
+      return {
+        ...state,
+        my_listings: payload,
+      };
+    case GLOBALTYPES.ALL_LISTINGS:
+      return {
+        ...state,
+        all_listings: payload,
       };
 
     default:

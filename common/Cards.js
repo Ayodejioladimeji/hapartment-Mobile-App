@@ -15,11 +15,13 @@ import {
   MaterialIcons,
 } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
+import { format } from "timeago.js";
 
 //
 
-const Card = ({ item, navigation }) => {
-  console.log(item);
+const Cards = ({ item, navigation }) => {
+  const bed = item.property_type.split(" ")[0];
+  console.log(bed);
   //
   return (
     <View>
@@ -29,7 +31,10 @@ const Card = ({ item, navigation }) => {
         onPress={() => navigation.navigate("DetailsScreen", { item })}
       >
         <View style={styles.imageWrapper}>
-          {/* <Image source={{ uri: item.image[0] }} style={styles.cardImage} /> */}
+          <Image
+            source={{ uri: item.images[0].url }}
+            style={styles.cardImage}
+          />
           <View style={styles.verify}>
             <Text style={styles.verifyText}>Verified</Text>
           </View>
@@ -52,7 +57,9 @@ const Card = ({ item, navigation }) => {
               color={colors.textLight}
               style={{ marginLeft: -3 }}
             />
-            <Text style={styles.locationText}>{item.address}</Text>
+            <Text style={styles.locationText}>
+              {item.address.substring(0, 27) + "..."}
+            </Text>
           </View>
 
           <View style={styles.cardFooter}>
@@ -71,7 +78,9 @@ const Card = ({ item, navigation }) => {
           </View>
 
           <View style={styles.cardTimeWrapper}>
-            <Text style={styles.cardTime}>Updated {item.updatedAt}</Text>
+            <Text style={styles.cardTime}>
+              Property updated : {format(item.updatedAt)}
+            </Text>
           </View>
         </View>
       </TouchableOpacity>
@@ -79,7 +88,7 @@ const Card = ({ item, navigation }) => {
   );
 };
 
-export default Card;
+export default Cards;
 
 const styles = StyleSheet.create({
   cardWrapper: {

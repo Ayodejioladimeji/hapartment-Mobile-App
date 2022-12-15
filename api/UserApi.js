@@ -13,11 +13,11 @@ const UserApi = () => {
   //
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        dispatch({ type: GLOBALTYPES.USER_LOADING, payload: true });
+    if (token !== "") {
+      const getData = async () => {
+        try {
+          dispatch({ type: GLOBALTYPES.USER_LOADING, payload: true });
 
-        if (token !== "") {
           const res = await getDataApi("/user", token);
 
           dispatch({
@@ -29,17 +29,18 @@ const UserApi = () => {
             type: GLOBALTYPES.TOKEN,
             payload: token,
           });
-        }
-        setTimeout(() => {
-          dispatch({ type: GLOBALTYPES.USER_LOADING, payload: false });
-        }, 3000);
-        //
-      } catch (error) {
-        console.log(error);
-      }
-    };
 
-    getData();
+          setTimeout(() => {
+            dispatch({ type: GLOBALTYPES.USER_LOADING, payload: false });
+          }, 3000);
+          //
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      getData();
+    }
   }, [token, profile_callback]);
 
   return <View></View>;

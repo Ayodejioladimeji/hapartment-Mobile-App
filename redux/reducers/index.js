@@ -4,6 +4,7 @@ import alert from "./alertReducer";
 import profile from "./profileReducer";
 import verify from "./verifyReducer";
 import listing from "./listingReducer";
+import loading from "./loadReducer";
 
 export default combineReducers({
   auth,
@@ -11,4 +12,5 @@ export default combineReducers({
   profile,
   verify,
   listing,
+  loading,
 });

@@ -2,24 +2,29 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import Card from "../common/Card";
 import colors from "../assets/colors/colors";
-import data from "../constants/data";
+import data from "../constants/dataa";
 // import fontsize from "../assets/fontsize/fontsize";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import Cards from "../common/Cards";
 
 //
 
 const NewListings = () => {
   const navigation = useNavigation();
+  const { all_listings } = useSelector((state) => state.listing);
+
+  //
   return (
     <View style={styles.newWrapper}>
       <Text style={styles.newText}>New apartments</Text>
 
       <FlatList
-        data={data}
+        data={all_listings}
         renderItem={({ item }) => {
-          return <Card item={item} navigation={navigation} />;
+          return <Cards item={item} navigation={navigation} />;
         }}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       />
