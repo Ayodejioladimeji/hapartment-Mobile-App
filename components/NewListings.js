@@ -14,21 +14,30 @@ const NewListings = () => {
   const navigation = useNavigation();
   const { all_listings } = useSelector((state) => state.listing);
 
+  // Filter through the array to get new listings
+  const newApartment = all_listings.filter(
+    (item) => item.category === "New apartment"
+  );
+
   //
   return (
-    <View style={styles.newWrapper}>
-      <Text style={styles.newText}>New apartments</Text>
+    <>
+      {newApartment.length !== 0 && (
+        <View style={styles.newWrapper}>
+          <Text style={styles.newText}>New apartments</Text>
 
-      <FlatList
-        data={all_listings}
-        renderItem={({ item }) => {
-          return <Cards item={item} navigation={navigation} />;
-        }}
-        keyExtractor={(item) => item._id}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-      />
-    </View>
+          <FlatList
+            data={newApartment}
+            renderItem={({ item }) => {
+              return <Cards item={item} navigation={navigation} />;
+            }}
+            keyExtractor={(item) => item._id}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+      )}
+    </>
   );
 };
 

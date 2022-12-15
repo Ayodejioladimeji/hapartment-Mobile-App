@@ -59,11 +59,41 @@ export const myListings = (token) => async (dispatch) => {
 // All listings
 export const allListings = () => async (dispatch) => {
   try {
-    dispatch({ type: GLOBALTYPES.ALERT, payload: { alllistingloading: true } });
+    dispatch({
+      type: GLOBALTYPES.LOADING,
+      payload: { alllistingloading: true },
+    });
 
     const res = await getDataApis("/all_listing");
 
     dispatch({ type: GLOBALTYPES.ALL_LISTINGS, payload: res.data });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.LOADING, payload: {} });
+    }, 3000);
+  } catch (error) {
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { error: error.response.data.msg },
+    });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+    }, 3000);
+  }
+};
+
+// Listing details
+export const listDetails = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: GLOBALTYPES.LOADING,
+      payload: { listdetailsloading: true },
+    });
+
+    const res = await getDataApis("/list_details/id");
+
+    dispatch({ type: GLOBALTYPES.LIST_DETAILS, payload: res.data });
 
     setTimeout(() => {
       dispatch({ type: GLOBALTYPES.LOADING, payload: {} });

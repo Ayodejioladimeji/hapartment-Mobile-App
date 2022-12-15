@@ -15,25 +15,35 @@ const AroundYou = ({ data }) => {
   const { all_listings } = useSelector((state) => state.listing);
   const dispatch = useDispatch();
 
+  // get all listings from the database
   useEffect(() => {
     dispatch(allListings());
   }, []);
 
+  // Filter through the array to get featured content
+  const recentApartment = all_listings.filter(
+    (item) => item.category === "Recent apartment"
+  );
+
   //
   return (
-    <View style={styles.aroundWrapper}>
-      <Text style={styles.aroundText}>Recent Apartments</Text>
+    <>
+      {recentApartment.length !== 0 && (
+        <View style={styles.aroundWrapper}>
+          <Text style={styles.aroundText}>Recent Apartments</Text>
 
-      <FlatList
-        data={all_listings}
-        renderItem={({ item }) => {
-          return <Cards item={item} navigation={navigation} />;
-        }}
-        keyExtractor={(item) => item._id}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-      />
-    </View>
+          <FlatList
+            data={recentApartment}
+            renderItem={({ item }) => {
+              return <Cards item={item} navigation={navigation} />;
+            }}
+            keyExtractor={(item) => item._id}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+      )}
+    </>
   );
 };
 

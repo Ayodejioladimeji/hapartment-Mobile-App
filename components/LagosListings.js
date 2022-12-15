@@ -14,21 +14,30 @@ const LagosListings = () => {
   const navigation = useNavigation();
   const { all_listings } = useSelector((state) => state.listing);
 
+  // Filter through the array to get featured content
+  const featuredApartment = all_listings.filter(
+    (item) => item.category === "Featured apartment"
+  );
+
   //
   return (
-    <View style={styles.lagosWrapper}>
-      <Text style={styles.lagosText}>Featured Apartments</Text>
+    <>
+      {featuredApartment.length !== 0 && (
+        <View style={styles.lagosWrapper}>
+          <Text style={styles.lagosText}>Featured Apartments</Text>
 
-      <FlatList
-        data={all_listings}
-        renderItem={({ item }) => {
-          return <Cards item={item} navigation={navigation} />;
-        }}
-        keyExtractor={(item) => item.id}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-      />
-    </View>
+          <FlatList
+            data={featuredApartment}
+            renderItem={({ item }) => {
+              return <Cards item={item} navigation={navigation} />;
+            }}
+            keyExtractor={(item) => item._id}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+      )}
+    </>
   );
 };
 

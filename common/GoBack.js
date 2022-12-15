@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
 
   goBackText: {
-    marginLeft: 15,
+    marginLeft: 10,
     fontWeight: "700",
     fontSize: 17,
     color: colors.white,

@@ -18,6 +18,7 @@ const initialState = {
   listing_callback: false,
   my_listings: [],
   all_listings: [],
+  list_details: {},
 };
 
 //
@@ -110,6 +111,11 @@ const listingReducer = (state = initialState, action) => {
       return {
         ...state,
         all_listings: payload,
+      };
+    case GLOBALTYPES.LIST_DETAILS:
+      return {
+        ...state,
+        list_details: payload,
       };
 
     default:

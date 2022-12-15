@@ -9,7 +9,7 @@ import colors from "../assets/colors/colors";
 const Slide = ({ item }) => {
   return (
     <View>
-      <Image source={{ uri: item }} style={styles.image} />
+      <Image source={{ uri: item.url }} style={styles.image} />
     </View>
   );
 };
