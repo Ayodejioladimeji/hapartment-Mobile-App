@@ -16,12 +16,12 @@ import {
 } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 import { format } from "timeago.js";
+import { addComma } from "comma-separator";
 
 //
 
 const Cards = ({ item, navigation }) => {
   const bed = item.property_type.split(" ")[0];
-  console.log(bed);
   //
   return (
     <View>
@@ -47,7 +47,7 @@ const Cards = ({ item, navigation }) => {
         <View style={styles.cardBox}>
           <View style={styles.cardName}>
             <Text style={styles.nameText}>{item.property_type}</Text>
-            <Text style={styles.amountText}>₦{item.price}</Text>
+            <Text style={styles.amountText}>₦{addComma(item.price)}</Text>
           </View>
 
           <View style={styles.cardLocation}>

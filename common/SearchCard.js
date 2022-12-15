@@ -17,6 +17,7 @@ import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { format } from "timeago.js";
+import { addComma } from "comma-separator";
 
 //
 
@@ -59,7 +60,7 @@ const SearchCard = ({ item }) => {
             {/* {name.substring(0, 25) + "..."} */}
           </Text>
 
-          <Text style={styles.amountText}>₦{price}</Text>
+          <Text style={styles.amountText}>₦{addComma(price)}</Text>
 
           <View style={styles.cardLocation}>
             <MaterialCommunityIcons
@@ -114,6 +115,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.2,
     borderColor: colors.textLighter,
     padding: 5,
+    paddingLeft: 10,
     borderBottomColor: colors.primary,
     overflow: "hidden",
   },
