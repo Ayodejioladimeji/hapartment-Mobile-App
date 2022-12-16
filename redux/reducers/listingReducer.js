@@ -6,6 +6,9 @@ const initialState = {
   country: "",
   state: "",
   city: "",
+  statename: "",
+  cityname: "",
+  bedrooms: "",
   bathrooms: "",
   toilets: "",
   furnishing: "",
@@ -14,7 +17,7 @@ const initialState = {
   category: "",
   price: "",
   description: "",
-  area_guide: "",
+  video: "",
   listing_callback: false,
   my_listings: [],
   all_listings: [],
@@ -51,6 +54,21 @@ const listingReducer = (state = initialState, action) => {
       return {
         ...state,
         city: payload,
+      };
+    case GLOBALTYPES.STATE_NAME:
+      return {
+        ...state,
+        statename: payload,
+      };
+    case GLOBALTYPES.CITY_NAME:
+      return {
+        ...state,
+        cityname: payload,
+      };
+    case GLOBALTYPES.BEDROOMS:
+      return {
+        ...state,
+        bedrooms: payload,
       };
     case GLOBALTYPES.BATHROOMS:
       return {
@@ -92,10 +110,10 @@ const listingReducer = (state = initialState, action) => {
         ...state,
         description: payload,
       };
-    case GLOBALTYPES.AREA_GUIDE:
+    case GLOBALTYPES.VIDEO:
       return {
         ...state,
-        area_guide: payload,
+        video: payload,
       };
     case GLOBALTYPES.LISTING_CALLBACK:
       return {

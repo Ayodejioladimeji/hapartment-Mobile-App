@@ -120,6 +120,13 @@ function App() {
             <Stack.Screen name="IdentityTwo" component={IdentityTwo} />
             <Stack.Screen name="IdentityThree" component={IdentityThree} />
             <Stack.Screen name="ListProperty" component={ListProperty} />
+            <Stack.Screen
+              name="BasicInformation"
+              component={BasicInformation}
+            />
+            <Stack.Screen name="PropertyDetails" component={PropertyDetails} />
+            <Stack.Screen name="Description" component={Description} />
+            <Stack.Screen name="PropertyImages" component={PropertyImages} />
             <Stack.Screen name="CreateListings" component={CreateListings} />
             <Stack.Screen name="HowTo" component={HowTo} />
           </Stack.Navigator>
