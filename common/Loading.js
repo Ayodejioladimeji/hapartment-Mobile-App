@@ -6,13 +6,12 @@ const Loading = () => {
   return (
     <View
       style={{
-        height: "100%",
-        flex: 1,
         alignItems: "center",
         justifyContent: "center",
+        backgroundColor: colors.white,
       }}
     >
-      <ActivityIndicator size="large" color={colors.primary} />
+      <ActivityIndicator size="small" color={colors.primary} />
     </View>
   );
 };

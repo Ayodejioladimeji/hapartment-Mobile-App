@@ -40,7 +40,7 @@ const SearchCard = ({ item }) => {
       <TouchableOpacity
         activeOpacity={0.7}
         style={styles.cardsWrapper}
-        onPress={() => navigation.navigate("AgentDetailsScreen", { item })}
+        onPress={() => navigation.navigate("DetailsScreen", { item })}
       >
         <View style={styles.imagesWrapper}>
           <Image source={{ uri: images[0].url }} style={styles.cardImage} />

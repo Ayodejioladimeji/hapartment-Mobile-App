@@ -3,6 +3,7 @@ import { GLOBALTYPES } from "../actions/globalTypes";
 const initialState = {
   profile_callback: false,
   userloading: false,
+  all_agents: [],
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -19,6 +20,12 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         userloading: payload,
+      };
+
+    case GLOBALTYPES.ALL_AGENTS:
+      return {
+        ...state,
+        all_agents: payload,
       };
 
     default:

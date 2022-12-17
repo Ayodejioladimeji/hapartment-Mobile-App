@@ -5,6 +5,7 @@ import Popup from "./Popup";
 import { useNavigation } from "@react-navigation/native";
 import IdentityVerificationModal from "./identityVerificationModal";
 import ListingSuccess from "./ListingSucces";
+import LoginErrorModal from "./LoginErrorModal";
 
 const Alert = () => {
   const {
@@ -16,6 +17,7 @@ const Alert = () => {
     authenticateUser,
     verifyagent,
     createListingSuccess,
+    loginerror,
   } = useSelector((state) => state.alert);
   const navigation = useNavigation();
 
@@ -77,6 +79,8 @@ const Alert = () => {
       )}
 
       {createListingSuccess && <ListingSuccess />}
+
+      {loginerror && <LoginErrorModal />}
 
       {verifyagent && <IdentityVerificationModal />}
 
