@@ -7,6 +7,8 @@ const handleSubmit = async (
   country,
   state,
   city,
+  statename,
+  cityname,
   bathrooms,
   toilets,
   furnishing,
@@ -15,7 +17,8 @@ const handleSubmit = async (
   description,
   price,
   category,
-  area_guide,
+  bedrooms,
+  video,
   imageOne,
   imageTwo,
   imageThree,
@@ -23,7 +26,7 @@ const handleSubmit = async (
   imageFive,
   imageSix,
   imageSeven,
-  setLoad,
+  setLoading,
   dispatch,
   token
 ) => {
@@ -38,12 +41,11 @@ const handleSubmit = async (
     bathrooms === "" ||
     toilets === "" ||
     furnishing === "" ||
-    home_facilities === "" ||
-    area_facilities === "" ||
+    home_facilities.length === 0 ||
+    area_facilities.length === 0 ||
     description === "" ||
     price === "" ||
-    category === "" ||
-    area_guide === ""
+    category === ""
   ) {
     Alert.alert("Please fill all required input");
     return;
@@ -62,7 +64,7 @@ const handleSubmit = async (
     return;
   }
 
-  setLoad(true);
+  setLoading(true);
 
   let one = {
     uri: imageOne,
@@ -192,6 +194,9 @@ const handleSubmit = async (
     country,
     state,
     city,
+    statename,
+    cityname,
+    bedrooms,
     bathrooms,
     toilets,
     furnishing,
@@ -200,13 +205,13 @@ const handleSubmit = async (
     description,
     price,
     category,
-    area_guide,
+    video,
     images: newImages,
   };
 
   dispatch(createListing(newData, token));
 
-  setLoad(false);
+  setLoading(false);
 };
 
 export default handleSubmit;

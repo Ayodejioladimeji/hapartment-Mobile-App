@@ -18,6 +18,13 @@ const initialState = {
   price: "",
   description: "",
   video: "",
+  imageOne: null,
+  imageTwo: null,
+  imageThree: null,
+  imageFour: null,
+  imageFive: null,
+  imageSix: null,
+  imageSeven: null,
   listing_callback: false,
   my_listings: [],
   all_listings: [],
@@ -134,6 +141,41 @@ const listingReducer = (state = initialState, action) => {
       return {
         ...state,
         list_details: payload,
+      };
+    case GLOBALTYPES.IMAGE_ONE:
+      return {
+        ...state,
+        imageOne: payload,
+      };
+    case GLOBALTYPES.IMAGE_TWO:
+      return {
+        ...state,
+        imageTwo: payload,
+      };
+    case GLOBALTYPES.IMAGE_THREE:
+      return {
+        ...state,
+        imageThree: payload,
+      };
+    case GLOBALTYPES.IMAGE_FOUR:
+      return {
+        ...state,
+        imageFour: payload,
+      };
+    case GLOBALTYPES.IMAGE_FIVE:
+      return {
+        ...state,
+        imageFive: payload,
+      };
+    case GLOBALTYPES.IMAGE_SIX:
+      return {
+        ...state,
+        imageSix: payload,
+      };
+    case GLOBALTYPES.IMAGE_SEVEN:
+      return {
+        ...state,
+        imageSeven: payload,
       };
 
     default:

@@ -1,7 +1,8 @@
 import * as ImagePicker from "expo-image-picker";
 import { Alert } from "react-native";
+import { GLOBALTYPES } from "../redux/actions/globalTypes";
 
-export const chooseImageOne = async (setImageOne, setLoadingOne) => {
+export const chooseImageOne = async (dispatch, setLoadingOne) => {
   setLoadingOne(true);
 
   let result = await ImagePicker.launchImageLibraryAsync({
@@ -28,12 +29,12 @@ export const chooseImageOne = async (setImageOne, setLoadingOne) => {
   // }
 
   if (!result.canceled) {
-    setImageOne(result.assets[0].uri);
+    dispatch({ type: GLOBALTYPES.IMAGE_ONE, payload: result.assets[0].uri });
     setLoadingOne(false);
   }
 };
 
-export const chooseImageTwo = async (setImageTwo, setLoadingTwo) => {
+export const chooseImageTwo = async (dispatch, setLoadingTwo) => {
   setLoadingTwo(true);
 
   let result = await ImagePicker.launchImageLibraryAsync({
@@ -60,12 +61,12 @@ export const chooseImageTwo = async (setImageTwo, setLoadingTwo) => {
   // }
 
   if (!result.canceled) {
-    setImageTwo(result.assets[0].uri);
+    dispatch({ type: GLOBALTYPES.IMAGE_TWO, payload: result.assets[0].uri });
     setLoadingTwo(false);
   }
 };
 
-export const chooseImageThree = async (setImageThree, setLoadingThree) => {
+export const chooseImageThree = async (dispatch, setLoadingThree) => {
   setLoadingThree(true);
 
   let result = await ImagePicker.launchImageLibraryAsync({
@@ -92,12 +93,12 @@ export const chooseImageThree = async (setImageThree, setLoadingThree) => {
   // }
 
   if (!result.canceled) {
-    setImageThree(result.assets[0].uri);
+    dispatch({ type: GLOBALTYPES.IMAGE_THREE, payload: result.assets[0].uri });
     setLoadingThree(false);
   }
 };
 
-export const chooseImageFour = async (setImageFour, setLoadingFour) => {
+export const chooseImageFour = async (dispatch, setLoadingFour) => {
   setLoadingFour(true);
 
   let result = await ImagePicker.launchImageLibraryAsync({
@@ -124,12 +125,12 @@ export const chooseImageFour = async (setImageFour, setLoadingFour) => {
   // }
 
   if (!result.canceled) {
-    setImageFour(result.assets[0].uri);
+    dispatch({ type: GLOBALTYPES.IMAGE_FOUR, payload: result.assets[0].uri });
     setLoadingFour(false);
   }
 };
 
-export const chooseImageFive = async (setImageFive, setLoadingFive) => {
+export const chooseImageFive = async (dispatch, setLoadingFive) => {
   setLoadingFive(true);
 
   let result = await ImagePicker.launchImageLibraryAsync({
@@ -156,12 +157,12 @@ export const chooseImageFive = async (setImageFive, setLoadingFive) => {
   // }
 
   if (!result.canceled) {
-    setImageFive(result.assets[0].uri);
+    dispatch({ type: GLOBALTYPES.IMAGE_FIVE, payload: result.assets[0].uri });
     setLoadingFive(false);
   }
 };
 
-export const chooseImageSix = async (setImageSix, setLoadingSix) => {
+export const chooseImageSix = async (dispatch, setLoadingSix) => {
   setLoadingSix(true);
 
   let result = await ImagePicker.launchImageLibraryAsync({
@@ -188,12 +189,12 @@ export const chooseImageSix = async (setImageSix, setLoadingSix) => {
   // }
 
   if (!result.canceled) {
-    setImageSix(result.assets[0].uri);
+    dispatch({ type: GLOBALTYPES.IMAGE_SIX, payload: result.assets[0].uri });
     setLoadingSix(false);
   }
 };
 
-export const chooseImageSeven = async (setImageSeven, setLoadingSeven) => {
+export const chooseImageSeven = async (dispatch, setLoadingSeven) => {
   setLoadingSeven(true);
 
   let result = await ImagePicker.launchImageLibraryAsync({
@@ -220,7 +221,7 @@ export const chooseImageSeven = async (setImageSeven, setLoadingSeven) => {
   // }
 
   if (!result.canceled) {
-    setImageSeven(result.assets[0].uri);
+    dispatch({ type: GLOBALTYPES.IMAGE_SEVEN, payload: result.assets[0].uri });
     setLoadingSeven(false);
   }
 };

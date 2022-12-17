@@ -17,12 +17,16 @@ const CreateListingStatusBar = ({ navigation, title }) => {
     <View>
       <MyStatusBar backgroundColor={colors.primary} barStyle="light-content" />
 
-      <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.goBack()}>
+      <View>
         <View style={styles.goBacks}>
-          <View style={styles.goBack}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.goBack()}
+            style={styles.goBack}
+          >
             <MaterialIcons name="chevron-left" size={27} color={colors.white} />
             <Text style={styles.goBackText}>Create Listing</Text>
-          </View>
+          </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => navigation.navigate("HowTo")}
@@ -35,7 +39,7 @@ const CreateListingStatusBar = ({ navigation, title }) => {
             />
           </TouchableOpacity>
         </View>
-      </TouchableOpacity>
+      </View>
     </View>
   );
 };

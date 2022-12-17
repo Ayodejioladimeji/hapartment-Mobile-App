@@ -10,6 +10,7 @@ import { GLOBALTYPES } from "./globalTypes";
 
 // Create Listing
 export const createListing = (data, token) => async (dispatch) => {
+  console.log(data);
   try {
     const res = await postDataApis("/create_listing", data, token);
 
@@ -18,6 +19,7 @@ export const createListing = (data, token) => async (dispatch) => {
       payload: { createListingSuccess: res.data.msg },
     });
   } catch (error) {
+    console.log(error.response.data.msg);
     dispatch({
       type: GLOBALTYPES.ALERT,
       payload: { error: error.response.data.msg },
