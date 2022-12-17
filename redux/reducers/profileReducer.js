@@ -4,6 +4,7 @@ const initialState = {
   profile_callback: false,
   userloading: false,
   all_agents: [],
+  agent_details: {},
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -26,6 +27,11 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         all_agents: payload,
+      };
+    case GLOBALTYPES.AGENT_DETAILS:
+      return {
+        ...state,
+        agent_details: payload,
       };
 
     default:

@@ -1,4 +1,4 @@
-import { getDataApis, patchDataApi } from "../../utils/fetchData";
+import { getDataApi, getDataApis, patchDataApi } from "../../utils/fetchData";
 import { GLOBALTYPES } from "./globalTypes";
 
 //
@@ -54,7 +54,7 @@ export const identity = (data, token) => async (dispatch) => {
   }
 };
 
-// Get all agent from the database
+// Get all agent
 export const allAgent = () => async (dispatch) => {
   try {
     dispatch({ type: GLOBALTYPES.LOADING, payload: { allagentloading: true } });
@@ -62,6 +62,34 @@ export const allAgent = () => async (dispatch) => {
     const res = await getDataApis("/all_agents");
 
     dispatch({ type: GLOBALTYPES.ALL_AGENTS, payload: res.data });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.LOADING, payload: {} });
+    }, 3000);
+  } catch (error) {
+    console.log(error.response.data.msg);
+    dispatch({
+      type: GLOBALTYPES.ALERT,
+      payload: { error: error.response.data.msg },
+    });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.LOADING, payload: {} });
+    }, 3000);
+  }
+};
+
+// Get all agent details
+export const agentDetails = (id, token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GLOBALTYPES.LOADING,
+      payload: { agentdetailsloading: true },
+    });
+
+    const res = await getDataApi(`/agent_details/${id}`, token);
+
+    dispatch({ type: GLOBALTYPES.AGENT_DETAILS, payload: res.data });
 
     setTimeout(() => {
       dispatch({ type: GLOBALTYPES.LOADING, payload: {} });
