@@ -15,11 +15,6 @@ const AroundYou = ({ data }) => {
   const { all_listings } = useSelector((state) => state.listing);
   const dispatch = useDispatch();
 
-  // get all listings from the database
-  useEffect(() => {
-    dispatch(allListings());
-  }, []);
-
   // Filter through the array to get featured content
   const recentApartment = all_listings.filter(
     (item) => item.category === "Recent apartment"

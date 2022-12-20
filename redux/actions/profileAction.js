@@ -87,7 +87,9 @@ export const agentDetails = (id, token) => async (dispatch) => {
       payload: { agentdetailsloading: true },
     });
 
-    const res = await getDataApi(`/agent_details/${id}`, token);
+    const res = await getDataApis(`/agent_details/${id}`);
+
+    console.log(res);
 
     dispatch({ type: GLOBALTYPES.AGENT_DETAILS, payload: res.data });
 

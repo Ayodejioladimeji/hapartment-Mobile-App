@@ -33,6 +33,7 @@ import Description from "./screens/Description";
 import PropertyImages from "./screens/PropertyImages";
 import CreateListings from "./screens/CreateListings";
 import HowTo from "./screens/HowTo";
+import FetchApi from "./api/FetchApi";
 
 const Stack = createStackNavigator();
 
@@ -65,6 +66,7 @@ function App() {
       <DataProvider>
         <NavigationContainer>
           <Alert />
+          <FetchApi />
 
           <Stack.Navigator
             screenOptions={{

@@ -7,6 +7,7 @@ const colors = {
   textLighter: "#9ca0a8",
   white: "#fff",
   black: "#1a2028",
+  light: "#0f15100c",
 };
 
 export default colors;

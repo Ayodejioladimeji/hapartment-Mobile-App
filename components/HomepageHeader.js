@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     // fontSize: fontsize.four,
     color: colors.white,
     fontWeight: "600",
-    fontFamily: "//AlfaSlabOne-Regular",
+    fontFamily: "AlfaSlabOne-Regular",
     textTransform: "capitalize",
   },
 
