@@ -3,13 +3,13 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-// import Onboarding from "./screens/Onboarding";
+import Onboarding from "./screens/Onboarding";
 import RootHome from "./components/RootHome";
 import EditProfileScreen from "./screens/EditProfileScreen";
 import DetailsScreen from "./screens/DetailsScreen";
 import LandlordProfileScreen from "./screens/LandlordProfileScreen";
 import AgentDetailsScreen from "./screens/AgentDetailsScreen";
-// import WhoAreYou from "./screens/WhoAreYou";
+import WhoAreYou from "./screens/WhoAreYou";
 import Login from "./screens/Login";
 import ForgotPassword from "./screens/ForgotPassword";
 import OneTimeCode from "./screens/OneTimeCode";
@@ -71,9 +71,9 @@ function App() {
               headerShown: false,
             }}
           >
-            {/* {showOnboard && (
+            {showOnboard && (
               <Stack.Screen name="Onboarding" component={Onboarding} />
-            )} */}
+            )}
 
             <Stack.Screen name="RootHome" component={RootHome} />
             {/* <Stack.Screen name="WhoAreYou" component={WhoAreYou} /> */}

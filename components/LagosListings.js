@@ -22,7 +22,7 @@ const LagosListings = () => {
   //
   return (
     <>
-      {featuredApartment.length !== 0 && (
+      {featuredApartment.length !== 0 && featuredApartment.length > 1 && (
         <View style={styles.lagosWrapper}>
           <Text style={styles.lagosText}>Featured Apartments</Text>
 

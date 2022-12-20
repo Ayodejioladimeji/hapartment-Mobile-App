@@ -28,7 +28,7 @@ const AroundYou = ({ data }) => {
   //
   return (
     <>
-      {recentApartment.length !== 0 && (
+      {recentApartment.length !== 0 && recentApartment.length > 1 && (
         <View style={styles.aroundWrapper}>
           <Text style={styles.aroundText}>Recent Apartments</Text>
 

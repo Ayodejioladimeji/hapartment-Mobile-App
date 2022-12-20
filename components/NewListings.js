@@ -22,7 +22,7 @@ const NewListings = () => {
   //
   return (
     <>
-      {newApartment.length !== 0 && (
+      {newApartment.length !== 0 && newApartment.length > 1 && (
         <View style={styles.newWrapper}>
           <Text style={styles.newText}>New apartments</Text>
 
