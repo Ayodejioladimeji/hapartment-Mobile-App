@@ -172,6 +172,7 @@ const DetailsScreen = ({ route }) => {
           </View>
 
           <TouchableOpacity
+            activeOpacity={0.7}
             style={styles.viewWrapper}
             onPress={() => navigation.navigate("LandlordProfileScreen", { id })}
           >

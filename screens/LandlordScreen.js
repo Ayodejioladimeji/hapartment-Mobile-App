@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   landlordBox: {
     borderWidth: 0.3,
-    borderColor: colors.textDark,
+    borderColor: colors.textLight,
     borderRadius: 5,
     padding: 10,
     flexDirection: "row",
@@ -109,6 +109,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
     height: 80,
     width: 80,
+    borderWidth: 0.3,
+    borderColor: colors.textLight,
   },
   landlordText: {
     color: colors.textDark,
