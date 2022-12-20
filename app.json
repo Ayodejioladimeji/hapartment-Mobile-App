@@ -24,7 +24,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#449342"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.layobright.hapartment"
     },
     "web": {
       "favicon": "./assets/icon.png"
@@ -33,11 +37,14 @@
       [
         "expo-image-picker",
         {
-          "cameraPermission" : "Allow Hapartment to access your camera"
+          "cameraPermission": "Allow Hapartment to access your camera"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1a03b837-9f82-4b4d-b980-a052e3d3f447"
+      }
+    }
   }
 }
-
-

@@ -71,9 +71,9 @@ function App() {
               headerShown: false,
             }}
           >
-            {showOnboard && (
+            {/* {showOnboard && (
               <Stack.Screen name="Onboarding" component={Onboarding} />
-            )}
+            )} */}
 
             <Stack.Screen name="RootHome" component={RootHome} />
             {/* <Stack.Screen name="WhoAreYou" component={WhoAreYou} /> */}

@@ -1,9 +1,9 @@
 import axios from "axios";
 
 // bring in the endpoint
-// import { ENDPOINT } from "@env";
+import { ENDPOINT } from "@env";
 
-const ENDPOINT = "http://localhost:8000/api/v1";
+// const ENDPOINT = "http://localhost:8000/api/v1";
 
 console.log(ENDPOINT);
 
