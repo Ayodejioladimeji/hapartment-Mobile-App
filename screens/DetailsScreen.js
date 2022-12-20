@@ -59,18 +59,6 @@ const DetailsScreen = ({ route }) => {
 
   const id = postedBy._id;
 
-  // check if the user is logged in
-  const authCheck = () => {
-    if (token) {
-      navigation.navigate("LandlordProfileScreen", { id });
-    } else {
-      dispatch({
-        type: GLOBALTYPES.ALERT,
-        payload: { loginerror: "Kindly login or register to continue" },
-      });
-    }
-  };
-
   //
   return (
     <View style={styles.detailsWrapper}>
@@ -183,7 +171,10 @@ const DetailsScreen = ({ route }) => {
             </View>
           </View>
 
-          <TouchableOpacity style={styles.viewWrapper} onPress={authCheck}>
+          <TouchableOpacity
+            style={styles.viewWrapper}
+            onPress={() => navigation.navigate("LandlordProfileScreen", { id })}
+          >
             <Text style={styles.viewText}>View Agent</Text>
           </TouchableOpacity>
         </View>

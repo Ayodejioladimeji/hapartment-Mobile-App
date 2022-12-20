@@ -80,7 +80,7 @@ export const allAgent = () => async (dispatch) => {
 };
 
 // Get all agent details
-export const agentDetails = (id, token) => async (dispatch) => {
+export const agentDetails = (id) => async (dispatch) => {
   try {
     dispatch({
       type: GLOBALTYPES.LOADING,

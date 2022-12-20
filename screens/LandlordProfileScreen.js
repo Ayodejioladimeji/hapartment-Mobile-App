@@ -51,7 +51,7 @@ const LandlordProfileScreen = ({ route }) => {
             <View style={styles.profileBox}>
               {agent_details.agent_details.image === null ? (
                 <Image
-                  source={require("../assets/images/profile.jpeg")}
+                  source={require("../assets/images/user.jpg")}
                   style={styles.profileImage}
                 />
               ) : (
@@ -78,8 +78,11 @@ const LandlordProfileScreen = ({ route }) => {
 
           <View style={styles.apartment}>
             <Text style={styles.apartmentText}>
-              ({agent_details.agent_listing.length}) Apartments posted by{" "}
-              {agent_details.agent_details.username}
+              ({agent_details.agent_listing.length}){" "}
+              {agent_details.agent_listing.length === 1
+                ? "Apartment"
+                : "Apartments"}{" "}
+              posted by {agent_details.agent_details.username}
             </Text>
 
             <View>
