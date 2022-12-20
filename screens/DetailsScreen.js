@@ -29,6 +29,7 @@ import { format } from "timeago.js";
 import { list } from "../constants/list";
 import { useDispatch, useSelector } from "react-redux";
 import { GLOBALTYPES } from "../redux/actions/globalTypes";
+import Tab from "../components/Tab";
 
 //
 
@@ -100,7 +101,18 @@ const DetailsScreen = ({ route }) => {
         <View style={styles.cardFooter}>
           <View style={styles.cardFooterBox}>
             <FontAwesome5 name="bed" size={16} color={colors.textLight} />
-            <Text style={styles.footerBoxText}>{bedrooms} Bedroom</Text>
+            <Text style={styles.footerBoxText}>
+              {bedrooms}
+              {bedrooms === "singleroom"
+                ? ""
+                : bedrooms === "room&parlour"
+                ? ""
+                : bedrooms === "selfcontain"
+                ? ""
+                : bedrooms === "1"
+                ? "Bedroom"
+                : "Bedrooms"}
+            </Text>
           </View>
           <View style={styles.cardFooterBox}>
             <FontAwesome5 name="bath" size={16} color={colors.textLight} />
@@ -122,74 +134,9 @@ const DetailsScreen = ({ route }) => {
           <Text style={styles.saveText}>Save</Text>
         </View>
 
-        {/* <View style={styles.mapWrapper}>
-          <View style={styles.cardTimeWrapper}>
-            <Text style={styles.cardTime}>
-              {!acquired ? "Currently available" : "Property acquired"}
-            </Text>
-          </View>
+        <Tab params={route.params.item} />
 
-          <View style={styles.map}>
-            <Text style={styles.mapText}>View on map</Text>
-          </View>
-        </View> */}
-
-        <View style={styles.descriptionWrapper}>
-          <Text style={styles.description}>Property Location</Text>
-          <Text style={styles.content}>Country : {country}</Text>
-          <Text style={styles.content}>State : {statename}</Text>
-          <Text style={styles.content}>City : {cityname}</Text>
-        </View>
-
-        <View style={styles.descriptionWrapper}>
-          <Text style={styles.description}>Description</Text>
-          <Text style={styles.content}>{description}</Text>
-        </View>
-
-        <View style={styles.descriptionWrapper}>
-          <Text style={styles.description}>Home Facilities Available</Text>
-
-          <View style={styles.facilities}>
-            {home_facilities.map((item, index) => {
-              return (
-                <View key={index} style={styles.facilitiesBox}>
-                  <Text style={styles.facilitiesText}>{item}</Text>
-                </View>
-              );
-            })}
-          </View>
-        </View>
-
-        <View style={styles.descriptionWrapper}>
-          <Text style={styles.description}>Area Facilities Available</Text>
-
-          <View style={styles.facilities}>
-            {area_facilities.map((item, index) => {
-              return (
-                <View key={index} style={styles.facilitiesBox}>
-                  <Text style={styles.facilitiesText}>{item}</Text>
-                </View>
-              );
-            })}
-          </View>
-        </View>
-
-        {/* Facilities section */}
-        <View style={styles.descriptionWrapper}>
-          <Text style={styles.description}>furnishing</Text>
-          <Text style={styles.content}>*{furnishing}</Text>
-        </View>
-
-        {/* Video section */}
-        {/* <View style={styles.videoWrapper}>
-          <View style={styles.dateWrapper}>
-            <Text style={styles.cardTime}>
-              Property updated : {format(updatedAt)}
-            </Text>
-          </View>
-        </View> */}
-
-        {/* Video section */}
+        {/* date section */}
         <View style={styles.videoWrapper}>
           <View style={styles.dateWrapper}>
             <Text style={styles.cardTime}>
@@ -199,7 +146,7 @@ const DetailsScreen = ({ route }) => {
         </View>
 
         {/* share */}
-        <View style={styles.shareWrapper}>
+        {/* <View style={styles.shareWrapper}>
           <View style={styles.shareHeader}>
             <AntDesign name="sharealt" size={18} color={colors.textDark} />
             <Text style={styles.shareText}>Share this property</Text>
@@ -214,7 +161,7 @@ const DetailsScreen = ({ route }) => {
               color={colors.primary}
             />
           </View>
-        </View>
+        </View> */}
 
         {/* Agent section */}
         <View style={styles.agentWrapper}>
@@ -310,12 +257,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 20,
     borderWidth: 0.3,
-    borderColor: colors.textLight,
+    borderColor: colors.primary,
     height: 40,
     borderRadius: 3,
   },
   saveText: {
-    color: colors.textLight,
+    color: colors.primary,
     textTransform: "uppercase",
     marginLeft: 5,
   },

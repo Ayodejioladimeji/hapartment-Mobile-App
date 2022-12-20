@@ -9,27 +9,32 @@ import { GLOBALTYPES } from "./globalTypes";
 //
 
 // Create Listing
-export const createListing = (data, token) => async (dispatch) => {
-  console.log(data);
-  try {
-    const res = await postDataApis("/create_listing", data, token);
+export const createListing =
+  (data, token, listing_callback) => async (dispatch) => {
+    try {
+      const res = await postDataApis("/create_listing", data, token);
 
-    dispatch({
-      type: GLOBALTYPES.ALERT,
-      payload: { createListingSuccess: res.data.msg },
-    });
-  } catch (error) {
-    console.log(error.response.data.msg);
-    dispatch({
-      type: GLOBALTYPES.ALERT,
-      payload: { error: error.response.data.msg },
-    });
+      dispatch({
+        type: GLOBALTYPES.ALERT,
+        payload: { createListingSuccess: res.data.msg },
+      });
 
-    setTimeout(() => {
-      dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
-    }, 3000);
-  }
-};
+      dispatch({
+        type: GLOBALTYPES.LISTING_CALLBACK,
+        payload: !listing_callback,
+      });
+    } catch (error) {
+      console.log(error.response.data.msg);
+      dispatch({
+        type: GLOBALTYPES.ALERT,
+        payload: { error: error.response.data.msg },
+      });
+
+      setTimeout(() => {
+        dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+      }, 3000);
+    }
+  };
 
 // MY listings
 export const myListings = (token) => async (dispatch) => {

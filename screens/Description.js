@@ -58,105 +58,110 @@ const Description = () => {
     <View style={{ flex: 1, backgroundColor: colors.white }}>
       <CreateListingStatusBar navigation={navigation} />
 
-      <View style={styles.container}>
-        <Text style={styles.heading}>Property Description</Text>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        showsHorizontalScrollIndicator={false}
+      >
+        <View style={styles.container}>
+          <Text style={styles.heading}>Property Description</Text>
 
-        <View style={styles.country}>
-          <Text style={styles.selectHeading}>Choose Category</Text>
-          <Dropdown
-            style={[
-              styles.dropdown,
-              isFocus && { borderColor: colors.primary },
-            ]}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            iconStyle={styles.iconStyle}
-            data={categories}
-            search
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder={!isFocus ? "Select category" : "..."}
-            searchPlaceholder="Search..."
-            value={category}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
-            onChange={(item) => {
-              dispatch({ type: GLOBALTYPES.CATEGORY, payload: item.value });
-              setIsFocus(false);
-            }}
-          />
-        </View>
-
-        <View style={styles.country}>
-          <Text style={styles.selectHeading}>Add Price / Annum</Text>
-          <View style={styles.inputDiv}>
-            <TextInput
-              placeholder="Min #12,000"
-              style={styles.textInputs}
-              onChangeText={(text) =>
-                dispatch({
-                  type: GLOBALTYPES.PRICE,
-                  payload: strictAddComma(text),
-                })
-              }
-              value={price}
-              keyboardType="numeric"
+          <View style={styles.country}>
+            <Text style={styles.selectHeading}>Choose Category</Text>
+            <Dropdown
+              style={[
+                styles.dropdown,
+                isFocus && { borderColor: colors.primary },
+              ]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={categories}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder={!isFocus ? "Select category" : "..."}
+              searchPlaceholder="Search..."
+              value={category}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+              onChange={(item) => {
+                dispatch({ type: GLOBALTYPES.CATEGORY, payload: item.value });
+                setIsFocus(false);
+              }}
             />
           </View>
-        </View>
 
-        <View style={styles.country}>
-          <Text style={styles.selectHeading}>Add Description</Text>
-          <TextInput
-            placeholder="Property description"
-            onChangeText={(text) =>
-              dispatch({ type: GLOBALTYPES.DESCRIPTION, payload: text })
-            }
-            style={[
-              styles.addressInput,
-              isFocus && { borderColor: colors.primary },
-            ]}
-            value={description}
-            placeholderTextColor={colors.textLight}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
-            multiline={true}
-            numberOfLines={10}
-          />
-        </View>
+          <View style={styles.country}>
+            <Text style={styles.selectHeading}>Add Price / Annum</Text>
+            <View style={styles.inputDiv}>
+              <TextInput
+                placeholder="Min #12,000"
+                style={styles.textInputs}
+                onChangeText={(text) =>
+                  dispatch({
+                    type: GLOBALTYPES.PRICE,
+                    payload: strictAddComma(text),
+                  })
+                }
+                value={price}
+                keyboardType="numeric"
+              />
+            </View>
+          </View>
 
-        <View style={styles.country}>
-          <Text style={styles.selectHeading}>Youtube Link (Optional)</Text>
-          <TextInput
-            placeholder="Paste youtube video link here"
-            onChangeText={(text) =>
-              dispatch({ type: GLOBALTYPES.VIDEO, payload: text })
-            }
-            style={[
-              styles.textInputs,
-              isFocus && { borderColor: colors.primary },
-            ]}
-            value={video}
-            placeholderTextColor={colors.textLight}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
-          />
-        </View>
+          <View style={styles.country}>
+            <Text style={styles.selectHeading}>Add Description</Text>
+            <TextInput
+              placeholder="Property description"
+              onChangeText={(text) =>
+                dispatch({ type: GLOBALTYPES.DESCRIPTION, payload: text })
+              }
+              style={[
+                styles.addressInput,
+                isFocus && { borderColor: colors.primary },
+              ]}
+              value={description}
+              placeholderTextColor={colors.textLight}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+              multiline={true}
+              numberOfLines={10}
+            />
+          </View>
 
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.filterButton}
-          onPress={handleSubmit}
-        >
-          {loading ? (
-            <ActivityIndicator size="small" color={colors.white} />
-          ) : (
-            <Text style={styles.buttonText}>SAVE & CONTINUE</Text>
-          )}
-        </TouchableOpacity>
-      </View>
+          <View style={styles.country}>
+            <Text style={styles.selectHeading}>Youtube Link (Optional)</Text>
+            <TextInput
+              placeholder="Paste youtube video link here"
+              onChangeText={(text) =>
+                dispatch({ type: GLOBALTYPES.VIDEO, payload: text })
+              }
+              style={[
+                styles.textInputs,
+                isFocus && { borderColor: colors.primary },
+              ]}
+              value={video}
+              placeholderTextColor={colors.textLight}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+            />
+          </View>
+
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.filterButton}
+            onPress={handleSubmit}
+          >
+            {loading ? (
+              <ActivityIndicator size="small" color={colors.white} />
+            ) : (
+              <Text style={styles.buttonText}>SAVE & CONTINUE</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     </View>
   );
 };

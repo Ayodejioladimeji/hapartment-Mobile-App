@@ -74,7 +74,10 @@ const PropertyDetails = () => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
       <CreateListingStatusBar navigation={navigation} />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        showsHorizontalScrollIndicator={false}
+      >
         <View style={styles.container}>
           <Text style={styles.heading}>Property Details</Text>
 

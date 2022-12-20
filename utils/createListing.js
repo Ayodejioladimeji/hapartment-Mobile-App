@@ -28,7 +28,8 @@ const handleSubmit = async (
   imageSeven,
   setLoading,
   dispatch,
-  token
+  token,
+  listing_callback
 ) => {
   // validate the input
 
@@ -209,7 +210,7 @@ const handleSubmit = async (
     images: newImages,
   };
 
-  dispatch(createListing(newData, token));
+  dispatch(createListing(newData, token, listing_callback));
 
   setLoading(false);
 };

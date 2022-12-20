@@ -130,195 +130,200 @@ const BasicInformation = () => {
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
       <CreateListingStatusBar navigation={navigation} />
-      <View style={styles.container}>
-        <Text style={styles.heading}>Basic Information</Text>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        showsHorizontalScrollIndicator={false}
+      >
+        <View style={styles.container}>
+          <Text style={styles.heading}>Basic Information</Text>
 
-        <View style={styles.country}>
-          <Text style={styles.selectHeading}>Property Address</Text>
-          <TextInput
-            placeholder="12 Adeleke street lagos nigeria"
-            onChangeText={(text) =>
-              dispatch({ type: GLOBALTYPES.ADDRESS, payload: text })
-            }
-            style={[
-              styles.addressInput,
-              isFocus && { borderColor: colors.primary },
-            ]}
-            value={address}
-            placeholderTextColor={colors.textLight}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
-          />
+          <View style={styles.country}>
+            <Text style={styles.selectHeading}>Property Address</Text>
+            <TextInput
+              placeholder="12 Adeleke street lagos nigeria"
+              onChangeText={(text) =>
+                dispatch({ type: GLOBALTYPES.ADDRESS, payload: text })
+              }
+              style={[
+                styles.addressInput,
+                isFocus && { borderColor: colors.primary },
+              ]}
+              value={address}
+              placeholderTextColor={colors.textLight}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+            />
+          </View>
+
+          <View style={styles.country}>
+            <Text style={styles.selectHeading}>Select Property Type</Text>
+            <Dropdown
+              style={[
+                styles.dropdown,
+                isFocus && { borderColor: colors.primary },
+              ]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={propertyData}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder={!isFocus ? "Select property type" : "..."}
+              searchPlaceholder="Search..."
+              value={property_type}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+              onChange={(item) => {
+                dispatch({
+                  type: GLOBALTYPES.PROPERTY_TYPE,
+                  payload: item.value,
+                });
+
+                dispatch({
+                  type: GLOBALTYPES.BEDROOMS,
+                  payload:
+                    item.value === "Single Room"
+                      ? "singleroom"
+                      : item.value === "Room & Parlour"
+                      ? "room&parlour"
+                      : item.value === "Self Contain"
+                      ? "selfcontain"
+                      : item.value === "Room & Parlour Self Contain"
+                      ? "1"
+                      : item.value === "2 Bedroom Flat"
+                      ? "2"
+                      : item.value === "3 Bedroom Flat"
+                      ? "3"
+                      : item.value === "4 Bedroom Flat"
+                      ? "4"
+                      : "5",
+                });
+                setIsFocus(false);
+              }}
+            />
+          </View>
+
+          <View style={styles.country}>
+            <Text style={styles.selectHeading}>Select Country</Text>
+            <Dropdown
+              style={[
+                styles.dropdown,
+                isFocus && { borderColor: colors.primary },
+              ]}
+              placeholderStyle={styles.placeholderStyle}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={countries}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder="Select country"
+              searchPlaceholder="Search..."
+              value={country}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+              onChange={(item) => {
+                dispatch({ type: GLOBALTYPES.COUNTRY, payload: item.value });
+                handleState(item.value);
+                console.log(item.value);
+                setIsFocus(false);
+              }}
+            />
+          </View>
+
+          <View style={styles.states}>
+            <Text style={styles.selectHeading}>Select State </Text>
+
+            <Dropdown
+              style={[
+                styles.dropdown,
+                isFocus && { borderColor: colors.primary },
+              ]}
+              placeholderStyle={[
+                styles.placeholderStyle,
+                state !== "" && { color: colors.black },
+              ]}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={stateData}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder={
+                state === ""
+                  ? "Select state"
+                  : stateloading
+                  ? "loading"
+                  : statename
+              }
+              searchPlaceholder="Search..."
+              value={state}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+              onChange={(item) => {
+                dispatch({ type: GLOBALTYPES.STATE, payload: item.value });
+                dispatch({ type: GLOBALTYPES.STATE_NAME, payload: item.label });
+                handleCity(country, item.value);
+                // handleState(country);
+                setIsFocus(false);
+              }}
+            />
+          </View>
+
+          <View style={styles.city}>
+            <Text style={styles.selectHeading}>Select City</Text>
+            <Dropdown
+              style={[
+                styles.dropdown,
+                isFocus && { borderColor: colors.primary },
+              ]}
+              placeholderStyle={[
+                styles.placeholderStyle,
+                city !== "" && { color: colors.black },
+              ]}
+              selectedTextStyle={styles.selectedTextStyle}
+              inputSearchStyle={styles.inputSearchStyle}
+              iconStyle={styles.iconStyle}
+              data={cityData}
+              search
+              maxHeight={300}
+              labelField="label"
+              valueField="value"
+              placeholder={
+                city === "" ? "Select city" : cityloading ? "loading" : cityname
+              }
+              searchPlaceholder="Search..."
+              value={city}
+              onFocus={() => setIsFocus(true)}
+              onBlur={() => setIsFocus(false)}
+              onChange={(item) => {
+                dispatch({ type: GLOBALTYPES.CITY, payload: item.value });
+                dispatch({ type: GLOBALTYPES.CITY_NAME, payload: item.label });
+                setIsFocus(false);
+              }}
+            />
+          </View>
+
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.filterButton}
+            onPress={handleSubmit}
+          >
+            {loading ? (
+              <ActivityIndicator size="small" color={colors.white} />
+            ) : (
+              <Text style={styles.buttonText}>SAVE & CONTINUE</Text>
+            )}
+          </TouchableOpacity>
         </View>
-
-        <View style={styles.country}>
-          <Text style={styles.selectHeading}>Select Property Type</Text>
-          <Dropdown
-            style={[
-              styles.dropdown,
-              isFocus && { borderColor: colors.primary },
-            ]}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            iconStyle={styles.iconStyle}
-            data={propertyData}
-            search
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder={!isFocus ? "Select property type" : "..."}
-            searchPlaceholder="Search..."
-            value={property_type}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
-            onChange={(item) => {
-              dispatch({
-                type: GLOBALTYPES.PROPERTY_TYPE,
-                payload: item.value,
-              });
-
-              dispatch({
-                type: GLOBALTYPES.BEDROOMS,
-                payload:
-                  item.value === "Single Room"
-                    ? "singleroom"
-                    : item.value === "Room & Parlour"
-                    ? "room&parlour"
-                    : item.value === "Self Contain"
-                    ? "selfcontain"
-                    : item.value === "Room & Parlour Self Contain"
-                    ? "room&parlourselfcontain"
-                    : item.value === "2 Bedroom Flat"
-                    ? "2"
-                    : item.value === "3 Bedroom Flat"
-                    ? "3"
-                    : item.value === "4 Bedroom Flat"
-                    ? "4"
-                    : "5",
-              });
-              setIsFocus(false);
-            }}
-          />
-        </View>
-
-        <View style={styles.country}>
-          <Text style={styles.selectHeading}>Select Country</Text>
-          <Dropdown
-            style={[
-              styles.dropdown,
-              isFocus && { borderColor: colors.primary },
-            ]}
-            placeholderStyle={styles.placeholderStyle}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            iconStyle={styles.iconStyle}
-            data={countries}
-            search
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder="Select country"
-            searchPlaceholder="Search..."
-            value={country}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
-            onChange={(item) => {
-              dispatch({ type: GLOBALTYPES.COUNTRY, payload: item.value });
-              handleState(item.value);
-              console.log(item.value);
-              setIsFocus(false);
-            }}
-          />
-        </View>
-
-        <View style={styles.states}>
-          <Text style={styles.selectHeading}>Select State </Text>
-
-          <Dropdown
-            style={[
-              styles.dropdown,
-              isFocus && { borderColor: colors.primary },
-            ]}
-            placeholderStyle={[
-              styles.placeholderStyle,
-              state !== "" && { color: colors.black },
-            ]}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            iconStyle={styles.iconStyle}
-            data={stateData}
-            search
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder={
-              state === ""
-                ? "Select state"
-                : stateloading
-                ? "loading"
-                : statename
-            }
-            searchPlaceholder="Search..."
-            value={state}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
-            onChange={(item) => {
-              dispatch({ type: GLOBALTYPES.STATE, payload: item.value });
-              dispatch({ type: GLOBALTYPES.STATE_NAME, payload: item.label });
-              handleCity(country, item.value);
-              // handleState(country);
-              setIsFocus(false);
-            }}
-          />
-        </View>
-
-        <View style={styles.city}>
-          <Text style={styles.selectHeading}>Select City</Text>
-          <Dropdown
-            style={[
-              styles.dropdown,
-              isFocus && { borderColor: colors.primary },
-            ]}
-            placeholderStyle={[
-              styles.placeholderStyle,
-              city !== "" && { color: colors.black },
-            ]}
-            selectedTextStyle={styles.selectedTextStyle}
-            inputSearchStyle={styles.inputSearchStyle}
-            iconStyle={styles.iconStyle}
-            data={cityData}
-            search
-            maxHeight={300}
-            labelField="label"
-            valueField="value"
-            placeholder={
-              city === "" ? "Select city" : cityloading ? "loading" : cityname
-            }
-            searchPlaceholder="Search..."
-            value={city}
-            onFocus={() => setIsFocus(true)}
-            onBlur={() => setIsFocus(false)}
-            onChange={(item) => {
-              dispatch({ type: GLOBALTYPES.CITY, payload: item.value });
-              dispatch({ type: GLOBALTYPES.CITY_NAME, payload: item.label });
-              setIsFocus(false);
-            }}
-          />
-        </View>
-
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.filterButton}
-          onPress={handleSubmit}
-        >
-          {loading ? (
-            <ActivityIndicator size="small" color={colors.white} />
-          ) : (
-            <Text style={styles.buttonText}>SAVE & CONTINUE</Text>
-          )}
-        </TouchableOpacity>
-      </View>
+      </ScrollView>
     </View>
   );
 };

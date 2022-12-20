@@ -47,6 +47,7 @@ const ListProperty = ({ navigation }) => {
   } = useSelector((state) => state.listing);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const { listing_callback } = useSelector((state) => state.listing);
 
   //
 
@@ -78,7 +79,8 @@ const ListProperty = ({ navigation }) => {
       imageSeven,
       setLoading,
       dispatch,
-      token
+      token,
+      listing_callback
     );
   };
 

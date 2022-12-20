@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Platform,
   TouchableOpacity,
+  TouchableWithoutFeedback,
 } from "react-native";
 import React from "react";
 import {
@@ -36,12 +37,10 @@ const SearchCard = ({ item }) => {
 
   //
   return (
-    <View>
-      <TouchableOpacity
-        activeOpacity={0.7}
-        style={styles.cardsWrapper}
-        onPress={() => navigation.navigate("DetailsScreen", { item })}
-      >
+    <TouchableWithoutFeedback
+      onPress={() => navigation.navigate("DetailsScreen", { item })}
+    >
+      <View style={styles.cardsWrapper}>
         <View style={styles.imagesWrapper}>
           <Image source={{ uri: images[0].url }} style={styles.cardImage} />
 
@@ -95,8 +94,8 @@ const SearchCard = ({ item }) => {
             </Text>
           </View>
         </View>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 

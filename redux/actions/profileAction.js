@@ -57,7 +57,7 @@ export const identity = (data, token) => async (dispatch) => {
 // Get all agent
 export const allAgent = () => async (dispatch) => {
   try {
-    dispatch({ type: GLOBALTYPES.LOADING, payload: { allagentloading: true } });
+    // dispatch({ type: GLOBALTYPES.LOADING, payload: { allagentloading: true } });
 
     const res = await getDataApis("/all_agents");
 

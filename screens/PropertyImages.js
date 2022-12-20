@@ -108,9 +108,6 @@ const PropertyImages = () => {
         <View style={styles.container}>
           <Text style={styles.heading}>Add Property Images</Text>
           <Text style={styles.subheading}>Select seven (7) images</Text>
-          <Text style={styles.subheading}>
-            Make sure your first image should be the front view of the property
-          </Text>
 
           <TouchableOpacity
             onPress={() => chooseImageOne(dispatch, setLoadingOne)}

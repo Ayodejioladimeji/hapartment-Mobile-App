@@ -24,12 +24,10 @@ const Cards = ({ item, navigation }) => {
   const bed = item.property_type.split(" ")[0];
   //
   return (
-    <View>
-      <TouchableOpacity
-        activeOpacity={0.7}
-        style={styles.cardWrapper}
-        onPress={() => navigation.navigate("DetailsScreen", { item })}
-      >
+    <TouchableWithoutFeedback
+      onPress={() => navigation.navigate("DetailsScreen", { item })}
+    >
+      <View style={styles.cardWrapper}>
         <View style={styles.imageWrapper}>
           <Image
             source={{ uri: item.images[0].url }}
@@ -83,8 +81,8 @@ const Cards = ({ item, navigation }) => {
             </Text>
           </View>
         </View>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
