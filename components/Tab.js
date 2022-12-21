@@ -93,7 +93,7 @@ const Tab = ({ params }) => {
               <View style={styles.descriptionWrapper}>
                 <Text style={styles.description}>Furnishing</Text>
                 <Text style={styles.content}>
-                  Property is
+                  Property is{" "}
                   <Text style={{ color: colors.primary }}>{furnishing}</Text>
                 </Text>
               </View>
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   contents: {
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     display: "none",
     marginBottom: 20,
   },
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   },
 
   descriptionWrapper: {
-    marginHorizontal: 10,
+    marginHorizontal: 5,
     marginTop: 20,
     padding: 15,
     borderWidth: 0.3,

@@ -36,23 +36,13 @@ import Tab from "../components/Tab";
 
 const DetailsScreen = ({ route }) => {
   const navigation = useNavigation();
-  const { token } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
   const {
     address,
     property_type,
-    country,
-    acquired,
-    statename,
-    cityname,
     bedrooms,
     bathrooms,
     toilets,
-    furnishing,
-    home_facilities,
-    area_facilities,
     price,
-    description,
     images,
     postedBy,
     updatedAt,
@@ -154,7 +144,7 @@ const DetailsScreen = ({ route }) => {
 
         {/* report listing */}
         <View style={styles.reportWrapper}>
-          <Octicons name="megaphone" size={16} color="red" />
+          <Octicons name="megaphone" size={14} color="red" />
           <Text style={styles.reportText}>Report Listing</Text>
         </View>
 
@@ -380,6 +370,7 @@ const styles = StyleSheet.create({
   reportText: {
     color: "red",
     marginLeft: 5,
+    fontFamily: "NunitoSans-Regular",
   },
   agentWrapper: {
     height: 100,

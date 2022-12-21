@@ -6,6 +6,8 @@ import {
   Animated,
   Dimensions,
   Text,
+  Platform,
+  SafeAreaView,
 } from "react-native";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/native";
@@ -19,7 +21,7 @@ const { width, height } = Dimensions.get("window");
 
 const FullscreenModal = ({ full_image }) => {
   const image = [{ url: full_image }];
-  console.log(image);
+
   const scaleValue = React.useRef(new Animated.Value(0)).current;
   const navigation = useNavigation();
   const dispatch = useDispatch();
@@ -75,20 +77,21 @@ const styles = StyleSheet.create({
   modalBackGround: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.5)",
-    justifyContent: "center",
-    alignItems: "center",
   },
   modalContainer: {
     backgroundColor: colors.black,
     width: "100%",
     flex: 1,
+    position: "relative",
   },
 
   times: {
     color: colors.white,
     fontSize: 15,
-    marginTop: 30,
+    paddingTop: 30,
     alignSelf: "center",
-    color: "red",
+    zIndex: 1,
+    positon: "absolute",
+    top: 50,
   },
 });
