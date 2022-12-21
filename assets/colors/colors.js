@@ -6,7 +6,7 @@ const colors = {
   textLight: "#7c7c7c",
   textLighter: "#9ca0a8",
   white: "#fff",
-  black: "#1a2028",
+  black: "#000000",
   light: "#0f15100c",
 };
 

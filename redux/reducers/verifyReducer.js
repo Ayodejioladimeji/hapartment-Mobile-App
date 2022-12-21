@@ -37,6 +37,7 @@ const verifyReducer = (state = initialState, action) => {
         ...state,
         identity_mobile: payload,
       };
+
     case GLOBALTYPES.VERIFY:
       return payload;
 

@@ -29,6 +29,7 @@ const initialState = {
   my_listings: [],
   all_listings: [],
   list_details: {},
+  full_image: null,
 };
 
 //
@@ -176,6 +177,11 @@ const listingReducer = (state = initialState, action) => {
       return {
         ...state,
         imageSeven: payload,
+      };
+    case GLOBALTYPES.FULL_IMAGE:
+      return {
+        ...state,
+        full_image: payload,
       };
 
     default:

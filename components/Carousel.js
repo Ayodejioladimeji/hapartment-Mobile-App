@@ -1,22 +1,39 @@
-import React from "react";
-import { Image, StyleSheet, FlatList, View, Dimensions } from "react-native";
+import React, { useState } from "react";
+import {
+  Image,
+  StyleSheet,
+  FlatList,
+  View,
+  Dimensions,
+  TouchableWithoutFeedback,
+} from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 
 const { width } = Dimensions.get("window");
 import colors from "../assets/colors/colors";
+import FullscreenModal from "../common/FullscreenModal";
+import { GLOBALTYPES } from "../redux/actions/globalTypes";
 
 //
 
 const Slide = ({ item }) => {
+  const dispatch = useDispatch();
+  //
   return (
-    <View>
+    <TouchableWithoutFeedback
+      onPress={() =>
+        dispatch({ type: GLOBALTYPES.FULL_IMAGE, payload: item.url })
+      }
+    >
       <Image source={{ uri: item.url }} style={styles.image} />
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
 const Carousel = ({ images }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
   const ref = React.useRef();
+  const { full_image } = useSelector((state) => state.listing);
 
   const updateCurrentSlideIndex = (e) => {
     const contentOffsetX = e.nativeEvent.contentOffset.x;
@@ -63,7 +80,17 @@ const Carousel = ({ images }) => {
         pagingEnabled
         renderItem={({ item }) => <Slide item={item} />}
       />
+
       <Footer />
+
+      {full_image !== null && (
+        <FullscreenModal
+          images={images}
+          index={currentSlideIndex}
+          full_image={full_image}
+          updateCurrentSlideIndex={updateCurrentSlideIndex}
+        />
+      )}
     </View>
   );
 };
