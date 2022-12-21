@@ -9,6 +9,7 @@ import {
   Platform,
   ActivityIndicator,
   TouchableWithoutFeedback,
+  Linking,
 } from "react-native";
 import React, { useState } from "react";
 import colors from "../assets/colors/colors";
@@ -19,7 +20,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/actions/authAction";
 import Navigate from "../common/Navigate";
 import GoBack from "../common/GoBack";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { A } from "@expo/html-elements";
 
 // VALIDATION REGEX
 const passwordUpper = /(?=.*[A-Z])/;
@@ -173,6 +175,23 @@ const Login = () => {
                     </View>
                   </TouchableWithoutFeedback>
                 </View>
+
+                <View style={styles.helpWrapper}>
+                  <Text style={styles.helpHeading}>Neep Help ? Contact Us</Text>
+                  <TouchableOpacity
+                    style={styles.helpBox}
+                    onPress={() =>
+                      Linking.openURL("mailto:support@hapartment.org")
+                    }
+                  >
+                    <MaterialCommunityIcons
+                      name="email-outline"
+                      size={24}
+                      color={colors.primary}
+                    />
+                    <Text style={styles.helpText}>support@hapartment.org</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             </ScrollView>
           </View>
@@ -276,5 +295,27 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     width: "90%",
     textAlign: "center",
+  },
+  helpWrapper: {
+    marginTop: 40,
+    marginHorizontal: 20,
+    backgroundColor: colors.light,
+    height: 100,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  helpHeading: {
+    fontSize: 16,
+    fontFamily: "NunitoSans-Regular",
+  },
+  helpBox: {
+    flexDirection: "row",
+    marginTop: 20,
+    alignItems: "center",
+  },
+  helpText: {
+    textDecorationLine: "underline",
+    color: colors.primary,
+    fontSize: 15,
   },
 });

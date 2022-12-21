@@ -20,6 +20,7 @@ import {
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
+  Octicons,
 } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/native";
@@ -150,6 +151,12 @@ const DetailsScreen = ({ route }) => {
             />
           </View>
         </View> */}
+
+        {/* report listing */}
+        <View style={styles.reportWrapper}>
+          <Octicons name="megaphone" size={16} color="red" />
+          <Text style={styles.reportText}>Report Listing</Text>
+        </View>
 
         {/* Agent section */}
         <View style={styles.agentWrapper}>
@@ -357,6 +364,22 @@ const styles = StyleSheet.create({
     // alignSelf: "center",
     height: 60,
     width: 180,
+  },
+  reportWrapper: {
+    padding: 12,
+    borderWidth: 0.3,
+    borderColor: "red",
+    alignItems: "center",
+    color: colors.textLight,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 20,
+    marginTop: 40,
+    flexDirection: "row",
+  },
+  reportText: {
+    color: "red",
+    marginLeft: 5,
   },
   agentWrapper: {
     height: 100,

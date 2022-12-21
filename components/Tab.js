@@ -91,14 +91,17 @@ const Tab = ({ params }) => {
 
               {/* Facilities section */}
               <View style={styles.descriptionWrapper}>
-                <Text style={styles.description}>furnishing</Text>
-                <Text style={styles.content}>*{furnishing}</Text>
+                <Text style={styles.description}>Furnishing</Text>
+                <Text style={styles.content}>
+                  Property is
+                  <Text style={{ color: colors.primary }}>{furnishing}</Text>
+                </Text>
               </View>
             </>
           )}
 
           {/* Conent Tab Two */}
-          {toggleState == 2 && (
+          {toggleState === 2 && (
             <View>
               <Text>View on map</Text>
             </View>

@@ -101,7 +101,14 @@ const ListProperty = ({ navigation }) => {
             <View style={styles.textView}>
               <Text style={styles.heading}>List Your Property</Text>
               <Text style={styles.subheading}>
-                Follow the instructions below to list your property
+                Follow the instructions{" "}
+                <Text
+                  onPress={() => navigation.navigate("HowTo")}
+                  style={{ color: colors.primary, fontWeight: "bold" }}
+                >
+                  here
+                </Text>{" "}
+                to list your property
               </Text>
 
               {/* <View style={styles.download}>
@@ -391,7 +398,7 @@ const styles = StyleSheet.create({
   },
   subheading: {
     fontSize: Platform.OS === "ios" ? 15 : 13,
-    color: colors.primary,
+    color: colors.textLight,
     textAlign: "center",
     // paddingHorizontal: 10,
   },
