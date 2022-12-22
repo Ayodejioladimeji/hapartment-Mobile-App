@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 const LagosListings = () => {
   const navigation = useNavigation();
-  const { all_listings } = useSelector((state) => state.listing);
+  const { all_listings } = useSelector((state) => state.property);
 
   // Filter through the array to get featured content
   const featuredApartment = all_listings.filter(

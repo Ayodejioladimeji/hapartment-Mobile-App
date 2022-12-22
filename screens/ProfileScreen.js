@@ -50,6 +50,7 @@ const ProfileScreen = ({ navigation }) => {
     AsyncStorage.removeItem("access_token");
     dispatch({ type: GLOBALTYPES.TOKEN, payload: "" });
     dispatch({ type: GLOBALTYPES.USER, payload: {} });
+    dispatch({ type: GLOBALTYPES.RESET_LISTING, payload: {} });
   };
 
   //

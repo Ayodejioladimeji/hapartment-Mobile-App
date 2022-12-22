@@ -34,8 +34,6 @@ const BasicInformation = () => {
   const [stateData, setStateData] = useState([]);
   const [cityData, setCityData] = useState([]);
   const [isFocus, setIsFocus] = useState(false);
-  const [propertyType, setPropertyType] = useState(null);
-  // const [address, setAddress] = useState("");
   const [loading, setLoading] = useState(false);
   const [stateloading, setStateloading] = useState(false);
   const [cityloading, setCityloading] = useState(false);
@@ -103,12 +101,10 @@ const BasicInformation = () => {
       });
   };
 
-  console.log(country, state, city);
-
   const handleSubmit = () => {
     if (
       address === "" ||
-      propertyType === "" ||
+      property_type === "" ||
       country === "" ||
       state === "" ||
       city === ""
@@ -230,7 +226,6 @@ const BasicInformation = () => {
               onChange={(item) => {
                 dispatch({ type: GLOBALTYPES.COUNTRY, payload: item.value });
                 handleState(item.value);
-                console.log(item.value);
                 setIsFocus(false);
               }}
             />

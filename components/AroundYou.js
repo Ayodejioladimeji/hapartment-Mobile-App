@@ -11,7 +11,7 @@ import Cards from "../common/Cards";
 
 const AroundYou = ({ data }) => {
   const navigation = useNavigation();
-  const { all_listings } = useSelector((state) => state.listing);
+  const { all_listings } = useSelector((state) => state.property);
   const dispatch = useDispatch();
 
   // Filter through the array to get featured content

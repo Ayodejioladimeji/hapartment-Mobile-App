@@ -26,7 +26,7 @@ import { useDispatch, useSelector } from "react-redux";
 //
 
 const HomeScreen = ({ navigation }) => {
-  const { all_listings } = useSelector((state) => state.listing);
+  const { all_listings } = useSelector((state) => state.property);
   const { alllistingloading } = useSelector((state) => state.loading);
   // initialize font family
   const [fontsLoaded] = useFonts({

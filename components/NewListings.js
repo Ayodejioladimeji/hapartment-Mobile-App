@@ -11,7 +11,7 @@ import Cards from "../common/Cards";
 
 const NewListings = () => {
   const navigation = useNavigation();
-  const { all_listings } = useSelector((state) => state.listing);
+  const { all_listings } = useSelector((state) => state.property);
 
   // Filter through the array to get new listings
   const newApartment = all_listings.filter(
