@@ -34,14 +34,26 @@ import PropertyImages from "./screens/PropertyImages";
 import CreateListings from "./screens/CreateListings";
 import HowTo from "./screens/HowTo";
 import FetchApi from "./api/FetchApi";
-
+import NetInfo from "@react-native-community/netinfo";
+import { checkConnected } from "./utils/function";
+import NoConnectionScreen from "./screens/NoConnectionScreen";
 const Stack = createStackNavigator();
 
 //
 
 function App() {
   const [showOnboard, setShowOnboard] = useState(null);
-  //
+  const [connectStatus, setConnectStatus] = useState(false);
+
+  useEffect(() => {
+    const data = NetInfo.addEventListener((state) => {
+      setConnectStatus(state.isConnected);
+    });
+
+    return () => {
+      data();
+    };
+  }, [connectStatus]);
 
   useEffect(() => {
     const getItem = async () => {
@@ -61,80 +73,79 @@ function App() {
 
   //
 
-  return (
-    showOnboard !== null && (
-      <DataProvider>
-        <NavigationContainer>
-          <Alert />
-          <FetchApi />
+  return connectStatus ? (
+    // showOnboard !== null && (
+    <DataProvider>
+      <NavigationContainer>
+        <Alert />
+        <FetchApi />
 
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            {showOnboard && (
-              <Stack.Screen name="Onboarding" component={Onboarding} />
-            )}
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          {showOnboard && (
+            <Stack.Screen name="Onboarding" component={Onboarding} />
+          )}
 
-            <Stack.Screen name="RootHome" component={RootHome} />
-            {/* <Stack.Screen name="WhoAreYou" component={WhoAreYou} /> */}
-            <Stack.Screen name="Register" component={Register} />
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="OneTimeCode" component={OneTimeCode} />
+          <Stack.Screen name="RootHome" component={RootHome} />
+          {/* <Stack.Screen name="WhoAreYou" component={WhoAreYou} /> */}
+          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="OneTimeCode" component={OneTimeCode} />
 
-            <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-            <Stack.Screen name="ResetPassword" component={ResetPassword} />
+          <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+          <Stack.Screen name="ResetPassword" component={ResetPassword} />
 
-            <Stack.Screen
-              name="EditProfileScreen"
-              component={EditProfileScreen}
-            />
+          <Stack.Screen
+            name="EditProfileScreen"
+            component={EditProfileScreen}
+          />
 
-            <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
-            <Stack.Screen
-              name="AgentDetailsScreen"
-              component={AgentDetailsScreen}
-            />
-            <Stack.Screen
-              name="LandlordProfileScreen"
-              component={LandlordProfileScreen}
-            />
-            <Stack.Screen name="FilterScreen" component={FilterScreen} />
-            <Stack.Screen
-              name="MyPropertiesScreen"
-              component={MyPropertiesScreen}
-            />
-            <Stack.Screen
-              name="SavedPropertiesScreen"
-              component={SavedPropertiesScreen}
-            />
-            <Stack.Screen
-              name="ChangePasswordScreen"
-              component={ChangePasswordScreen}
-            />
-            <Stack.Screen
-              name="NotificationScreen"
-              component={NotificationScreen}
-            />
-            <Stack.Screen name="IdentityOne" component={IdentityOne} />
-            <Stack.Screen name="Identity" component={Identity} />
-            <Stack.Screen name="IdentityTwo" component={IdentityTwo} />
-            <Stack.Screen name="IdentityThree" component={IdentityThree} />
-            <Stack.Screen name="ListProperty" component={ListProperty} />
-            <Stack.Screen
-              name="BasicInformation"
-              component={BasicInformation}
-            />
-            <Stack.Screen name="PropertyDetails" component={PropertyDetails} />
-            <Stack.Screen name="Description" component={Description} />
-            <Stack.Screen name="PropertyImages" component={PropertyImages} />
-            <Stack.Screen name="CreateListings" component={CreateListings} />
-            <Stack.Screen name="HowTo" component={HowTo} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </DataProvider>
-    )
+          <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
+          <Stack.Screen
+            name="AgentDetailsScreen"
+            component={AgentDetailsScreen}
+          />
+          <Stack.Screen
+            name="LandlordProfileScreen"
+            component={LandlordProfileScreen}
+          />
+          <Stack.Screen name="FilterScreen" component={FilterScreen} />
+          <Stack.Screen
+            name="MyPropertiesScreen"
+            component={MyPropertiesScreen}
+          />
+          <Stack.Screen
+            name="SavedPropertiesScreen"
+            component={SavedPropertiesScreen}
+          />
+          <Stack.Screen
+            name="ChangePasswordScreen"
+            component={ChangePasswordScreen}
+          />
+          <Stack.Screen
+            name="NotificationScreen"
+            component={NotificationScreen}
+          />
+          <Stack.Screen name="IdentityOne" component={IdentityOne} />
+          <Stack.Screen name="Identity" component={Identity} />
+          <Stack.Screen name="IdentityTwo" component={IdentityTwo} />
+          <Stack.Screen name="IdentityThree" component={IdentityThree} />
+          <Stack.Screen name="ListProperty" component={ListProperty} />
+          <Stack.Screen name="BasicInformation" component={BasicInformation} />
+          <Stack.Screen name="PropertyDetails" component={PropertyDetails} />
+          <Stack.Screen name="Description" component={Description} />
+          <Stack.Screen name="PropertyImages" component={PropertyImages} />
+          <Stack.Screen name="CreateListings" component={CreateListings} />
+          <Stack.Screen name="HowTo" component={HowTo} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </DataProvider>
+  ) : (
+    // )
+    <NoConnectionScreen />
   );
 }
 

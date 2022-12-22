@@ -79,6 +79,7 @@ export const allListings = () => async (dispatch) => {
       dispatch({ type: GLOBALTYPES.LOADING, payload: {} });
     }, 3000);
   } catch (error) {
+    console.log(error);
     dispatch({
       type: GLOBALTYPES.ALERT,
       payload: { error: error.response.data.msg },
