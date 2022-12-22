@@ -12,7 +12,6 @@ import { useNavigation } from "@react-navigation/native";
 import colors from "../assets/colors/colors";
 import { FontAwesome5 } from "@expo/vector-icons";
 import SearchCard from "../common/SearchCard";
-import data from "../constants/dataa";
 import { useEffect } from "react";
 import { agentDetails } from "../redux/actions/profileAction";
 import { useDispatch, useSelector } from "react-redux";

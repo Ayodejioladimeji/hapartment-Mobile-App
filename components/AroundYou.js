@@ -2,7 +2,6 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
 import Card from "../common/Card";
 import colors from "../assets/colors/colors";
-import data from "../constants/dataa";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { allListings } from "../redux/actions/listingAction";

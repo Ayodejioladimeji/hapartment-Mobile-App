@@ -2,7 +2,6 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import Card from "../common/Card";
 import colors from "../assets/colors/colors";
-import data from "../constants/dataa";
 // import fontsize from "../assets/fontsize/fontsize";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";

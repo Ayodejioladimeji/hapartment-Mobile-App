@@ -83,14 +83,7 @@ const Carousel = ({ images }) => {
 
       <Footer />
 
-      {full_image !== null && (
-        <FullscreenModal
-          images={images}
-          index={currentSlideIndex}
-          full_image={full_image}
-          updateCurrentSlideIndex={updateCurrentSlideIndex}
-        />
-      )}
+      {full_image !== null && <FullscreenModal full_image={full_image} />}
     </View>
   );
 };

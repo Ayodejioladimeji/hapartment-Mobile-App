@@ -19,7 +19,6 @@ import LagosListings from "../components/LagosListings";
 import NewListings from "../components/NewListings";
 import SearchComponent from "../components/SearchComponent";
 import SearchCard from "../common/SearchCard";
-import data from "../constants/dataa";
 import UserApi from "../api/UserApi";
 import { myListings } from "../redux/actions/listingAction";
 import { useDispatch, useSelector } from "react-redux";

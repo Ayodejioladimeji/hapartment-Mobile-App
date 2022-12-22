@@ -7,7 +7,6 @@ import {
 } from "react-native";
 import React, { useEffect } from "react";
 import Search from "../components/Search";
-import data from "../constants/dataa";
 import SearchCard from "../common/SearchCard";
 import colors from "../assets/colors/colors";
 import GoBack from "../common/GoBack";

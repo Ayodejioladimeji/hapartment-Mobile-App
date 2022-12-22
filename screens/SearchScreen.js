@@ -2,7 +2,6 @@ import { View, Text, ScrollView, SafeAreaView, StyleSheet } from "react-native";
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import Search from "../components/Search";
-import data from "../constants/dataa";
 import SearchCard from "../common/SearchCard";
 import colors from "../assets/colors/colors";
 // import fontsize from "../assets/fontsize/fontsize";
