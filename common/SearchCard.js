@@ -61,8 +61,15 @@ const SearchCard = ({ item }) => {
         <View style={styles.imagesWrapper}>
           <Image source={{ uri: images[0].url }} style={styles.cardImage} />
 
-          <View style={styles.verify}>
-            <Text style={styles.verifyText}>Verified</Text>
+          <View
+            style={[
+              styles.verify,
+              status === "pending" && { backgroundColor: "orange" },
+            ]}
+          >
+            <Text style={styles.verifyText}>
+              {status === "pending" ? "Pending" : "Verified"}
+            </Text>
           </View>
 
           <TouchableOpacity
@@ -224,7 +231,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     justifyContent: "center",
-    borderTopRightRadius: 30,
+    // borderTopRightRadius: 30,
   },
   verifyText: {
     color: colors.white,

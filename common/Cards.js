@@ -51,8 +51,15 @@ const Cards = ({ item, navigation }) => {
             source={{ uri: item.images[0].url }}
             style={styles.cardImage}
           />
-          <View style={styles.verify}>
-            <Text style={styles.verifyText}>Verified</Text>
+          <View
+            style={[
+              styles.verify,
+              item.status === "pending" && { backgroundColor: "orange" },
+            ]}
+          >
+            <Text style={styles.verifyText}>
+              {item.status === "pending" ? "Pending" : "Verified"}
+            </Text>
           </View>
 
           <TouchableOpacity
@@ -204,7 +211,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     justifyContent: "center",
-    borderTopRightRadius: 30,
+    // borderTopRightRadius: 30,
   },
   verifyText: {
     color: colors.white,
