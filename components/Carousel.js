@@ -33,7 +33,7 @@ const Slide = ({ item }) => {
 const Carousel = ({ images }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
   const ref = React.useRef();
-  const { full_image } = useSelector((state) => state.listing);
+  const { full_image } = useSelector((state) => state.property);
 
   const updateCurrentSlideIndex = (e) => {
     const contentOffsetX = e.nativeEvent.contentOffset.x;

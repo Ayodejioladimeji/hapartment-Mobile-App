@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   },
   explore: {
     marginHorizontal: 15,
-    marginBottom: 200,
+    marginBottom: 100,
   },
   exploreText: {
     marginBottom: 10,

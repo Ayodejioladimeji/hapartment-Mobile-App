@@ -17,19 +17,8 @@ import { FlatList } from "react-native-gesture-handler";
 //
 
 const MyPropertiesScreen = ({ navigation }) => {
-  const { token } = useSelector((state) => state.auth);
-  const { listing_callback, my_listings } = useSelector(
-    (state) => state.listing
-  );
+  const { my_listings } = useSelector((state) => state.property);
   const { mylistingloading } = useSelector((state) => state.loading);
-  const dispatch = useDispatch();
-
-  // get my properties
-  useEffect(() => {
-    if (token) {
-      dispatch(myListings(token));
-    }
-  }, [dispatch, token]);
 
   //
   return (

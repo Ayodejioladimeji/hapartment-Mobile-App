@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GLOBALTYPES } from "../redux/actions/globalTypes";
 import { getDataApi } from "../utils/fetchData";
+import { myListings } from "../redux/actions/listingAction";
 
 const UserApi = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,12 @@ const UserApi = () => {
       getData();
     }
   }, [token, profile_callback]);
+
+  useEffect(() => {
+    if (token !== "") {
+      dispatch(myListings(token));
+    }
+  }, [dispatch, token]);
 
   return <View></View>;
 };
