@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import {
   getDataApi,
   getDataApis,
@@ -114,6 +115,53 @@ export const listDetails = () => async (dispatch) => {
 
     setTimeout(() => {
       dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+    }, 3000);
+  }
+};
+
+// Save Properties
+export const saveProperties = (data, token, callback) => async (dispatch) => {
+  try {
+    const res = await postDataApis("/save_favorite", data, token);
+    Alert.alert(res.data.msg);
+    dispatch({ type: GLOBALTYPES.ALERT, payload: !callback });
+
+    dispatch({
+      type: GLOBALTYPES.CALLBACK,
+      payload: !callback,
+    });
+  } catch (error) {
+    console.log(error.response.data.msg);
+    Alert.alert(error.response.data.msg);
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+    }, 3000);
+  }
+};
+
+// Get Saved Properties
+export const getSavedProperties = (token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GLOBALTYPES.LOADING,
+      payload: { getfavoriteloading: true },
+    });
+
+    const res = await getDataApi("/get_favorite", token);
+
+    dispatch({ type: GLOBALTYPES.SAVED_PROPERTIES, payload: res.data });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.LOADING, payload: {} });
+    }, 3000);
+  } catch (error) {
+    console.log(error.response.data.msg);
+    Alert.alert(error.response.data.msg);
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+      dispatch({ type: GLOBALTYPES.LOADING, payload: {} });
     }, 3000);
   }
 };

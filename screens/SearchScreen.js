@@ -8,11 +8,12 @@ import colors from "../assets/colors/colors";
 import MyStatusBar from "../common/MyStatusBar";
 import GoBack from "../common/GoBack";
 import { useSelector } from "react-redux";
+import Loading from "../common/Loading";
 
 //
 
 const SearchScreen = ({ navigation }) => {
-  const { all_listings } = useSelector((state) => state.listing);
+  const { all_listings } = useSelector((state) => state.property);
   const { alllistingloading } = useSelector((state) => state.loading);
 
   //

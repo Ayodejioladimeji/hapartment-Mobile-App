@@ -6,6 +6,7 @@ import {
   Platform,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import React from "react";
 import {
@@ -17,11 +18,28 @@ import {
 import colors from "../assets/colors/colors";
 import { format } from "timeago.js";
 import { addComma } from "comma-separator";
+import { saveProperties } from "../redux/actions/listingAction";
+import { useDispatch, useSelector } from "react-redux";
 
 //
 
 const Cards = ({ item, navigation }) => {
-  const bed = item.property_type.split(" ")[0];
+  const { callback } = useSelector((state) => state.property);
+  const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  // add favourite method
+  const saveProperty = () => {
+    if (token === "") {
+      Alert.alert("Kindly login to save properties");
+      return;
+    }
+    const data = {
+      list_id: item._id,
+    };
+    dispatch(saveProperties(data, token, callback));
+  };
+
   //
   return (
     <TouchableWithoutFeedback
@@ -37,7 +55,11 @@ const Cards = ({ item, navigation }) => {
             <Text style={styles.verifyText}>Verified</Text>
           </View>
 
-          <TouchableOpacity activeOpacity={0.5} style={styles.favoriteWrapper}>
+          <TouchableOpacity
+            onPress={saveProperty}
+            activeOpacity={0.5}
+            style={styles.favoriteWrapper}
+          >
             <MaterialIcons name="favorite" style={styles.favorite} />
           </TouchableOpacity>
         </View>

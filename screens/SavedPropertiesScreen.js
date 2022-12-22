@@ -5,28 +5,37 @@ import data from "../constants/data";
 import SearchCard from "../common/SearchCard";
 import colors from "../assets/colors/colors";
 import GoBack from "../common/GoBack";
+import Loading from "../common/Loading";
+import { useSelector } from "react-redux";
 
 //
 
 const SavedPropertiesScreen = ({ navigation }) => {
+  const { getfavoriteloading } = useSelector((state) => state.loading);
+  const { saved_properties } = useSelector((state) => state.property);
+
+  //
   return (
     <View style={{ flex: 1, backgroundColor: colors.white }}>
       <GoBack navigation={navigation} title="Saved Properties" />
 
       <Search />
 
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* <View style={styles.searchScroll}>
-          {data.map((item) => {
-            const {} = item;
-            return <SearchCard item={item} key={item.id} />;
-          })}
-        </View> */}
-      </ScrollView>
+      {getfavoriteloading ? (
+        <Loading />
+      ) : (
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+        >
+          <View style={styles.searchScroll}>
+            {saved_properties.map((item) => {
+              return <SearchCard item={item.saved_favorite} key={item._id} />;
+            })}
+          </View>
+        </ScrollView>
+      )}
     </View>
   );
 };
@@ -41,7 +50,7 @@ const styles = StyleSheet.create({
   searchScroll: {
     backgroundColor: colors.white,
     paddingHorizontal: 15,
-    marginBottom: 80,
+    marginBottom: 30,
   },
   searchText: {
     marginLeft: 15,

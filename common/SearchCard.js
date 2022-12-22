@@ -16,9 +16,10 @@ import {
 } from "@expo/vector-icons";
 import colors from "../assets/colors/colors";
 import { useNavigation } from "@react-navigation/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { format } from "timeago.js";
 import { addComma } from "comma-separator";
+import { saveProperties } from "../redux/actions/listingAction";
 
 //
 
@@ -35,6 +36,22 @@ const SearchCard = ({ item }) => {
   } = item;
   const navigation = useNavigation();
 
+  const { callback } = useSelector((state) => state.property);
+  const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  // add favourite method
+  const saveProperty = () => {
+    if (token === "") {
+      Alert.alert("Kindly login to save properties");
+      return;
+    }
+    const data = {
+      list_id: item._id,
+    };
+    dispatch(saveProperties(data, token, callback));
+  };
+
   //
   return (
     <TouchableWithoutFeedback
@@ -48,7 +65,11 @@ const SearchCard = ({ item }) => {
             <Text style={styles.verifyText}>Verified</Text>
           </View>
 
-          <TouchableOpacity activeOpacity={0.5} style={styles.favoriteWrapper}>
+          <TouchableOpacity
+            onPress={saveProperty}
+            activeOpacity={0.5}
+            style={styles.favoriteWrapper}
+          >
             <MaterialIcons name="favorite" style={styles.favorite} />
           </TouchableOpacity>
         </View>

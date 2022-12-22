@@ -35,7 +35,6 @@ import CreateListings from "./screens/CreateListings";
 import HowTo from "./screens/HowTo";
 import FetchApi from "./api/FetchApi";
 import NetInfo from "@react-native-community/netinfo";
-import { checkConnected } from "./utils/function";
 import NoConnectionScreen from "./screens/NoConnectionScreen";
 const Stack = createStackNavigator();
 

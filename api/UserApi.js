@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GLOBALTYPES } from "../redux/actions/globalTypes";
 import { getDataApi } from "../utils/fetchData";
-import { myListings } from "../redux/actions/listingAction";
+import { getSavedProperties, myListings } from "../redux/actions/listingAction";
 
 const UserApi = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const UserApi = () => {
   const { profile_callback } = useSelector((state) => state.profile);
 
   //
-
+  // get user
   useEffect(() => {
     if (token !== "") {
       const getData = async () => {
@@ -44,9 +44,17 @@ const UserApi = () => {
     }
   }, [token, profile_callback]);
 
+  // get my listing
   useEffect(() => {
     if (token !== "") {
       dispatch(myListings(token));
+    }
+  }, [dispatch, token]);
+
+  // get my saved favourites
+  useEffect(() => {
+    if (token !== "") {
+      dispatch(getSavedProperties(token));
     }
   }, [dispatch, token]);
 
