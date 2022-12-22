@@ -89,12 +89,13 @@ export const agentDetails = (id) => async (dispatch) => {
 
     const res = await getDataApis(`/agent_details/${id}`);
 
-    console.log(res);
-
     dispatch({ type: GLOBALTYPES.AGENT_DETAILS, payload: res.data });
 
     setTimeout(() => {
-      dispatch({ type: GLOBALTYPES.LOADING, payload: {} });
+      dispatch({
+        type: GLOBALTYPES.LOADING,
+        payload: { agentdetailsloading: false },
+      });
     }, 3000);
   } catch (error) {
     console.log(error.response.data.msg);
