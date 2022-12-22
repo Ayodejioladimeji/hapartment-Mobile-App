@@ -14,7 +14,7 @@ import SectionedMultiSelect from "react-native-sectioned-multi-select";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Dropdown } from "react-native-element-dropdown";
 import axios from "axios";
-// import { BASE_URL, API_KEY } from "@env";
+import { BASE_URL, API_KEY } from "@env";
 import colors from "../assets/colors/colors";
 import propertyData from "../constants/propertyData";
 import { strictAddComma } from "comma-separator";
@@ -22,9 +22,6 @@ import bathrooms from "../constants/bathrooms";
 import homefacilities from "../constants/homefacilities";
 import areafacilities from "../constants/areafacilities";
 import furnishing from "../constants/furnishing";
-
-const BASE_URL = "https://api.countrystatecity.in/v1";
-const API_KEY = "UnM1RmVPMFB0M09FN1RIWGZZM2Vyc2pvMzFrb3l5dDhQa3RzR1ZIbA==";
 
 //
 
