@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   StyleSheet,
@@ -8,12 +8,14 @@ import {
   TouchableOpacity,
   Animated,
   TouchableWithoutFeedback,
+  ActivityIndicator,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import colors from "../assets/colors/colors";
 import { GLOBALTYPES } from "../redux/actions/globalTypes";
 
 const Popup = ({ image, text, buttonText, navigation }) => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const {
     success,
@@ -60,21 +62,24 @@ const Popup = ({ image, text, buttonText, navigation }) => {
 
   //   navigate method
   const next = () => {
-    dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+    setLoading(true);
 
-    if (success) {
-      navigation.navigate("OneTimeCode");
-    } else if (forgotpasswordsuccess) {
-      navigation.navigate("ResetPassword");
-    } else if (resetpasswordsuccess) {
-      navigation.navigate("Login");
-    } else if (authenticateUser) {
-      navigation.navigate("Login");
-    } else if (createListingSuccess) {
-      navigation.navigate("RootHome");
-    } else {
-      navigation.navigate("RootHome");
-    }
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+      if (success) {
+        navigation.navigate("OneTimeCode");
+      } else if (forgotpasswordsuccess) {
+        navigation.navigate("ResetPassword");
+      } else if (resetpasswordsuccess) {
+        navigation.navigate("Login");
+      } else if (authenticateUser) {
+        navigation.navigate("Login");
+      } else if (createListingSuccess) {
+        navigation.navigate("RootHome");
+      } else {
+        navigation.navigate("RootHome");
+      }
+    }, 3000);
   };
 
   //
@@ -102,7 +107,11 @@ const Popup = ({ image, text, buttonText, navigation }) => {
             onPress={next}
             style={styles.modalButton}
           >
-            <Text style={styles.modalButtonText}>{buttonText}</Text>
+            {loading ? (
+              <ActivityIndicator size="small" color={colors.white} />
+            ) : (
+              <Text style={styles.modalButtonText}>{buttonText}</Text>
+            )}
           </TouchableOpacity>
         </Animated.View>
       </View>
