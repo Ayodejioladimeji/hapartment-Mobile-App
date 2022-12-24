@@ -1,11 +1,12 @@
 import { View, Text, TextInput, StyleSheet, Platform } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import colors from "../assets/colors/colors";
 import { Feather } from "@expo/vector-icons";
 
 //
 
 const Search = () => {
+  //
   return (
     <View style={styles.searchWrapper}>
       <View style={styles.inputWrapper}>
