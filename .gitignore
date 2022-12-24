@@ -13,6 +13,7 @@ web-build/
 .env
 
 screens/
+utils/
 
 # macOS
 .DS_Store
