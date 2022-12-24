@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Platform,
   TouchableOpacity,
+  Text,
 } from "react-native";
 import React from "react";
 import colors from "../assets/colors/colors";
@@ -25,11 +26,7 @@ const SearchComponent = () => {
           size={18}
           color="black"
         />
-        <TextInput
-          placeholder="Search for apartment"
-          style={styles.searchInput}
-          placeholderTextColor={colors.textLight}
-        />
+        <Text style={styles.searchInput}>Apartment in my location</Text>
       </View>
 
       <TouchableOpacity
@@ -60,11 +57,11 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: "row",
     width: "78%",
-    borderWidth: 0.3,
-    borderColor: colors.textLighter,
+    borderWidth: 0.5,
+    borderColor: colors.primary,
     alignItems: "center",
     paddingLeft: 10,
-    color: colors.textDark,
+    color: colors.primary,
     borderBottomLeftRadius: 5,
     borderTopLeftRadius: 5,
     height: Platform.OS === "ios" ? 50 : 45,
@@ -75,7 +72,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     fontSize: Platform.OS === "ios" ? 15 : 14,
-    color: colors.textDark,
+    color: colors.primary,
   },
   searchFilter: {
     width: "20%",
@@ -84,7 +81,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 5,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 0.3,
-    borderColor: colors.textLighter,
+    borderWidth: 0.5,
+    borderColor: colors.primary,
   },
 });

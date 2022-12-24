@@ -1,5 +1,6 @@
 import { Alert } from "react-native";
 import { createListing } from "../redux/actions/listingAction";
+import { CLOUDINARY_URL } from "@env";
 
 const handleSubmit = async (
   address,
@@ -137,34 +138,34 @@ const handleSubmit = async (
   dataSix.append("cloud_name", "hapartment");
   dataSeven.append("cloud_name", "hapartment");
 
-  const documentOne = await fetch(
-    "https://api.cloudinary.com/v1_1/hapartment/upload",
-    { method: "POST", body: dataOne }
-  );
-  const documentTwo = await fetch(
-    "https://api.cloudinary.com/v1_1/hapartment/upload",
-    { method: "POST", body: dataTwo }
-  );
-  const documentThree = await fetch(
-    "https://api.cloudinary.com/v1_1/hapartment/upload",
-    { method: "POST", body: dataThree }
-  );
-  const documentFour = await fetch(
-    "https://api.cloudinary.com/v1_1/hapartment/upload",
-    { method: "POST", body: dataFour }
-  );
-  const documentFive = await fetch(
-    "https://api.cloudinary.com/v1_1/hapartment/upload",
-    { method: "POST", body: dataFive }
-  );
-  const documentSix = await fetch(
-    "https://api.cloudinary.com/v1_1/hapartment/upload",
-    { method: "POST", body: dataSix }
-  );
-  const documentSeven = await fetch(
-    "https://api.cloudinary.com/v1_1/hapartment/upload",
-    { method: "POST", body: dataSeven }
-  );
+  const documentOne = await fetch(CLOUDINARY_URL, {
+    method: "POST",
+    body: dataOne,
+  });
+  const documentTwo = await fetch(CLOUDINARY_URL, {
+    method: "POST",
+    body: dataTwo,
+  });
+  const documentThree = await fetch(CLOUDINARY_URL, {
+    method: "POST",
+    body: dataThree,
+  });
+  const documentFour = await fetch(CLOUDINARY_URL, {
+    method: "POST",
+    body: dataFour,
+  });
+  const documentFive = await fetch(CLOUDINARY_URL, {
+    method: "POST",
+    body: dataFive,
+  });
+  const documentSix = await fetch(CLOUDINARY_URL, {
+    method: "POST",
+    body: dataSix,
+  });
+  const documentSeven = await fetch(CLOUDINARY_URL, {
+    method: "POST",
+    body: dataSeven,
+  });
 
   const oneUpload = await documentOne.json();
   const twoUpload = await documentTwo.json();
