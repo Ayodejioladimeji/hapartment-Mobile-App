@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import React, { useEffect, useState } from "react";
 import colors from "../assets/colors/colors";
 import { AntDesign, Feather } from "@expo/vector-icons";
+import Map from "./Map";
 
 //
 
@@ -103,7 +104,7 @@ const Tab = ({ params }) => {
           {/* Conent Tab Two */}
           {toggleState === 2 && (
             <View>
-              <Text>View on map</Text>
+              <Map />
             </View>
           )}
         </View>
