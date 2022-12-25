@@ -15,6 +15,7 @@ const Tab = ({ params }) => {
     home_facilities,
     area_facilities,
     description,
+    map,
   } = params;
   const [toggleState, setToggleState] = useState(1);
 
@@ -104,7 +105,7 @@ const Tab = ({ params }) => {
           {/* Conent Tab Two */}
           {toggleState === 2 && (
             <View>
-              <Map />
+              <Map map={map[0]} />
             </View>
           )}
         </View>
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
   tabcenter: {
     borderWidth: 0.3,
     borderColor: colors.textLighter,
-    paddingBottom: 20,
+    // paddingBottom: 20,
   },
   bloctabs: {
     flexDirection: "row",
@@ -177,11 +178,11 @@ const styles = StyleSheet.create({
 
   descriptionWrapper: {
     marginHorizontal: 5,
-    marginTop: 20,
     padding: 15,
     borderWidth: 0.3,
     borderColor: colors.textLighter,
     borderRadius: 15,
+    marginBottom: 20,
   },
   description: {
     fontSize: 14,

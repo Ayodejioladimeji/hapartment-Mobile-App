@@ -14,7 +14,8 @@ import {
 } from "react-native";
 import colors from "../assets/colors/colors";
 
-const Map = () => {
+const Map = ({ map }) => {
+  const { latitude, longitude, address, city, region, country } = map;
   const [switchMap, setSwitchMap] = useState("terrain");
 
   //
@@ -40,30 +41,42 @@ const Map = () => {
       <MapView
         style={styles.map}
         initialRegion={{
-          latitude: 7.1562300000000505,
-          longitude: 3.331070000000068,
+          latitude: latitude,
+          longitude: longitude,
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}
         provider={PROVIDER_GOOGLE}
         mapType={switchMap}
+        // showsUserLocation="true"
+        showsMyLocationButton="true"
+        // showsCompass="true"
+        showsTraffic="true"
+        // showsIndoors="true"
+        // showsIndoorLevelPicker="true"
+        zoomEnabled="true"
+        zoomTapEnabled="true"
+        loadingEnabled="true"
       >
         <Marker
           coordinate={{
-            latitude: 7.15,
-            longitude: 3.33,
+            latitude: latitude,
+            longitude: longitude,
           }}
           pinColor="red"
         >
           <Callout>
-            <Text>I'm here</Text>
+            {/* <Text style={styles.mapText}> {address}</Text> */}
+            <Text style={styles.mapText}> {city}</Text>
+            <Text style={styles.mapText}> {region}</Text>
+            <Text style={styles.mapText}>{country}</Text>
           </Callout>
         </Marker>
 
         <Circle
           center={{
-            latitude: 7.15,
-            longitude: 3.33,
+            latitude: latitude,
+            longitude: longitude,
           }}
           radius={100}
         />
@@ -77,7 +90,7 @@ export default Map;
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    marginHorizontal: 10,
+    overflow: "hidden",
   },
   mapTop: {
     flexDirection: "row",
@@ -95,7 +108,11 @@ const styles = StyleSheet.create({
   map: {
     width: 350,
     height: 400,
-    // width: Dimensions.get("window").width,
+    width: Dimensions.get("window").width,
     // height: Dimensions.get("window").height,
+  },
+  mapText: {
+    lineHeight: 25,
+    paddingHorizontal: 30,
   },
 });

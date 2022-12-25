@@ -10,6 +10,8 @@ const UserApi = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const { profile_callback } = useSelector((state) => state.profile);
+  const { listing_callback } = useSelector((state) => state.listing);
+  const { callback } = useSelector((state) => state.property);
 
   //
   // get user
@@ -49,14 +51,14 @@ const UserApi = () => {
     if (token !== "") {
       dispatch(myListings(token));
     }
-  }, [dispatch, token]);
+  }, [dispatch, token, listing_callback]);
 
   // get my saved favourites
   useEffect(() => {
     if (token !== "") {
       dispatch(getSavedProperties(token));
     }
-  }, [dispatch, token]);
+  }, [dispatch, token, callback]);
 
   return <View></View>;
 };
