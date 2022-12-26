@@ -1,22 +1,18 @@
 import * as React from "react";
 import { View, StyleSheet, Button } from "react-native";
-import { Video, AVPlaybackStatus } from "expo-av";
+import { WebView } from "react-native-webview";
 
-export default function VideoComponent() {
+export default function Video() {
   const video = React.useRef(null);
   const [status, setStatus] = React.useState({});
   return (
     <View style={styles.container}>
-      <Video
-        ref={video}
-        style={styles.video}
+      <WebView
+        style={{ flex: 1 }}
+        javaScriptEnabled={true}
         source={{
-          uri: "https://www.youtube.com/watch?v=MqqBH9Fa4NQ",
+          uri: "https://www.youtube.com/watch?v=JkeZZytewsg",
         }}
-        useNativeControls
-        resizeMode="stretch"
-        isLooping
-        onPlaybackStatusUpdate={(status) => setStatus(() => status)}
       />
     </View>
   );

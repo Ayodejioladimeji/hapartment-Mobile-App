@@ -6,8 +6,9 @@ import {
   Platform,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Alert,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import {
   FontAwesome5,
   Ionicons,
@@ -46,6 +47,7 @@ const SearchCard = ({ item }) => {
       Alert.alert("Kindly login to save properties");
       return;
     }
+
     const data = {
       list_id: item._id,
     };
@@ -250,7 +252,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   favorite: {
-    color: "red",
+    color: colors.white,
     fontSize: 17,
   },
 });

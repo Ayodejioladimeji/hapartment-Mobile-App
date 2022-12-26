@@ -128,6 +128,7 @@ export const listDetails = () => async (dispatch) => {
 // Save Properties
 export const saveProperties = (data, token, callback) => async (dispatch) => {
   try {
+    dispatch({ type: GLOBALTYPES.LOADING, payload: { favloading: true } });
     const res = await postDataApis("/save_favorite", data, token);
     Alert.alert(res.data.msg);
     dispatch({ type: GLOBALTYPES.ALERT, payload: !callback });
@@ -136,12 +137,16 @@ export const saveProperties = (data, token, callback) => async (dispatch) => {
       type: GLOBALTYPES.CALLBACK,
       payload: !callback,
     });
+
+    setTimeout(() => {
+      dispatch({ type: GLOBALTYPES.LOADING, payload: { favloading: false } });
+    }, 1000);
   } catch (error) {
     console.log(error.response.data.msg);
     Alert.alert(error.response.data.msg);
 
     setTimeout(() => {
-      dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+      dispatch({ type: GLOBALTYPES.LOADING, payload: { favloading: false } });
     }, 3000);
   }
 };

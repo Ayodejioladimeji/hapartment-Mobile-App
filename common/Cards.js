@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Alert,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import {
   FontAwesome5,
   Ionicons,
@@ -34,6 +34,7 @@ const Cards = ({ item, navigation }) => {
       Alert.alert("Kindly login to save properties");
       return;
     }
+
     const data = {
       list_id: item._id,
     };
@@ -73,7 +74,9 @@ const Cards = ({ item, navigation }) => {
 
         <View style={styles.cardBox}>
           <View style={styles.cardName}>
-            <Text style={styles.nameText}>{item.property_type}</Text>
+            <Text style={styles.nameText}>
+              {item.property_type.substring(0, 15) + "..."}
+            </Text>
             <Text style={styles.amountText}>₦{addComma(item.price)}</Text>
           </View>
 
@@ -231,7 +234,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   favorite: {
-    color: "red",
+    color: colors.white,
     fontSize: 20,
   },
 });
