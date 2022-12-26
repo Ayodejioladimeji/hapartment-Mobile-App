@@ -83,15 +83,6 @@ const Alert = () => {
       {loginerror && <LoginErrorModal />}
 
       {verifyagent && <IdentityVerificationModal />}
-
-      {/* {logout && (
-        <Popup
-          image={require("../assets/images/success.png")}
-          text={authenticate}
-          buttonText="Login Again"
-          navigation={navigation}
-        />
-      )} */}
     </View>
   );
 };

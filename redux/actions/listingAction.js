@@ -24,6 +24,13 @@ export const createListing =
         type: GLOBALTYPES.LISTING_CALLBACK,
         payload: !listing_callback,
       });
+
+      setTimeout(() => {
+        dispatch({
+          type: GLOBALTYPES.LOADING,
+          payload: { createlistingloading: false },
+        });
+      }, 2000);
     } catch (error) {
       console.log(error.response.data.msg);
       dispatch({
@@ -32,7 +39,10 @@ export const createListing =
       });
 
       setTimeout(() => {
-        dispatch({ type: GLOBALTYPES.ALERT, payload: {} });
+        dispatch({
+          type: GLOBALTYPES.LOADING,
+          payload: { createlistingloading: false },
+        });
       }, 3000);
     }
   };
