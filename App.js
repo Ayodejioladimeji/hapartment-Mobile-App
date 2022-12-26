@@ -36,6 +36,7 @@ import HowTo from "./screens/HowTo";
 import FetchApi from "./api/FetchApi";
 import NetInfo from "@react-native-community/netinfo";
 import NoConnectionScreen from "./screens/NoConnectionScreen";
+import ReportListing from "./screens/ReportListing";
 const Stack = createStackNavigator();
 
 //
@@ -139,6 +140,7 @@ function App() {
           <Stack.Screen name="PropertyImages" component={PropertyImages} />
           <Stack.Screen name="CreateListings" component={CreateListings} />
           <Stack.Screen name="HowTo" component={HowTo} />
+          <Stack.Screen name="ReportListing" component={ReportListing} />
         </Stack.Navigator>
       </NavigationContainer>
     </DataProvider>

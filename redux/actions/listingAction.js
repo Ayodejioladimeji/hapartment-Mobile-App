@@ -186,3 +186,43 @@ export const getSavedProperties = (token) => async (dispatch) => {
     }, 3000);
   }
 };
+
+// Create Listing
+export const reportListing =
+  (data, token, listing_callback, setMessage) => async (dispatch) => {
+    try {
+      dispatch({
+        type: GLOBALTYPES.LOADING,
+        payload: { reportlistingloading: true },
+      });
+
+      const res = await postDataApis("/report_listing", data, token);
+
+      console.log(res.data);
+
+      Alert.alert(res.data.msg);
+
+      dispatch({
+        type: GLOBALTYPES.LISTING_CALLBACK,
+        payload: !listing_callback,
+      });
+
+      setMessage("");
+
+      setTimeout(() => {
+        dispatch({
+          type: GLOBALTYPES.LOADING,
+          payload: { reportlistingloading: false },
+        });
+      }, 1000);
+    } catch (error) {
+      Alert.alert(error.response.data.msg);
+      setMessage("");
+      setTimeout(() => {
+        dispatch({
+          type: GLOBALTYPES.LOADING,
+          payload: { reportlistingloading: false },
+        });
+      }, 1000);
+    }
+  };
