@@ -39,6 +39,7 @@ import NoConnectionScreen from "./screens/NoConnectionScreen";
 import ReportListing from "./screens/ReportListing";
 import FilterSearchScreen from "./screens/FilterSearchScreen";
 import LocationSearchScreen from "./screens/LocationSearchScreen";
+import CreateNotification from "./screens/CreateNotification";
 const Stack = createStackNavigator();
 
 //
@@ -151,6 +152,10 @@ function App() {
           <Stack.Screen
             name="LocationSearchScreen"
             component={LocationSearchScreen}
+          />
+          <Stack.Screen
+            name="CreateNotification"
+            component={CreateNotification}
           />
         </Stack.Navigator>
       </NavigationContainer>

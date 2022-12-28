@@ -7,9 +7,8 @@ const Loading = () => {
     <View
       style={{
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
         backgroundColor: colors.white,
+        marginTop: 50,
       }}
     >
       <ActivityIndicator size="small" color={colors.primary} />
