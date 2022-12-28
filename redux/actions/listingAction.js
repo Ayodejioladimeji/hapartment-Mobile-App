@@ -32,7 +32,7 @@ export const createListing =
         });
       }, 2000);
     } catch (error) {
-      console.log(error.response.data.msg);
+      // console.log(error.response.data.msg);
       dispatch({
         type: GLOBALTYPES.ALERT,
         payload: { error: error.response.data.msg },
