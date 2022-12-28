@@ -3,15 +3,12 @@ import {
   Alert,
   Platform,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import SectionedMultiSelect from "react-native-sectioned-multi-select";
-import { MaterialIcons } from "@expo/vector-icons";
 import { Dropdown } from "react-native-element-dropdown";
 import axios from "axios";
 import { BASE_URL, API_KEY } from "@env";
@@ -19,29 +16,34 @@ import colors from "../assets/colors/colors";
 import propertyData from "../constants/propertyData";
 import { strictAddComma } from "comma-separator";
 import bathrooms from "../constants/bathrooms";
-import homefacilities from "../constants/homefacilities";
-import areafacilities from "../constants/areafacilities";
 import furnishing from "../constants/furnishing";
-import { countries } from "../constants/countries";
+import { filterListing } from "../redux/actions/listingAction";
+import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 //
 
 const FilterSearch = () => {
-  const [countryData, setCountryData] = useState([]);
   const [stateData, setStateData] = useState([]);
   const [cityData, setCityData] = useState([]);
-  const [country, setCountry] = useState(null);
   const [state, setState] = useState(null);
   const [city, setCity] = useState(null);
+  const [statename, setStatename] = useState(null);
+  const [cityname, setCityname] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
   const [propertyType, setPropertyType] = useState(null);
-  const [homeSelectedItems, setHomeSelectedItems] = useState([]);
-  const [areaSelectedItems, setAreaSelectedItems] = useState([]);
   const [furnish, setFurnish] = useState("");
   const [bath, setBath] = useState("");
   const [toilet, setToilet] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
+  // load the states when the page renders
+  useEffect(() => {
+    handleState("NG");
+  }, []);
 
   const handleState = (countryCode) => {
     var config = {
@@ -97,32 +99,35 @@ const FilterSearch = () => {
       });
   };
 
-  const onSelectedHomeChange = (newSelectItems) => {
-    setHomeSelectedItems(newSelectItems);
-  };
-
-  const onSelectedAreaChange = (newSelectItems) => {
-    setAreaSelectedItems(newSelectItems);
-  };
-
   const handleSubmit = () => {
-    const newData = {
-      country,
-      state,
-      city,
-      propertyType,
-      furnish,
-      bath,
-      homeSelectedItems,
-      areaSelectedItems,
-      minPrice,
-      maxPrice,
+    if (
+      !propertyType ||
+      !statename ||
+      !cityname ||
+      !bathrooms ||
+      !toilet ||
+      !furnish ||
+      !minPrice ||
+      !maxPrice
+    ) {
+      Alert.alert("Input cannot be empty");
+      return;
+    }
+
+    navigation.navigate("FilterSearchScreen");
+    const data = {
+      property_type: propertyType,
+      statename,
+      cityname,
+      bathrooms: bath,
+      toilets: toilet,
+      furnishing: furnish,
+      min_price: minPrice,
+      max_price: maxPrice,
     };
 
-    console.log(newData);
+    dispatch(filterListing(data));
   };
-
-  console.log(propertyType);
 
   //
 
@@ -163,85 +168,53 @@ const FilterSearch = () => {
           />
         </View>
 
-        {propertyType !== "Single Room" &&
-          propertyType !== "Room & Parlour" && (
-            <View style={styles.country}>
-              <Text style={styles.selectHeading}>Select Bathrooms</Text>
-              <Dropdown
-                style={[
-                  styles.dropdown,
-                  isFocus && { borderColor: colors.primary },
-                ]}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                inputSearchStyle={styles.inputSearchStyle}
-                iconStyle={styles.iconStyle}
-                data={bathrooms}
-                maxHeight={300}
-                labelField="label"
-                valueField="value"
-                placeholder="Select bathroom"
-                value={bath}
-                onFocus={() => setIsFocus(true)}
-                onBlur={() => setIsFocus(false)}
-                onChange={(item) => {
-                  setBath(item.value);
-                  setIsFocus(false);
-                }}
-              />
-            </View>
-          )}
-
-        {propertyType !== "Single Room" &&
-          propertyType !== "Room & Parlour" && (
-            <View style={styles.country}>
-              <Text style={styles.selectHeading}>Select Toilets</Text>
-              <Dropdown
-                style={[
-                  styles.dropdown,
-                  isFocus && { borderColor: colors.primary },
-                ]}
-                placeholderStyle={styles.placeholderStyle}
-                selectedTextStyle={styles.selectedTextStyle}
-                inputSearchStyle={styles.inputSearchStyle}
-                iconStyle={styles.iconStyle}
-                data={bathrooms}
-                maxHeight={300}
-                labelField="label"
-                valueField="value"
-                placeholder="Select toilet"
-                value={toilet}
-                onFocus={() => setIsFocus(true)}
-                onBlur={() => setIsFocus(false)}
-                onChange={(item) => {
-                  setToilet(item.value);
-                  setIsFocus(false);
-                }}
-              />
-            </View>
-          )}
-
         <View style={styles.country}>
-          <Text style={styles.selectHeading}>Select Country</Text>
+          <Text style={styles.selectHeading}>Select Bathrooms</Text>
           <Dropdown
-            style={[styles.dropdown, isFocus && { borderColor: "blue" }]}
+            style={[
+              styles.dropdown,
+              isFocus && { borderColor: colors.primary },
+            ]}
             placeholderStyle={styles.placeholderStyle}
             selectedTextStyle={styles.selectedTextStyle}
             inputSearchStyle={styles.inputSearchStyle}
             iconStyle={styles.iconStyle}
-            data={countries}
-            search
+            data={bathrooms}
             maxHeight={300}
             labelField="label"
             valueField="value"
-            placeholder="Select country"
-            searchPlaceholder="Search..."
-            value={country}
+            placeholder="Select bathroom"
+            value={bath}
             onFocus={() => setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
             onChange={(item) => {
-              setCountry(item.value);
-              handleState(item.value);
+              setBath(item.value);
+              setIsFocus(false);
+            }}
+          />
+        </View>
+
+        <View style={styles.country}>
+          <Text style={styles.selectHeading}>Select Toilets</Text>
+          <Dropdown
+            style={[
+              styles.dropdown,
+              isFocus && { borderColor: colors.primary },
+            ]}
+            placeholderStyle={styles.placeholderStyle}
+            selectedTextStyle={styles.selectedTextStyle}
+            inputSearchStyle={styles.inputSearchStyle}
+            iconStyle={styles.iconStyle}
+            data={bathrooms}
+            maxHeight={300}
+            labelField="label"
+            valueField="value"
+            placeholder="Select toilet"
+            value={toilet}
+            onFocus={() => setIsFocus(true)}
+            onBlur={() => setIsFocus(false)}
+            onChange={(item) => {
+              setToilet(item.value);
               setIsFocus(false);
             }}
           />
@@ -267,8 +240,9 @@ const FilterSearch = () => {
             onBlur={() => setIsFocus(false)}
             onChange={(item) => {
               setState(item.value);
-              handleCity(country, item.value);
+              handleCity("NG", item.value);
               setIsFocus(false);
+              setStatename(item.label);
             }}
           />
         </View>
@@ -294,6 +268,7 @@ const FilterSearch = () => {
             onChange={(item) => {
               setCity(item.value);
               setIsFocus(false);
+              setCityname(item.label);
             }}
           />
         </View>
@@ -319,84 +294,6 @@ const FilterSearch = () => {
               setIsFocus(false);
             }}
           />
-        </View>
-
-        {propertyType !== "Single Room" &&
-          propertyType !== "Room & Parlour" && (
-            <View style={styles.country}>
-              <Text style={styles.selectHeading}>Select Home Facilities</Text>
-
-              <View
-                style={{
-                  borderWidth: 0.6,
-                  borderColor: colors.textLight,
-                  borderRadius: 5,
-                }}
-              >
-                <SectionedMultiSelect
-                  IconRenderer={MaterialIcons}
-                  items={homefacilities}
-                  uniqueKey="name"
-                  selectText="Select facilities"
-                  showDropDowns={false}
-                  readOnlyHeadings={false}
-                  onSelectedItemsChange={onSelectedHomeChange}
-                  selectedItems={homeSelectedItems}
-                  styles={{
-                    borderWidth: 1,
-                    button: { backgroundColor: colors.primary },
-                    selectedItemText: {
-                      color: colors.primary,
-                    },
-                    selectToggleText: {
-                      fontSize: Platform.OS === "ios" ? 15 : 14,
-                    },
-                    selectToggle: {
-                      // borderWidth: 0.5,
-                      paddingVertical: 15,
-                      paddingHorizontal: 10,
-                    },
-                  }}
-                />
-              </View>
-            </View>
-          )}
-
-        <View style={styles.country}>
-          <Text style={styles.selectHeading}>Select Area Facilities</Text>
-
-          <View
-            style={{
-              borderWidth: 0.6,
-              borderColor: colors.textLight,
-              borderRadius: 5,
-            }}
-          >
-            <SectionedMultiSelect
-              IconRenderer={MaterialIcons}
-              items={areafacilities}
-              uniqueKey="name"
-              selectText="Select facilities"
-              showDropDowns={false}
-              readOnlyHeadings={false}
-              onSelectedItemsChange={onSelectedAreaChange}
-              selectedItems={areaSelectedItems}
-              styles={{
-                button: { backgroundColor: colors.primary },
-                selectedItemText: {
-                  color: colors.primary,
-                },
-                selectToggleText: {
-                  fontSize: Platform.OS === "ios" ? 15 : 14,
-                },
-                selectToggle: {
-                  // borderWidth: 0.5,
-                  paddingVertical: 15,
-                  paddingHorizontal: 10,
-                },
-              }}
-            />
-          </View>
         </View>
 
         <View style={styles.inputBox}>

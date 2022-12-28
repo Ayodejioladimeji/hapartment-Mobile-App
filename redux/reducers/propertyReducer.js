@@ -7,6 +7,7 @@ const initialState = {
   full_image: null,
   saved_properties: [],
   callback: false,
+  search_listing: [],
 };
 
 //
@@ -49,6 +50,12 @@ const propertyReducer = (state = initialState, action) => {
       return {
         ...state,
         callback: payload,
+      };
+
+    case GLOBALTYPES.SEARCH_LISTING:
+      return {
+        ...state,
+        search_listing: payload,
       };
 
     default:

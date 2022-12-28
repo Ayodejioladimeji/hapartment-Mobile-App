@@ -226,3 +226,41 @@ export const reportListing =
       }, 1000);
     }
   };
+
+// Filter Search
+export const filterListing = (data) => async (dispatch) => {
+  try {
+    const {
+      property_type,
+      statename,
+      cityname,
+      bathrooms,
+      toilets,
+      furnishing,
+      min_price,
+      max_price,
+    } = data;
+
+    dispatch({ type: GLOBALTYPES.LOADING, payload: { filterloading: true } });
+
+    const res = await getDataApis(
+      `/filter_listing?property_type=${property_type}&statename=${statename}&cityname=${cityname}&bathrooms=${bathrooms}&toilets=${toilets}&furnishing=${furnishing}&min_price=${min_price}&max_price=${max_price}`
+    );
+
+    dispatch({ type: GLOBALTYPES.SEARCH_LISTING, payload: res.data });
+
+    dispatch({
+      type: GLOBALTYPES.LOADING,
+      payload: { filterloading: false },
+    });
+  } catch (error) {
+    Alert.alert(error.response.data.msg);
+
+    setTimeout(() => {
+      dispatch({
+        type: GLOBALTYPES.LOADING,
+        payload: { filterloading: false },
+      });
+    }, 1000);
+  }
+};
