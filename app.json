@@ -2,6 +2,7 @@
   "expo": {
     "name": "Hapartment",
     "slug": "hapartment",
+    "description": "We help users search for apartment easily and provide them with adequate information to help them make well-informed decisions.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,7 +30,8 @@
         "backgroundColor": "#449342"
       },
       "permissions": [
-        "android.permission.RECORD_AUDIO"
+        "android.permission.RECORD_AUDIO",
+        "android.permission.LOCATION"
       ],
       "package": "com.layobright.hapartment"
     },
@@ -48,6 +50,7 @@
       "eas": {
         "projectId": "1a03b837-9f82-4b4d-b980-a052e3d3f447"
       }
-    }
+    },
+    "permissions":[ "CAMERA", "ACCESS_FINE_LOCATION","ACCESS_COARSE_LOCATION" ]
   }
 }

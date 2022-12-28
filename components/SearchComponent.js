@@ -6,35 +6,60 @@ import {
   TouchableOpacity,
   Text,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import colors from "../assets/colors/colors";
 import { Feather, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { searchListing } from "../redux/actions/listingAction";
 
 //
 
 const SearchComponent = () => {
   const navigation = useNavigation();
+  const [cityname, setCityname] = useState("");
+  const [isFocus, setIsFocus] = useState(false);
+  const dispatch = useDispatch();
+
+  //
+
+  const handleSubmit = () => {
+    navigation.navigate("FilterSearchScreen");
+    setCityname("");
+    dispatch(searchListing(cityname));
+  };
 
   //
   return (
     <View style={styles.searchWrapper}>
-      <View style={styles.inputWrapper}>
+      <View
+        style={[
+          styles.inputWrapper,
+          isFocus && { borderColor: colors.primary },
+        ]}
+      >
         <Feather
           style={styles.searchIcon}
           name="search"
           size={18}
           color="black"
         />
-        <Text style={styles.searchInput}>Apartment in my location</Text>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Enter your city name"
+          value={cityname}
+          onChangeText={(text) => setCityname(text)}
+          onSubmitEditing={handleSubmit}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+        />
       </View>
-
       <TouchableOpacity
         activeOpacity={0.5}
         style={styles.searchFilter}
         onPress={() => navigation.navigate("FilterScreen")}
       >
-        <FontAwesome name="sliders" size={22} color={colors.primary} />
+        <FontAwesome name="sliders" size={23} color={colors.white} />
       </TouchableOpacity>
     </View>
   );
@@ -57,8 +82,8 @@ const styles = StyleSheet.create({
   inputWrapper: {
     flexDirection: "row",
     width: "78%",
-    borderWidth: 0.5,
-    borderColor: colors.primary,
+    borderWidth: 1.5,
+    borderColor: colors.textLight,
     alignItems: "center",
     paddingLeft: 10,
     color: colors.primary,
@@ -73,6 +98,7 @@ const styles = StyleSheet.create({
   searchInput: {
     fontSize: Platform.OS === "ios" ? 15 : 14,
     color: colors.primary,
+    textTransform: "capitalize",
   },
   searchFilter: {
     width: "20%",
@@ -83,5 +109,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderWidth: 0.5,
     borderColor: colors.primary,
+    backgroundColor: colors.primary,
   },
 });

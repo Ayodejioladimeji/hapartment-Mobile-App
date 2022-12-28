@@ -264,3 +264,28 @@ export const filterListing = (data) => async (dispatch) => {
     }, 1000);
   }
 };
+
+// Filter Search
+export const searchListing = (cityname) => async (dispatch) => {
+  try {
+    dispatch({ type: GLOBALTYPES.LOADING, payload: { filterloading: true } });
+
+    const res = await getDataApis(`/search_listing?cityname=${cityname}`);
+
+    dispatch({ type: GLOBALTYPES.SEARCH_LISTING, payload: res.data });
+
+    dispatch({
+      type: GLOBALTYPES.LOADING,
+      payload: { filterloading: false },
+    });
+  } catch (error) {
+    Alert.alert(error.response.data.msg);
+
+    setTimeout(() => {
+      dispatch({
+        type: GLOBALTYPES.LOADING,
+        payload: { filterloading: false },
+      });
+    }, 1000);
+  }
+};

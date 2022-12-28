@@ -38,6 +38,7 @@ import NetInfo from "@react-native-community/netinfo";
 import NoConnectionScreen from "./screens/NoConnectionScreen";
 import ReportListing from "./screens/ReportListing";
 import FilterSearchScreen from "./screens/FilterSearchScreen";
+import LocationSearchScreen from "./screens/LocationSearchScreen";
 const Stack = createStackNavigator();
 
 //
@@ -145,6 +146,11 @@ function App() {
           <Stack.Screen
             name="FilterSearchScreen"
             component={FilterSearchScreen}
+          />
+
+          <Stack.Screen
+            name="LocationSearchScreen"
+            component={LocationSearchScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>
