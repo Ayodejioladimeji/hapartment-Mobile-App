@@ -35,12 +35,14 @@ const Tab = ({ params }) => {
             </View>
           </TouchableWithoutFeedback>
 
-          <TouchableWithoutFeedback onPress={() => toggleTab(2)}>
-            <View style={toggleState === 2 ? styles.activetabs : styles.tabs}>
-              <Feather name="map" size={14} color={colors.textLight} />
-              <Text style={styles.buttonText}>View on Map</Text>
-            </View>
-          </TouchableWithoutFeedback>
+          {map[0] !== null && (
+            <TouchableWithoutFeedback onPress={() => toggleTab(2)}>
+              <View style={toggleState === 2 ? styles.activetabs : styles.tabs}>
+                <Feather name="map" size={14} color={colors.textLight} />
+                <Text style={styles.buttonText}>View on Map</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          )}
         </View>
 
         {/* THE SECTION OF THE CONTENT */}
@@ -103,7 +105,7 @@ const Tab = ({ params }) => {
           )}
 
           {/* Conent Tab Two */}
-          {toggleState === 2 && (
+          {toggleState === 2 && map[0] !== null && (
             <View>
               <Map map={map[0]} />
             </View>

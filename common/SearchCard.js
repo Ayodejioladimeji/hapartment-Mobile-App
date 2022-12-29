@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import {
@@ -40,6 +41,7 @@ const SearchCard = ({ item }) => {
   const { callback } = useSelector((state) => state.property);
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   // add favourite method
   const saveProperty = () => {
@@ -48,10 +50,15 @@ const SearchCard = ({ item }) => {
       return;
     }
 
+    setLoading(true);
+
     const data = {
       list_id: item._id,
     };
     dispatch(saveProperties(data, token, callback));
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   //
@@ -79,7 +86,11 @@ const SearchCard = ({ item }) => {
             activeOpacity={0.5}
             style={styles.favoriteWrapper}
           >
-            <MaterialIcons name="favorite" style={styles.favorite} />
+            {loading ? (
+              <ActivityIndicator size="small" color={colors.white} />
+            ) : (
+              <MaterialIcons name="favorite" style={styles.favorite} />
+            )}
           </TouchableOpacity>
         </View>
 
@@ -120,7 +131,7 @@ const SearchCard = ({ item }) => {
 
           <View style={styles.cardTimeWrapper}>
             <Text style={styles.cardTime}>
-              Property updated : {format(updatedAt)}
+              Updated : {format(updatedAt).substring(0, 25) + " "}
             </Text>
           </View>
         </View>
@@ -144,7 +155,6 @@ const styles = StyleSheet.create({
     borderWidth: 0.2,
     borderColor: colors.textLighter,
     padding: 5,
-    paddingLeft: 10,
     borderBottomColor: colors.primary,
     overflow: "hidden",
   },

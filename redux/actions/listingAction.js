@@ -152,12 +152,11 @@ export const saveProperties = (data, token, callback) => async (dispatch) => {
       dispatch({ type: GLOBALTYPES.LOADING, payload: { favloading: false } });
     }, 1000);
   } catch (error) {
-    console.log(error.response.data.msg);
     Alert.alert(error.response.data.msg);
 
     setTimeout(() => {
       dispatch({ type: GLOBALTYPES.LOADING, payload: { favloading: false } });
-    }, 3000);
+    }, 1000);
   }
 };
 

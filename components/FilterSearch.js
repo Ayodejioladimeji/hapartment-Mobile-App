@@ -400,10 +400,11 @@ const styles = StyleSheet.create({
   },
   filterButton: {
     backgroundColor: colors.primary,
-    padding: 20,
+    height: 50,
     borderRadius: 5,
     alignItems: "center",
     marginTop: 30,
+    justifyContent: "center",
   },
   descriptionWrapper: {
     marginTop: 10,

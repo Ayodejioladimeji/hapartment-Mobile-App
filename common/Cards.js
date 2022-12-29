@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Alert,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import {
@@ -27,6 +28,7 @@ const Cards = ({ item, navigation }) => {
   const { callback } = useSelector((state) => state.property);
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   // add favourite method
   const saveProperty = () => {
@@ -35,10 +37,16 @@ const Cards = ({ item, navigation }) => {
       return;
     }
 
+    setLoading(true);
+
     const data = {
       list_id: item._id,
     };
     dispatch(saveProperties(data, token, callback));
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   };
 
   //
@@ -68,7 +76,11 @@ const Cards = ({ item, navigation }) => {
             activeOpacity={0.5}
             style={styles.favoriteWrapper}
           >
-            <MaterialIcons name="favorite" style={styles.favorite} />
+            {loading ? (
+              <ActivityIndicator size="small" color={colors.white} />
+            ) : (
+              <MaterialIcons name="favorite" style={styles.favorite} />
+            )}
           </TouchableOpacity>
         </View>
 
