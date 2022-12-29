@@ -6,6 +6,7 @@ import verify from "./verifyReducer";
 import listing from "./listingReducer";
 import loading from "./loadReducer";
 import property from "./propertyReducer";
+import notification from "./notificationReducer";
 
 export default combineReducers({
   auth,
@@ -15,4 +16,5 @@ export default combineReducers({
   listing,
   loading,
   property,
+  notification,
 });

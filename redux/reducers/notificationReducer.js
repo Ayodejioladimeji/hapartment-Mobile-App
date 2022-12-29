@@ -1,7 +1,7 @@
 import { GLOBALTYPES } from "../actions/globalTypes";
 
 const initialState = {
-  my_notifications: [],
+  my_notification: [],
 };
 
 //
@@ -10,10 +10,10 @@ const notificationReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case GLOBALTYPES.MY_NOTIFICATIONS:
+    case GLOBALTYPES.MY_NOTIFICATION:
       return {
         ...state,
-        my_notifications: payload,
+        my_notification: payload,
       };
 
     default:

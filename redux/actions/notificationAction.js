@@ -1,5 +1,5 @@
 import { Alert } from "react-native";
-import { postDataApi, postDataApis } from "../../utils/fetchData";
+import { getDataApi, postDataApi, postDataApis } from "../../utils/fetchData";
 import { GLOBALTYPES } from "./globalTypes";
 
 // CREATE NOTIFICATON
@@ -17,11 +17,13 @@ export const createNotification =
 
       dispatch({ type: GLOBALTYPES.CALLBACK, payload: !callback });
 
-      dispatch({
-        type: GLOBALTYPES.LOADING,
-        payload: { createnotificationloading: false },
-      });
-      navigation.navigate("NotificationScreen");
+      setTimeout(() => {
+        dispatch({
+          type: GLOBALTYPES.LOADING,
+          payload: { createnotificationloading: false },
+        });
+        navigation.navigate("NotificationScreen");
+      }, 2000);
     } catch (error) {
       Alert.alert(error.response.data.msg);
 
@@ -33,3 +35,31 @@ export const createNotification =
       }, 1000);
     }
   };
+
+// GET NOTIFICATIONS CREATED
+export const getNotifications = (token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GLOBALTYPES.LOADING,
+      payload: { getnotificationloading: true },
+    });
+
+    const res = await getDataApi("/my_notifications", token);
+
+    dispatch({ type: GLOBALTYPES.MY_NOTIFICATION, payload: res.data });
+
+    dispatch({
+      type: GLOBALTYPES.LOADING,
+      payload: { getnotificationloading: false },
+    });
+  } catch (error) {
+    Alert.alert(error.response.data.msg);
+
+    setTimeout(() => {
+      dispatch({
+        type: GLOBALTYPES.LOADING,
+        payload: { getnotificationloading: false },
+      });
+    }, 1000);
+  }
+};
