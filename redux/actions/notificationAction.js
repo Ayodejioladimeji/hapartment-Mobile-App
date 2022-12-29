@@ -1,5 +1,10 @@
 import { Alert } from "react-native";
-import { getDataApi, postDataApi, postDataApis } from "../../utils/fetchData";
+import {
+  deleteDataApi,
+  getDataApi,
+  postDataApi,
+  postDataApis,
+} from "../../utils/fetchData";
 import { GLOBALTYPES } from "./globalTypes";
 
 // CREATE NOTIFICATON
@@ -59,6 +64,37 @@ export const getNotifications = (token) => async (dispatch) => {
       dispatch({
         type: GLOBALTYPES.LOADING,
         payload: { getnotificationloading: false },
+      });
+    }, 1000);
+  }
+};
+
+// DELETE NOTIFICATIONS
+export const deleteNotification = (id, token, callback) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GLOBALTYPES.LOADING,
+      payload: { deletenotificationloading: true },
+    });
+
+    const res = await deleteDataApi(`/delete_notification/${id}`, token);
+
+    dispatch({ type: GLOBALTYPES.CALLBACK, payload: !callback });
+    console.log(res.data);
+
+    Alert.alert(res.data.msg);
+
+    dispatch({
+      type: GLOBALTYPES.LOADING,
+      payload: { deletenotificationloading: false },
+    });
+  } catch (error) {
+    Alert.alert(error.response.data.msg);
+
+    setTimeout(() => {
+      dispatch({
+        type: GLOBALTYPES.LOADING,
+        payload: { deletenotificationloading: false },
       });
     }, 1000);
   }
